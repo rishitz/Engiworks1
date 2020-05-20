@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   <h:head>
+      <title>EngiWorks</title>
+   </h:head>
+
+   <h:body>
+       <ui:include src="Header.xhtml" />
+      <div class="wrapper">
+
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-6">
+                        <h1>Job Categories</h1>
+                     </div>
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="Dashboard.xhtml">Home</a></li>
+                           <li class="breadcrumb-item active">Job Categories</li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            
+            
+            <!-- Main content -->
+            <section class="content">
+               <div class="container-fluid">                
+                  <!-- /.row -->
+                  <div class="row">
+                      <c:forEach var="x" items="#{adminManagedBean.getalljob()}">
+                     <div class="col-md-3">
+                        <div class="card">
+
+                           <div class="card-body">
+                               <center><h4>${x.jobCategoryName}</h4></center>
+                           </div>
+                           <!-- /.card-body -->
+                            <div class="card-footer">
+<!--                           <button type="button"  class="btn btn-primary " action="#{jobCategoryManagedBean.getJobCategory(x.jobCategoryId)}" data-toggle="modal" data-target="#modal-default">UPDATE</button>                                                                                       -->
+                                <h:form>
+                                    <h:commandButton action="#{adminManagedBean.getJob(x.jobCategoryId)}"  class="btn btn-primary"  value="UPDATE"  />                                                   
+                                    <h:commandButton action="#{adminManagedBean.deleteJob(x.jobCategoryId)}"  class="btn btn-danger pull-right" value="DELETE" />
+                              </h:form>
+                            </div>
+                        </div>
+                     </div>  
+                    </c:forEach>    
+                  </div>               
+               </div>             
+            </section>
+         </div>
+
+         <!-- /.content-wrapper -->
+         <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+           <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+   </h:body>
+</html>
+

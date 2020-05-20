@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+     <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <title>Submit Job</title>
+      <!-- Bootstrap stylesheet -->
+      <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+      <!-- font -->
+      <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700%7CSource+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+      <!-- stylesheet -->
+      <link href="css/style.css" rel="stylesheet" type="text/css"/>
+      <link href="css/style_cyan.css" title="style_cyan" rel="alternate stylesheet" type="text/css"/>
+      <link href="css/style_red.css" title="style_red" rel="alternate stylesheet" type="text/css"/>
+      <link href="css/style_green.css" title="style_green" rel="alternate stylesheet" type="text/css"/>
+      <link href="css/style_blue.css" title="style_blue" rel="alternate stylesheet" type="text/css"/>
+      <!-- font-awesome -->
+      <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+      <!-- crousel css -->
+      <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
+      <!--bootstrap select-->
+      <link href="js/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
+   </head>
+    <h:body>
+        
+        <header>
+         <!-- header container start here-->
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-3 col-md-3 col-xs-12">
+                  <!-- logo start here-->
+                  <div id="logo">
+                     <a href="Home.xhtml">
+                     <img class="img-responsive logochange" alt="logo" title="logo" src="images/logo.png" />
+                     </a>
+                  </div>
+                  <!-- logo end here-->
+               </div>
+
+               <div class="col-sm-6 col-md-9 col-xs-12 padd0">
+                  <!-- menu start here-->
+                  <nav class="navbar" id="menu">
+                     <div class="navbar-header">
+                        <span class="menutext visible-xs">Menu</span>
+                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggle" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                     </div>
+                     <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                        <ul class="nav navbar-nav">
+                           <li>                              
+                              <a href="Home.xhtml">Home <i class="fa fa-home" aria-hidden="true"></i></a>
+                           </li>
+                           <li class="dropdown">
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">JOBS  <i class="fa fa-briefcase" aria-hidden="true"></i></a>
+                              <div class="dropdown-menu animated fadeInDown">
+                                 <div class="dropdown-inner">
+                                    <ul class="list-unstyled">
+                                       
+                                       <li>
+                                          <a href="PostJob.xhtml">Post Job</a>
+                                       </li>
+                                         
+                                         <li>
+                                          <a href="#">Manage Job</a>
+                                       </li>
+                                       
+                                    </ul>
+                                 </div>
+                              </div>
+                           </li>
+                            <li class="dropdown">
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">Task  <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                              <div class="dropdown-menu animated fadeInDown">
+                                 <div class="dropdown-inner">
+                                    <ul class="list-unstyled">
+                                       
+                                       <li>
+                                          <a href="PostJob.xhtml"> Manage Task</a>
+                                       </li>
+                                         
+                                         <li>
+                                          <a href="#">Manage Bidders</a>
+                                       </li>
+                                         <li>
+                                          <a href="#">My Active Bid</a>
+                                       </li>
+                                       
+                                    </ul>
+                                 </div>
+                              </div>
+                           </li>
+                           <li>                             
+                               <a href="About.xhtml">About Us  <i class="fa fa-users" aria-hidden="true"></i></a>                                
+                           </li>
+
+                           <li>
+                             <a href="Contact.xhtml">Contact us  <i class="fa fa-phone"></i> </a>
+                           </li>
+
+                           
+                           <li class="dropdown">
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Settings <i class="fa fa-cog"></i></a>                                                         
+                              <div class="dropdown-menu animated fadeInDown">
+                                 <div class="dropdown-inner">
+                                    <ul class="list-unstyled">
+                                       <li>
+                                          <a href="MyProfile.xhtml">my profile</a>
+                                       </li>
+                                       <li>
+                                           <h:form>
+                                               <h:commandLink action="#{loginManagedBean.logout()}" value="Logout"/>
+                                           </h:form>
+                                       </li>                                                                           
+                                    </ul>
+                                 </div>
+                              </div>                                                         
+                           </li>
+                           
+                            <li>
+                                <a type="button" onclick="">Notification <i class="fa fa-bell"></i></a>                              
+                            </li>
+                            
+                        </ul>
+                     </div>
+                  </nav>
+
+                  <!-- menu end here -->
+               </div>
+
+               
+            </div>
+         </div>
+         <!-- header container end here -->
+      </header>
+       
+    </h:body>
+</html>
+

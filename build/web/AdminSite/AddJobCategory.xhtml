@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   <h:head>
+      <title>EngiWorks</title> 
+   </h:head>
+   <h:body>
+       <ui:include src="Header.xhtml" />
+      <div class="wrapper">
+
+         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-6">
+                        <h3></h3>
+                     </div>
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="Dashboard.xhtml">Home</a></li>
+                           <li class="breadcrumb-item active">Job Categories</li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+            </section>    
+            <!-- Main content -->
+            <section class="content">
+               <div class="container-fluid">
+                   
+                  <div class="row">
+                      <div class="col-md-2"/>
+                     <!-- left column -->
+                     <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                           <div class="card-header">
+                              <h3 class="card-title">Job Category</h3>
+                           </div>
+                           <!-- /.card-header -->
+                           <!-- form start -->
+                           <h:form role="form">
+                              <div class="card-body">
+                                 <div class="form-group">
+                                    <h:outputLabel value="Job Category Name"></h:outputLabel>
+                                    <h:inputText class="form-control" id="jname"  value="#{adminManagedBean.jobName}"  required="" ></h:inputText>
+                                 </div>
+                                 <div class="form-group">
+                                     <h:inputHidden class="form-control" id="jid"  value="#{adminManagedBean.jobid}"  required=""></h:inputHidden>
+                                 </div>                                
+                                 
+                              </div>
+                              <!-- /.card-body -->
+                              <div class="card-footer">
+                                  <h:commandButton class="btn btn-primary" action="#{adminManagedBean.addJob()}" type="submit" value="ADD" />
+                              </div>
+                           </h:form>
+                        </div>
+                   
+                 
+                     </div>
+                 
+                  </div>
+                  <!-- /.row -->
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            
+            <!-- /.content -->
+         </div>
+         <!-- /.content-wrapper -->
+         <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+            <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+   </h:body>
+</html>

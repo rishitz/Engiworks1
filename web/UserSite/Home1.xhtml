@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+       <ui:include src="Header.xhtml"></ui:include>
+       <div class="row">
+        <c:forEach var="u" items="${jobBean.joblist}">
+             <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="product-box profile">
+                           <div class="image">
+                              <a href="jobs.html">
+                              <img class="img-responsive" src="images/new/13.jpg" alt="p1" title="p1"/>
+                              </a>	
+                              <div class="buttons">
+                                 <div class="open-down">
+                                    <button type="button" class="rotate1">
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="rotate1">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                            <h1><h:outputText value="${u.title}"/></h1>
+                           <div class="matter">
+                              
+                             
+                              <ul class="list-inline">
+                                 <li>
+                                    <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                                 </li>s
+                              </ul>
+                               <p>${u.description}</p>
+                           </div>
+                           <button type="button" class="btn btn-info" onclick="location.href='jobs.html'">VIEW MORE</button>
+                        </div>
+                     </div>
+        </c:forEach>
+       </div>   
+    </h:body>
+<ui:include src="Footer.xhtml"></ui:include>
+   <!-- Mirrored from ocsolutions.co.in/html/jobportal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 12:20:42 GMT -->
+</html>
