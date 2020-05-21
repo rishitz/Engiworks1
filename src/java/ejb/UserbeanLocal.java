@@ -28,4 +28,5 @@ public interface UserbeanLocal {
     public Tbluser userDetail(int uid);
     public void updateUser(int uid,String userName, int cityId, String address, String email, int jobCategoryId);
     public List<Object[]> userPostJob(int uid);
+     public void addJob(int uid,String title, String description, float budget, int duration, String pdf);
 }

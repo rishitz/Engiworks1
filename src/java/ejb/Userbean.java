@@ -115,6 +115,24 @@ public class Userbean implements UserbeanLocal {
     public List<Object[]> userPostJob(int uid) {
         return em.createNativeQuery("select * from tblrequirement where userId="+uid).getResultList();
     }
+
+    @Override
+    public void addJob(int uid, String title, String description, float budget, int duration, String pdf) {
+        Tblrequirement r=new  Tblrequirement();
+        //Tbluser u1=user();
+        System.out.println("UserID:"+uid);
+        Tbluser u2=em.find(Tbluser.class, uid);
+        
+        r.setUserId(new Tbluser(u2.getUserId()));
+        r.setTitle(title);
+        r.setDescription(description);
+       
+        r.setBudget(budget);
+        r.setDuration(duration);
+        r.setPdf(pdf);
+        em.persist(r);
+        em.merge(u2);
+    }
     
 
 }

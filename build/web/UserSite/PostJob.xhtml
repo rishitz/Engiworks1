@@ -154,30 +154,30 @@
                               </div>
                               <div class="col-sm-6">
                                  <label>Job Title</label>
-                                 <h:inputText class="form-control"  id="title" value="#{jobBean.title}"  required="" />
+                                 <h:inputText class="form-control"  id="title" value="#{postJobManagedBean.title}"  required="" />
                               </div>
                            </div>
                             
                            <div class="form-group">
                               <div class="col-sm-6">
                                  <label>Duration</label>
-                                 <h:inputText class="form-control" id="duration"  value="#{jobBean.duration}"  required="" />
+                                 <h:inputText class="form-control" id="duration"  value="#{postJobManagedBean.duration}"  required="" />
                               </div>
                               <div class="col-sm-6">
                                  <label>Budget</label>
-                                 <h:inputText class="form-control" id="budget" value="#{jobBean.budget}"/>
+                                 <h:inputText class="form-control" id="budget" value="#{postJobManagedBean.budget}"/>
                                  
                               </div>
                            </div>
                            <div class="form-group">
                               <div class="col-sm-6">
                                  <label>Description</label>
-                                 <h:inputTextarea class="form-control" id="desc" rows="10" value="#{jobBean.description}"  required=""></h:inputTextarea>
+                                 <h:inputTextarea class="form-control" id="desc" rows="10" value="#{postJobManagedBean.description}"  required=""></h:inputTextarea>
                               </div>
                               <div class="col-sm-6">
                                  <label>PDF</label>
                                  
-                                 <h:inputFile id="file" value="#{jobBean.filename}"/>
+                                 <h:inputFile id="file" value="#{postJobManagedBean.filename}"/>
                                    
                                 
                                  <span>Max file size 2MB. Allowed file format jpg, gif, png.</span>	
@@ -185,7 +185,7 @@
                            </div>
 
                            <div class="button">
-                               <h:commandButton action="#{jobBean.addJob()}" type="submit" value="SUBMIT A JOB" class="btn btn-primary btnus"/>
+                               <h:commandButton action="#{postJobManagedBean.addJob()}" type="submit" value="SUBMIT A JOB" class="btn btn-primary btnus"/>
                            </div>
                         </fieldset>
                      </h:form>

@@ -110,4 +110,14 @@ public class userResource {
         System.out.println("In Rest = "+ul.userPostJob(uid));
         return ul.userPostJob(uid);
     }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("addJob")
+    public void addJob(Tblrequirement r)
+    {
+        ul.addJob(r.getUserId().getUserId(),r.getTitle(),r.getDescription(),r.getBudget(),r.getDuration(),r.getPdf());
+      
+    }
 }
