@@ -120,4 +120,12 @@ public class userResource {
         ul.addJob(r.getUserId().getUserId(),r.getTitle(),r.getDescription(),r.getBudget(),r.getDuration(),r.getPdf());
       
     }
+    
+    @RolesAllowed("User")
+    @POST
+    @Path("addAchivement/{uid}/{attachment}/{title}/{description}")
+    public void addAchivement(@PathParam("uid") int uid,@PathParam("attachment") String attachment,@PathParam("title") String title,@PathParam("description") String description)
+    {
+        ul.addAchivement(uid, title, description, attachment);
+    }
 }

@@ -5,6 +5,8 @@
  */
 package ejb;
 
+import entity.Tblachievement;
+import entity.Tblattachement;
 import entity.Tblcity;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
@@ -28,7 +30,7 @@ import org.glassfish.soteria.identitystores.hash.Pbkdf2PasswordHashImpl;
 @Stateless
 public class Userbean implements UserbeanLocal {
     
-     @PersistenceContext(unitName = "Engiworks-ejbPU")
+    @PersistenceContext(unitName = "Engiworks-ejbPU")
     EntityManager em;
      
     @Override
@@ -132,6 +134,26 @@ public class Userbean implements UserbeanLocal {
         r.setPdf(pdf);
         em.persist(r);
         em.merge(u2);
+    }
+
+    @Override
+    public void addAchivement(int uid, String title, String description, String attachment) {
+        Tblachievement ac=new Tblachievement();
+        Tblattachement at=new Tblattachement();
+        Tbluser u2=em.find(Tbluser.class, uid);
+        
+        at.setAttachmenet(attachment);
+        at.setUserId(new Tbluser(u2.getUserId()));
+        em.persist(at);
+        em.flush();
+        int atid=at.getAttachementId();
+        System.out.println("attachment"+atid);
+        ac.setAttechementId(new Tblattachement(atid));
+        ac.setDescription(description);
+        ac.setTitle(title);
+        ac.setUserId(new Tbluser(u2.getUserId()));
+        em.persist(ac);
+        
     }
     
 

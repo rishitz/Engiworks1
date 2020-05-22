@@ -125,16 +125,13 @@ public class postJobManagedBean {
        String f1=null;
         try(InputStream input=filename.getInputStream()){
             f1=filename.getSubmittedFileName();
-            Files.copy(input,new File(folder,f1).toPath());
-          
-            
+            Files.copy(input,new File(folder,f1).toPath());           
         }catch(Exception e)
         {
             
         }
        // userbean.addJob(title, description, status, budget, duration,f1);
         Tblrequirement r=new Tblrequirement();
-//        
      HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session=req.getSession(false);
         String uname=(String) session.getAttribute("userName");

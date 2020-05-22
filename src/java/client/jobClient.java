@@ -51,6 +51,10 @@ public class jobClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addAchivement/{0}/{1}/{2}/{3}", new Object[]{uid, attachment, title, description})).request().post(null);
+    }
+
     public <T> T getuserJob(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getUserJob/{0}", new Object[]{uid}));

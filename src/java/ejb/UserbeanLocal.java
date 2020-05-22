@@ -29,4 +29,5 @@ public interface UserbeanLocal {
     public void updateUser(int uid,String userName, int cityId, String address, String email, int jobCategoryId);
     public List<Object[]> userPostJob(int uid);
      public void addJob(int uid,String title, String description, float budget, int duration, String pdf);
+     void addAchivement(int uid,String title,String description,String attachment);
 }
