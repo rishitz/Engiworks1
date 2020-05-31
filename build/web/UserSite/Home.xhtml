@@ -2,7 +2,8 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
    
 
    <!-- Mirrored from ocsolutions.co.in/html/jobportal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 12:20:42 GMT -->
@@ -192,6 +193,7 @@
                   <div class="border1"></div>
                </div>
                <!-- featured-jobs end here -->
+               <c:forEach var="x" items="${achivementManagedBean.lobj}">
                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">
                      <div class="image">
@@ -210,7 +212,7 @@
                         </div>
                      </div>
                      <div class="matter">
-                        <h1>IT Department Manager</h1>
+                        <h1>${x[2]}</h1>
                         <ul class="list-inline">
                            <li>
                               <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
@@ -220,12 +222,17 @@
                            </li>
                         </ul>
                         <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                        
                      </div>
-                     <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html'">VIEW MORE</button>
+                      <h:form>
+                      <h:commandLink action="${achivementManagedBean.sample(x[0])}" value="ViewMore" class="btn btn-info"/>
+                     </h:form>
+                      <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html?'">VIEW MORE</button>
                      <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-3 col-xs-12">
+               </c:forEach>
+<!--               <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">
                      <div class="image">
                         <a href="jobs.html">
@@ -323,7 +330,7 @@
                      <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html'">VIEW MORE</button>
                      <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
                   </div>
-               </div>
+               </div>-->
             </div>
          </div>
       </div>

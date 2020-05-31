@@ -128,4 +128,33 @@ public class userResource {
     {
         ul.addAchivement(uid, title, description, attachment);
     }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("gethomeJob/{uid}")
+    public List<Object[]> homeJob(@PathParam("uid") int uid)
+    {
+        return ul.HomeJob(uid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getJob/{rid}")
+     public Tblrequirement Viemore(@PathParam("rid") int rid)
+     {
+         System.out.println("in Rest"+rid);
+         return ul.ViewMore(rid);
+     }
+     
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getbidcheck/{uid}")
+    public List<Object[]> bidcheck(@PathParam("uid") int uid)
+    {
+        return ul.bidcheck(uid);
+    }
+    
 }

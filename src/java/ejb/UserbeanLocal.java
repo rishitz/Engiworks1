@@ -30,4 +30,8 @@ public interface UserbeanLocal {
     public List<Object[]> userPostJob(int uid);
      public void addJob(int uid,String title, String description, float budget, int duration, String pdf);
      void addAchivement(int uid,String title,String description,String attachment);
+     List<Object[]> HomeJob(int uid);
+     Tblrequirement ViewMore(int rid);
+     List<Object[]> bidcheck(int uid);
+     
 }

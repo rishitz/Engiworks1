@@ -156,5 +156,25 @@ public class Userbean implements UserbeanLocal {
         
     }
     
+    @Override
+    public List<Object[]> HomeJob(int uid) {
+         return em.createNativeQuery("select * from tblrequirement where userId!='"+uid +"' LIMIT 3").getResultList();
+    }
+
+    @Override
+    public Tblrequirement ViewMore(int rid) {
+        //Tblrequirement u=(Tblrequirement)em.createNamedQuery("Tblrequirement.findByRequirementId").setParameter("requirementId",rid).getSingleResult();
+        System.out.println("RID BEAN : "+rid);
+        return em.find(Tblrequirement.class,rid);
+         //return u;
+    }
+
+    @Override
+    public List<Object[]> bidcheck(int uid) {
+        //SELECT * FROM `tblrequirementbid` WHERE userId='18' AND requirementId!='3'
+        return em.createNativeQuery("select * from tblrequirementbid where userId!='"+uid +"' ").getResultList();
+    }
+    
+    
 
 }

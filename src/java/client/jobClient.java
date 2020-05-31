@@ -47,12 +47,24 @@ public class jobClient {
         });
     }
 
+    public <T> T Viemore(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getJob/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
+    }
+
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addAchivement/{0}/{1}/{2}/{3}", new Object[]{uid, attachment, title, description})).request().post(null);
+    }
+
+    public <T> T bidcheck(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getbidcheck/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T getuserJob(Class<T> responseType, String uid) throws ClientErrorException {
@@ -90,6 +102,12 @@ public class jobClient {
     public String getJson() throws ClientErrorException {
         WebTarget resource = webTarget;
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public <T> T homeJob(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("gethomeJob/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public void close() {
