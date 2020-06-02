@@ -2,6 +2,25 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Engiworks-ejbPU" transaction-type="JTA">
     <jta-data-source>engi1_jndi</jta-data-source>
+    <class>entity.Tblachievement</class>
+    <class>entity.Tbljobsubcategory</class>
+    <class>entity.Tbluser</class>
+    <class>entity.Tblrequirementbid</class>
+    <class>entity.Tblrequirement</class>
+    <class>entity.Tblnotification</class>
+    <class>entity.Tbljobcategory</class>
+    <class>entity.Tblstate</class>
+    <class>entity.Tblusergroup</class>
+    <class>entity.Tblcomment</class>
+    <class>entity.Tblgroup</class>
+    <class>entity.Tblattachement</class>
+    <class>entity.Tblbidassigned</class>
+    <class>entity.Tbllikes</class>
+    <class>entity.Tblcomplaint</class>
+    <class>entity.Tblmessage</class>
+    <class>entity.Tbljobverificationrequest</class>
+    <class>entity.Tblreview</class>
+    <class>entity.Tblcity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

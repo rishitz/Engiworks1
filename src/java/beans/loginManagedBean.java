@@ -138,6 +138,7 @@ public class loginManagedBean {
         //   else if(securityContext.isCallerInRole("Supervisor"))
        else if(roles.contains("User"))
            {
+               System.out.println("In user");
                //   System.out.println(getUserName());
                request.getSession().setAttribute("userName", getUserName());
                 //storesession();

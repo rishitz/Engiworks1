@@ -53,18 +53,36 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T bidcheck(Class<T> responseType, String uid, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getbidcheck/{0}/{1}", new Object[]{uid, rid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T getUser(Class<T> responseType, String userName) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getUser/{0}", new Object[]{userName}));
+        return resource.request().get(responseType);
+    }
+
+    public void updateUser(Object requestEntity) throws ClientErrorException {
+        webTarget.path("updateUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addJob(Object requestEntity) throws ClientErrorException {
+        webTarget.path("addJob").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addBid(Object requestEntity) throws ClientErrorException {
+        webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("addAchivement/{0}/{1}/{2}/{3}", new Object[]{uid, attachment, title, description})).request().post(null);
-    }
-
-    public <T> T bidcheck(Class<T> responseType, String uid) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("getbidcheck/{0}", new Object[]{uid}));
-        return resource.request().get(responseType);
     }
 
     public <T> T getuserJob(Class<T> responseType, String uid) throws ClientErrorException {
@@ -79,24 +97,10 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
-    public <T> T getUser(Class<T> responseType, String userName) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("getUser/{0}", new Object[]{userName}));
-        return resource.request().get(responseType);
-    }
-
     public <T> T getUserdetails(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getuser/{0}", new Object[]{uid}));
         return resource.request().get(responseType);
-    }
-
-    public void updateUser(Object requestEntity) throws ClientErrorException {
-        webTarget.path("updateUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void addJob(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addJob").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public String getJson() throws ClientErrorException {

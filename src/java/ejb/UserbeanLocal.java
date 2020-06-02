@@ -10,6 +10,7 @@ import entity.Tbljobcategory;
 import entity.Tblrequirement;
 import entity.Tbluser;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -32,6 +33,7 @@ public interface UserbeanLocal {
      void addAchivement(int uid,String title,String description,String attachment);
      List<Object[]> HomeJob(int uid);
      Tblrequirement ViewMore(int rid);
-     List<Object[]> bidcheck(int uid);
+     List<Object[]> bidcheck(int uid,int rid);
+     void addBid(String description,int duration,float budget,Date edate,int uid,int rid);
      
 }

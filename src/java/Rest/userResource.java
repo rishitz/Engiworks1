@@ -7,8 +7,10 @@ package Rest;
 
 import ejb.UserbeanLocal;
 import entity.Tblrequirement;
+import entity.Tblrequirementbid;
 import entity.Tbluser;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
@@ -151,10 +153,19 @@ public class userResource {
     @RolesAllowed("User")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("getbidcheck/{uid}")
-    public List<Object[]> bidcheck(@PathParam("uid") int uid)
+    @Path("getbidcheck/{uid}/{rid}")
+    public List<Object[]> bidcheck(@PathParam("uid") int uid,@PathParam("rid") int rid)
     {
-        return ul.bidcheck(uid);
+        return ul.bidcheck(uid,rid);
+    }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("addBid")
+    public void addBid(Tblrequirementbid rb)
+    {
+        ul.addBid(rb.getDescription(),rb.getDuration(), rb.getBudget(), rb.getEndingDate(), rb.getUserId().getUserId(), rb.getRequirementId().getRequirementId());
     }
     
 }

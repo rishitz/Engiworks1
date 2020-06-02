@@ -75,7 +75,7 @@ public class Tblgroup implements Serializable {
         this.groupName = groupName;
     }
 
-   @JsonbTransient
+    @JsonbTransient
     public Collection<Tblusergroup> getTblusergroupCollection() {
         return tblusergroupCollection;
     }

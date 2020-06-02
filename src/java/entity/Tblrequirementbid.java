@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tblrequirementbid.findByRequirementBidId", query = "SELECT t FROM Tblrequirementbid t WHERE t.requirementBidId = :requirementBidId"),
     @NamedQuery(name = "Tblrequirementbid.findByDescription", query = "SELECT t FROM Tblrequirementbid t WHERE t.description = :description"),
     @NamedQuery(name = "Tblrequirementbid.findByBudget", query = "SELECT t FROM Tblrequirementbid t WHERE t.budget = :budget"),
-    @NamedQuery(name = "Tblrequirementbid.findByUserId", query = "SELECT t FROM Tblrequirementbid t WHERE t.userId = :userId"),
     @NamedQuery(name = "Tblrequirementbid.findByCreatedDate", query = "SELECT t FROM Tblrequirementbid t WHERE t.createdDate = :createdDate"),
     @NamedQuery(name = "Tblrequirementbid.findByStatus", query = "SELECT t FROM Tblrequirementbid t WHERE t.status = :status"),
     @NamedQuery(name = "Tblrequirementbid.findByEndingDate", query = "SELECT t FROM Tblrequirementbid t WHERE t.endingDate = :endingDate"),
@@ -46,6 +47,7 @@ public class Tblrequirementbid implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "requirementBidId")
     private Integer requirementBidId;
@@ -55,9 +57,6 @@ public class Tblrequirementbid implements Serializable {
     @Basic(optional = false)
     @Column(name = "budget")
     private float budget;
-    @Basic(optional = false)
-    @Column(name = "userId")
-    private int userId;
     @Basic(optional = false)
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
@@ -75,6 +74,9 @@ public class Tblrequirementbid implements Serializable {
     @JoinColumn(name = "requirementId", referencedColumnName = "requirementId")
     @ManyToOne(optional = false)
     private Tblrequirement requirementId;
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @ManyToOne(optional = false)
+    private Tbluser userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementBidId")
     private Collection<Tblbidassigned> tblbidassignedCollection;
 
@@ -85,11 +87,10 @@ public class Tblrequirementbid implements Serializable {
         this.requirementBidId = requirementBidId;
     }
 
-    public Tblrequirementbid(Integer requirementBidId, String description, float budget, int userId, Date createdDate, int status, Date endingDate, int duration) {
+    public Tblrequirementbid(Integer requirementBidId, String description, float budget, Date createdDate, int status, Date endingDate, int duration) {
         this.requirementBidId = requirementBidId;
         this.description = description;
         this.budget = budget;
-        this.userId = userId;
         this.createdDate = createdDate;
         this.status = status;
         this.endingDate = endingDate;
@@ -118,14 +119,6 @@ public class Tblrequirementbid implements Serializable {
 
     public void setBudget(float budget) {
         this.budget = budget;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public Date getCreatedDate() {
@@ -166,6 +159,14 @@ public class Tblrequirementbid implements Serializable {
 
     public void setRequirementId(Tblrequirement requirementId) {
         this.requirementId = requirementId;
+    }
+
+    public Tbluser getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Tbluser userId) {
+        this.userId = userId;
     }
 
     @JsonbTransient

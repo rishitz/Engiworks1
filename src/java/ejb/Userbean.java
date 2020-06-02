@@ -11,9 +11,11 @@ import entity.Tblcity;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
 import entity.Tblrequirement;
+import entity.Tblrequirementbid;
 import entity.Tbluser;
 import entity.Tblusergroup;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -170,9 +172,29 @@ public class Userbean implements UserbeanLocal {
     }
 
     @Override
-    public List<Object[]> bidcheck(int uid) {
-        //SELECT * FROM `tblrequirementbid` WHERE userId='18' AND requirementId!='3'
-        return em.createNativeQuery("select * from tblrequirementbid where userId!='"+uid +"' ").getResultList();
+    public List<Object[]> bidcheck(int uid,int rid) {
+        //SELECT * FROM `tblrequirementbid` WHERE userId!='18' AND requirementId!='3'
+        System.out.println("uid"+uid+"rid="+rid);
+        return em.createNativeQuery("select * from tblrequirementbid where userId='"+uid +"' AND requirementId='"+rid+"' ").getResultList();
+    }
+
+    
+
+    @Override
+    public void addBid(String description, int duration, float budget, Date edate, int uid, int rid) {
+      Tbluser u1=em.find(Tbluser.class,uid);
+      Tblrequirement r1=em.find(Tblrequirement.class,rid);
+      
+      Tblrequirementbid rb=new Tblrequirementbid();
+      rb.setBudget(budget);
+      rb.setDuration(duration);
+      rb.setDescription(description);
+      rb.setEndingDate(edate);
+      rb.setUserId(new Tbluser(u1.getUserId()));
+      rb.setRequirementId(new Tblrequirement(r1.getRequirementId()));
+      em.persist(rb);
+      
+      
     }
     
     
