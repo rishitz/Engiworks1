@@ -7,6 +7,7 @@ package ejb;
 
 import entity.Tblachievement;
 import entity.Tblattachement;
+import entity.Tblbidassigned;
 import entity.Tblcity;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
@@ -195,6 +196,27 @@ public class Userbean implements UserbeanLocal {
       em.persist(rb);
       
       
+    }
+
+    @Override
+    public List<Object[]> bidInfo(int rid) {
+        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r where u.userId=r.userId and r.requirementId="+rid).getResultList();
+    }
+
+    @Override
+    public void bidassign(int uid, int rid) {
+        Tbluser u1=em.find(Tbluser.class,uid);
+        Tblrequirementbid r1=em.find(Tblrequirementbid.class,rid);
+        Tblbidassigned ba=new Tblbidassigned();
+        ba.setRequirementBidId(new Tblrequirementbid(r1.getRequirementBidId()));
+        ba.setUserId(new Tbluser(u1.getUserId()));
+        em.persist(ba);
+    }
+
+    @Override
+    public void removeBid(int rbid) {
+        Tblrequirementbid j=em.find(Tblrequirementbid.class, rbid);
+        em.remove(j);
     }
     
     

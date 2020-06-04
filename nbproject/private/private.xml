@@ -35,6 +35,7 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/job.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/client/RestFilter.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Home.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/bidCheck.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblrequirementbid.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblnotification.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblusergroup.java</file>
@@ -45,9 +46,9 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Header.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblachievement.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ViewMore.xhtml</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/UserbeanLocal.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcomment.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblrequirement.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/UserbeanLocal.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcomplaint.java</file>
         </group>
     </open-files>

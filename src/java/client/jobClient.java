@@ -47,10 +47,15 @@ public class jobClient {
         });
     }
 
+
     public <T> T Viemore(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getJob/{0}", new Object[]{rid}));
         return resource.request().get(responseType);
+    }
+
+    public void bidassign(Object requestEntity) throws ClientErrorException {
+        webTarget.path("bidAssign").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T bidcheck(Class<T> responseType, String uid, String rid) throws ClientErrorException {
@@ -77,6 +82,10 @@ public class jobClient {
         webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public void deleteBid(String rbid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteBid/{0}", new Object[]{rbid})).request().delete();
+    }
+
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
@@ -101,6 +110,12 @@ public class jobClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getuser/{0}", new Object[]{uid}));
         return resource.request().get(responseType);
+    }
+
+    public <T> T getBidJob(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getBidJob/{0}", new Object[]{rid}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public String getJson() throws ClientErrorException {

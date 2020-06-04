@@ -613,7 +613,10 @@
                               </ul>
                               <p>There are many variations of passages of lorem Ipsum available [...]</p>
                            </div>
-                           <button type="button" class="btn btn-info" onclick="location.href='jobs.html'">VIEW MORE</button>
+                            <h:form>
+                                <h:commandLink action="${achivementManagedBean.viewmore(x[0])}" value="ViewMore" class="btn btn-info"/>
+                     </h:form>
+<!--                           <button type="button" class="btn btn-info" onclick="location.href='jobs.html'">VIEW MORE</button>-->
                         </div>
                      </div>
                       </c:forEach>

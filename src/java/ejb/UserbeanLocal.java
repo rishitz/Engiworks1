@@ -35,5 +35,8 @@ public interface UserbeanLocal {
      Tblrequirement ViewMore(int rid);
      List<Object[]> bidcheck(int uid,int rid);
      void addBid(String description,int duration,float budget,Date edate,int uid,int rid);
+     List<Object[]> bidInfo(int rid);
+     void bidassign(int uid,int rid);
+     void removeBid(int rbid);
      
 }

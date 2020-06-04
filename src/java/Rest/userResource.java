@@ -6,6 +6,7 @@
 package Rest;
 
 import ejb.UserbeanLocal;
+import entity.Tblbidassigned;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tbluser;
@@ -23,6 +24,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -168,4 +170,29 @@ public class userResource {
         ul.addBid(rb.getDescription(),rb.getDuration(), rb.getBudget(), rb.getEndingDate(), rb.getUserId().getUserId(), rb.getRequirementId().getRequirementId());
     }
     
+    @RolesAllowed("User")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getBidJob/{rid}")
+    public List<Object[]> getBidJob(@PathParam("rid") int rid)
+    {
+        return ul.bidInfo(rid);
+    }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("bidAssign")
+    public void bidassign(Tblbidassigned ba)
+    {
+        ul.bidassign(ba.getUserId().getUserId(), ba.getRequirementBidId().getRequirementBidId());
+    }
+    
+    @RolesAllowed("User")
+    @DELETE
+    @Path("deleteBid/{rbid}")
+    public void deleteBid(@PathParam("rbid") int rbid)
+    {
+        ul.removeBid(rbid);
+    }
 }

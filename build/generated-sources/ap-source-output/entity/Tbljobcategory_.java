@@ -7,7 +7,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-02T16:42:20")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-05T00:40:49")
 @StaticMetamodel(Tbljobcategory.class)
 public class Tbljobcategory_ { 
 

@@ -7,6 +7,7 @@ package beans;
 
 import client.jobClient;
 import ejb.UserbeanLocal;
+import entity.Tblbidassigned;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tbluser;
@@ -14,13 +15,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -40,15 +38,23 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId,bdur;
+    private int uid, duration, jobId, bdur,userId;
     private String title, description;
     private Part filename;
     jobClient jc;
     private String jobname;
     List<Object[]> lobj;
-    private float budget,bbud;
+    private float budget, bbud;
     private String bdesc;
     private Date edate;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public Date getEdate() {
         return edate;
@@ -81,9 +87,6 @@ public class achivementManagedBean implements Serializable {
     public void setBdesc(String bdesc) {
         this.bdesc = bdesc;
     }
-
-   
-    
 
     public int getJobId() {
         return jobId;
@@ -228,14 +231,13 @@ public class achivementManagedBean implements Serializable {
         int ud = u1.getUserId();
         System.out.println("title" + title);
         userbean.addAchivement(ud, title, description, f1);
-        
+
     }
 
 //    public String homeJob()
 //    {
 //       
 //    }
-    
 //    public void getJobData() {
 //        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 //        HttpSession session = req.getSession(false);
@@ -257,7 +259,6 @@ public class achivementManagedBean implements Serializable {
 //        budget = r1.getBudget();
 //        duration = r1.getDuration();
 //    }
-    
     public String sample(int xid) {
 
 //        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -291,13 +292,15 @@ public class achivementManagedBean implements Serializable {
         String uname = (String) session.getAttribute("userName");
         System.out.println("session name" + uname);
         Response response = jc.getUser(Response.class, uname);
-        GenericType<Tbluser> us = new GenericType<Tbluser>() {};
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
         Tbluser u1 = response.readEntity(us);
         int userid = u1.getUserId();
         System.out.println("Job Id=" + jobId);
         Response resp = jc.bidcheck(Response.class, userid + "", jobId + "");
         List<Object[]> alist = new ArrayList<Object[]>();
-        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {};
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
         alist = resp.readEntity(rb);
         return alist;
     }
@@ -305,9 +308,8 @@ public class achivementManagedBean implements Serializable {
     public int getAlistSize() {
         return this.bidCheck().size();
     }
-    
-    public String addBid()
-    {
+
+    public String addBid() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = req.getSession(false);
         String uname = (String) session.getAttribute("userName");
@@ -318,11 +320,11 @@ public class achivementManagedBean implements Serializable {
         Tbluser u1 = response.readEntity(us);
         System.out.println("session Id" + u1.getUserId());
         //for get Info
-        int ud = u1.getUserId();    
-        
+        int ud = u1.getUserId();
+
         //userbean.addBid(bdesc, bdur, bbud, edate,ud,jobId);
-        System.out.println("In bean=job id"+jobId);
-        Tblrequirementbid rb=new Tblrequirementbid();
+        System.out.println("In bean=job id" + jobId);
+        Tblrequirementbid rb = new Tblrequirementbid();
         rb.setBudget(bbud);
         rb.setDescription(bdesc);
         rb.setEndingDate(edate);
@@ -331,7 +333,61 @@ public class achivementManagedBean implements Serializable {
         rb.setRequirementId(new Tblrequirement(jobId));
         jc.addBid(rb);
         return "/UserSite/MyProfile.xhtml?faces-redirect=true";
+
+    }
+
+    public String viewmore(int xid) {
+
+//        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+//        request.getSession().setAttribute("Viemorejid", xid);
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        System.out.println("session Id" + u1.getUserId());
+        Response res = jc.Viemore(Response.class, xid + "");
+        GenericType<Tblrequirement> gAdd = new GenericType<Tblrequirement>() {
+        };
+        Tblrequirement r1 = res.readEntity(gAdd);
+        userId=r1.getUserId().getUserId();
+        System.out.println("User Id in bid"+userId);
+        uid = u1.getUserId();
+        jobId = xid;
+        jobname = r1.getTitle();
+        description = r1.getDescription();
+        budget = r1.getBudget();
+        duration = r1.getDuration();
+//        req.getSession(false).setAttribute("jobId",xid);
+
+        return "/UserSite/bidCheck.xhtml?faces-redirect=true";
+    }
+
+    
+    
+    
+    public List<Object[]> bidInfo() {
+//        Response response = jc.getBidJob(Response.class, jobId+"");
+        System.out.println("Bid JobID : "+jobId);
+        List<Object[]> list = new ArrayList<Object[]>();
+//        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+        list = userbean.bidInfo(jobId);
+        return list;
+    }
+    public void bidAssign(int rbid,int usid)
+    {
+        System.out.println("bid assign"+usid+"rbid"+rbid);
+        Tblbidassigned rb=new Tblbidassigned();
+        rb.setUserId(new Tbluser(usid));
+        rb.setRequirementBidId(new Tblrequirementbid(rbid));
+        jc.bidassign(rb);
         
-        
+    }
+    public void removeBid(int rbid)
+    {
+        jc.deleteBid(rbid+"");
     }
 }
