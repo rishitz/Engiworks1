@@ -36,7 +36,10 @@ public interface UserbeanLocal {
      List<Object[]> bidcheck(int uid,int rid);
      void addBid(String description,int duration,float budget,Date edate,int uid,int rid);
      List<Object[]> bidInfo(int rid);
-     void bidassign(int uid,int rid);
+     void bidassign(int uid,int rbid,int rid);
      void removeBid(int rbid);
+     List<Object[]> manageTask(int rid);
+     List<Object[]> ManageBidders(int uid,int rid);
+     void comment(int uid,int aid,String description,int fromuid);
      
 }

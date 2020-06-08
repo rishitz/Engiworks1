@@ -47,7 +47,6 @@ public class jobClient {
         });
     }
 
-
     public <T> T Viemore(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getJob/{0}", new Object[]{rid}));
@@ -56,6 +55,12 @@ public class jobClient {
 
     public void bidassign(Object requestEntity) throws ClientErrorException {
         webTarget.path("bidAssign").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T manageTask(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("manageTask/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T bidcheck(Class<T> responseType, String uid, String rid) throws ClientErrorException {
@@ -97,6 +102,12 @@ public class jobClient {
     public <T> T getuserJob(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getUserJob/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T manageBidders(Class<T> responseType, String uid, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("manageBidders/{0}/{1}", new Object[]{uid, rid}));
         return resource.request().get(responseType);
     }
 

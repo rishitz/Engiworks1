@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Header.xhtml"></ui:include>
+        <div id="job">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-12 col-xs-12 padd0 product-list">
+                                    <!--FOR EACH LOOP StART -->  
+                                    <c:forEach var="x" items="${achivementManagedBean.jlist}">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 padd0 product-list">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="product-box">
+<!--                                                <div class="image">
+                                                    <a href="jobs-detail.html">
+                                                        <img hspace="70" width="218"  class="img-responsive" src="images/new/01.jpg" alt="p1" title="p1"/>
+                                                    </a>	                          
+                                                </div>-->
+<!--                                                <div class="matter">-->
+                                                    <table>
+                                                        ${x[0]}
+                                                        <tr><td>    Title: </td><td><h5>${x[2]}</h5></td></tr>
+                                                        
+                                                    </table>
+                                                                               <h:form>                                                                
+<!--                                                    <a href="javascript: void(0)"><button type="button" class="btn btn-info" id="btn">Activate Offer</button></a>-->
+<h:commandButton class="btn btn-info" action="${achivementManagedBean.manageJob(x[0])}"  value="Manage Bidders"></h:commandButton><!--
+<h:commandButton action="" class="btn btn-info" value="Delete"></h:commandButton>                                                  -->
+                                                                               </h:form>
+<!--                                                </div>-->
+                                            </div>
+                                        </div>         
+                                    </div>
+                                    </c:forEach>
+
+
+                                    <!--FOR EACH LOOP END -->   
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        <ui:include src="Footer.xhtml"></ui:include>
+    </h:body>
+</html>
+

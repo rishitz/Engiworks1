@@ -47,6 +47,57 @@ public class achivementManagedBean implements Serializable {
     private float budget, bbud;
     private String bdesc;
     private Date edate;
+    List<Object[]> jlist;
+    List<Object[]> blist;
+    List<Object[]> bidderlist;
+    private String acdescription;
+
+    public String getAcdescription() {
+        return acdescription;
+    }
+
+    public void setAcdescription(String acdescription) {
+        this.acdescription = acdescription;
+    }
+    
+
+    public List<Object[]> getBidderlist() {
+        return bidderlist;
+    }
+
+    public void setBidderlist(List<Object[]> bidderlist) {
+        this.bidderlist = bidderlist;
+    }
+    
+
+    public List<Object[]> getBlist() {
+        return blist;
+    }
+
+    public void setBlist(List<Object[]> blist) {
+        this.blist = blist;
+    }
+
+    public List<Object[]> getJlist() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        Response resp=jc.getuserJob(Response.class,ud+"");
+         List<Object[]> alist=new ArrayList<Object[]>();
+         GenericType<List<Object[]>> gAdd = new GenericType<List<Object[]>>(){};
+         jlist = (List<Object[]>) resp.readEntity(gAdd);
+         
+        return jlist;
+    }
+
+    public void setJlist(List<Object[]> jlist) {
+        this.jlist = jlist;
+    }
 
     public int getUserId() {
         return userId;
@@ -196,6 +247,9 @@ public class achivementManagedBean implements Serializable {
     @PostConstruct
     public void init() {
         lobj = new ArrayList<Object[]>();
+        jlist=new ArrayList<Object[]>();
+        blist=new ArrayList<Object[]>();
+        bidderlist=new ArrayList<Object[]>();
 //        this.getJobData();
     }
 
@@ -377,17 +431,74 @@ public class achivementManagedBean implements Serializable {
         list = userbean.bidInfo(jobId);
         return list;
     }
-    public void bidAssign(int rbid,int usid)
+    public void bidAssign(int rbid,int usid,int rid)
     {
         System.out.println("bid assign"+usid+"rbid"+rbid);
         Tblbidassigned rb=new Tblbidassigned();
         rb.setUserId(new Tbluser(usid));
         rb.setRequirementBidId(new Tblrequirementbid(rbid));
+        rb.setRequirementId(new Tblrequirement(rid));
         jc.bidassign(rb);
         
     }
     public void removeBid(int rbid)
     {
         jc.deleteBid(rbid+"");
+    }
+    public String userPostJob()
+    {
+       //rlist=userbean.userPostJob();
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        Response resp=jc.getuserJob(Response.class,ud+"");
+         List<Object[]> alist=new ArrayList<Object[]>();
+         GenericType<List<Object[]>> gAdd = new GenericType<List<Object[]>>(){};
+         jlist = (List<Object[]>) resp.readEntity(gAdd);
+         
+//         List<Object[]> list = new ArrayList<Object[]>();    
+////        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+//        list = userbean.manageTask(rid);
+//        
+//        for (Object[] objects : alist) {
+//            for (Object[] objects1 : list) {
+//                if(Integer.parseInt(objects[0].toString())==Integer.parseInt(objects[0].toString()))
+//                {
+//                    jlist.add(objects1);
+//                 }
+//              }          
+//           }            
+       return "";
+    }
+    public String manageJob(int rid)           
+    {
+        System.out.println("Manage Bid"+rid);
+        //System.out.println("Manage job:"+jobId);
+        Response resp=jc.manageTask(Response.class,rid+"");
+         //List<Object[]> alist=new ArrayList<Object[]>();
+         GenericType<List<Object[]>> gAdd = new GenericType<List<Object[]>>(){};
+          
+        
+        blist =  (List<Object[]>) resp.readEntity(gAdd);
+        return "/UserSite/Home1.xhtml?faces-redirect=true";
+    }
+    public String manageBidder(int uid,int rid)           
+    {
+        System.out.println("Manage Bidder"+rid+","+uid);
+        //System.out.println("Manage job:"+jobId);
+        Response resp=jc.manageBidders(Response.class,uid+"",rid+"");
+          
+        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+        bidderlist = (List<Object[]>) resp.readEntity(type);
+        return "/UserSite/manageBidder.xhtml?faces-redirect=true";
+    }
+    public void Comment()
+    {
+        
     }
 }

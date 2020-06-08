@@ -7,7 +7,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tblgroup")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblgroup.findAll", query = "SELECT t FROM Tblgroup t"),
     @NamedQuery(name = "Tblgroup.findByGroupId", query = "SELECT t FROM Tblgroup t WHERE t.groupId = :groupId"),
@@ -75,7 +74,7 @@ public class Tblgroup implements Serializable {
         this.groupName = groupName;
     }
 
-    @JsonbTransient
+    @XmlTransient
     public Collection<Tblusergroup> getTblusergroupCollection() {
         return tblusergroupCollection;
     }

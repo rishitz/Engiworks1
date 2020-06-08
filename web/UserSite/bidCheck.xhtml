@@ -156,19 +156,20 @@
                                                         <img hspace="70" width="218"  class="img-responsive" src="images/new/01.jpg" alt="p1" title="p1"/>
                                                     </a>	                          
                                                 </div>
-                                                <div class="matter">
-                                                    Username: <p><h5>${x[1]}</h5></p>
-                                                                               Duration:
-                                                                               <p><h5><h:outputText value="${x[18]}"/></h5></p>
-                                                                               Budget:
-                                                                               <p><h5><h:outputText value="${x[12]}"/></h5></p>
-                                                                               ${x[10]}
+<!--                                                <div class="matter">-->
+                                                    <table>
+                                                        <tr><td>    Username: </td><td><h5>${x[1]}</h5></td></tr>
+                                                        <tr><td> Duration:</td>
+                                                            <td> <h5><h:outputText value="${x[18]}"/></h5></td></tr>
+                                                                               <tr><td> Budget:</td>
+                                                                                   <td> <h5><h:outputText value="${x[12]}"/></h5></td></tr>
+                                                    </table>
                                                                                <h:form>                                                                
 <!--                                                    <a href="javascript: void(0)"><button type="button" class="btn btn-info" id="btn">Activate Offer</button></a>-->
-<h:commandButton class="btn btn-info" action="${achivementManagedBean.bidAssign(x[10],x[0])}" value="Accept"></h:commandButton>
+<h:commandButton class="btn btn-info" action="${achivementManagedBean.bidAssign(x[10],x[0],x[17])}" value="Accept"></h:commandButton>
 <h:commandButton action="${achivementManagedBean.removeBid(x[10])}" class="btn btn-info" value="Delete"></h:commandButton>                                                  
                                                                                </h:form>
-                                                </div>
+<!--                                                </div>-->
                                             </div>
                                         </div>         
                                     </div>

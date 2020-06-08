@@ -7,9 +7,7 @@ import entity.Tblcity;
 import entity.Tblcomment;
 import entity.Tblcomplaint;
 import entity.Tbljobcategory;
-import entity.Tbljobverificationrequest;
 import entity.Tbllikes;
-import entity.Tblmessage;
 import entity.Tblnotification;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
@@ -20,7 +18,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-05T00:40:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-08T22:43:29")
 @StaticMetamodel(Tbluser.class)
 public class Tbluser_ { 
 
@@ -28,8 +26,6 @@ public class Tbluser_ {
     public static volatile CollectionAttribute<Tbluser, Tblcomment> tblcommentCollection1;
     public static volatile CollectionAttribute<Tbluser, Tblrequirement> tblrequirementCollection;
     public static volatile CollectionAttribute<Tbluser, Tblreview> tblreviewCollection1;
-    public static volatile CollectionAttribute<Tbluser, Tblmessage> tblmessageCollection;
-    public static volatile CollectionAttribute<Tbluser, Tbljobverificationrequest> tbljobverificationrequestCollection;
     public static volatile SingularAttribute<Tbluser, String> profileImage;
     public static volatile CollectionAttribute<Tbluser, Tblachievement> tblachievementCollection;
     public static volatile CollectionAttribute<Tbluser, Tblcomment> tblcommentCollection;
@@ -37,6 +33,7 @@ public class Tbluser_ {
     public static volatile CollectionAttribute<Tbluser, Tblrequirementbid> tblrequirementbidCollection;
     public static volatile SingularAttribute<Tbluser, String> password;
     public static volatile CollectionAttribute<Tbluser, Tblnotification> tblnotificationCollection1;
+    public static volatile CollectionAttribute<Tbluser, Tblcomplaint> tblcomplaintCollection1;
     public static volatile CollectionAttribute<Tbluser, Tblattachement> tblattachementCollection;
     public static volatile SingularAttribute<Tbluser, String> email;
     public static volatile CollectionAttribute<Tbluser, Tblcomplaint> tblcomplaintCollection;

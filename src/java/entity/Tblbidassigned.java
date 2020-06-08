@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tblbidassigned")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblbidassigned.findAll", query = "SELECT t FROM Tblbidassigned t"),
     @NamedQuery(name = "Tblbidassigned.findByBidAssignedId", query = "SELECT t FROM Tblbidassigned t WHERE t.bidAssignedId = :bidAssignedId")})
@@ -43,6 +43,9 @@ public class Tblbidassigned implements Serializable {
     @JoinColumn(name = "requirementBidId", referencedColumnName = "requirementBidId")
     @ManyToOne(optional = false)
     private Tblrequirementbid requirementBidId;
+    @JoinColumn(name = "requirementId", referencedColumnName = "requirementId")
+    @ManyToOne(optional = false)
+    private Tblrequirement requirementId;
 
     public Tblbidassigned() {
     }
@@ -73,6 +76,14 @@ public class Tblbidassigned implements Serializable {
 
     public void setRequirementBidId(Tblrequirementbid requirementBidId) {
         this.requirementBidId = requirementBidId;
+    }
+
+    public Tblrequirement getRequirementId() {
+        return requirementId;
+    }
+
+    public void setRequirementId(Tblrequirement requirementId) {
+        this.requirementId = requirementId;
     }
 
     @Override

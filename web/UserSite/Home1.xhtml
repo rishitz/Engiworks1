@@ -7,7 +7,7 @@
     <h:body>
        <ui:include src="Header.xhtml"></ui:include>
        <div class="row">
-        <c:forEach var="u" items="${jobBean.joblist}">
+           <c:forEach var="u" items="${achivementManagedBean.blist}">
              <div class="col-md-3 col-sm-3 col-xs-12">
                         <div class="product-box profile">
                            <div class="image">
@@ -25,7 +25,9 @@
                                  </div>
                               </div>
                            </div>
-                            <h1><h:outputText value="${u.title}"/></h1>
+                            <h1><h:outputText value="${u[0]}"/></h1>
+                            <h5><h:outputText value="${u[17]}"/></h5>
+                            <h1><h:outputText value="${u[1]}"/></h1>
                            <div class="matter">
                               
                              
@@ -37,9 +39,12 @@
                                     <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
                                  </li>s
                               </ul>
-                               <p>${u.description}</p>
+                               <p></p>
                            </div>
-                           <button type="button" class="btn btn-info" onclick="location.href='jobs.html'">VIEW MORE</button>
+                           
+                           <h:form>
+                               <h:commandButton class="btn btn-info" action="${achivementManagedBean.manageBidder(u[0],u[17])}"  value="ViewMore"></h:commandButton>
+                           </h:form>
                         </div>
                      </div>
         </c:forEach>

@@ -194,6 +194,7 @@
                </div>
                <!-- featured-jobs end here -->
                <c:forEach var="x" items="${achivementManagedBean.lobj}">
+                   <c:if test="${x[4]==0}">
                <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">
                      <div class="image">
@@ -231,6 +232,7 @@
                      <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
                   </div>
                </div>
+                   </c:if>
                </c:forEach>
 <!--               <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">

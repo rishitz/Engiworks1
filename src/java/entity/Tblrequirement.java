@@ -8,7 +8,6 @@ package entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tblrequirement")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblrequirement.findAll", query = "SELECT t FROM Tblrequirement t"),
     @NamedQuery(name = "Tblrequirement.findByRequirementId", query = "SELECT t FROM Tblrequirement t WHERE t.requirementId = :requirementId"),
@@ -79,6 +78,8 @@ public class Tblrequirement implements Serializable {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Tbluser userId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
+    private Collection<Tblbidassigned> tblbidassignedCollection;
 
     public Tblrequirement() {
     }
@@ -162,7 +163,7 @@ public class Tblrequirement implements Serializable {
         this.pdf = pdf;
     }
 
-    @JsonbTransient
+    @XmlTransient
     public Collection<Tblrequirementbid> getTblrequirementbidCollection() {
         return tblrequirementbidCollection;
     }
@@ -177,6 +178,15 @@ public class Tblrequirement implements Serializable {
 
     public void setUserId(Tbluser userId) {
         this.userId = userId;
+    }
+
+    @XmlTransient
+    public Collection<Tblbidassigned> getTblbidassignedCollection() {
+        return tblbidassignedCollection;
+    }
+
+    public void setTblbidassignedCollection(Collection<Tblbidassigned> tblbidassignedCollection) {
+        this.tblbidassignedCollection = tblbidassignedCollection;
     }
 
     @Override

@@ -9,6 +9,7 @@ import entity.Tblachievement;
 import entity.Tblattachement;
 import entity.Tblbidassigned;
 import entity.Tblcity;
+import entity.Tblcomment;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
 import entity.Tblrequirement;
@@ -200,16 +201,22 @@ public class Userbean implements UserbeanLocal {
 
     @Override
     public List<Object[]> bidInfo(int rid) {
-        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r where u.userId=r.userId and r.requirementId="+rid).getResultList();
+        //select * from tbluser u,tblrequirementbid r,tblachievement a,tblattachement t where u.userId=r.userId AND a.userId=u.userId AND a.attechementId=t.attachementId AND r.requirementId=2 AND a.userId=20 AND a.attechementId=2
+            return em.createNativeQuery("select * from tbluser u,tblrequirementbid r where u.userId=r.userId and r.requirementId="+rid).getResultList();
     }
 
     @Override
-    public void bidassign(int uid, int rid) {
+    public void bidassign(int uid, int rbid,int rid) {
         Tbluser u1=em.find(Tbluser.class,uid);
-        Tblrequirementbid r1=em.find(Tblrequirementbid.class,rid);
+        Tblrequirementbid r1=em.find(Tblrequirementbid.class,rbid);
+        Tblrequirement re=em.find(Tblrequirement.class, rid);
         Tblbidassigned ba=new Tblbidassigned();
         ba.setRequirementBidId(new Tblrequirementbid(r1.getRequirementBidId()));
         ba.setUserId(new Tbluser(u1.getUserId()));
+        ba.setRequirementId(new Tblrequirement(re.getRequirementId()));
+        //Tblrequirement r=new  Tblrequirement();
+        re.setStatus(1);
+        
         em.persist(ba);
     }
 
@@ -218,7 +225,30 @@ public class Userbean implements UserbeanLocal {
         Tblrequirementbid j=em.find(Tblrequirementbid.class, rbid);
         em.remove(j);
     }
-    
-    
 
+    @Override
+    public List<Object[]> manageTask(int rid) {
+        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r where u.userId=r.userId and r.requirementId="+rid).getResultList();
+    }
+
+    @Override
+    public List<Object[]> ManageBidders(int uid, int rid) {
+       // SELECT * FROM tbluser u,tblbidassigned b WHERE u.userId=b.userId AND b.requirementId=1
+        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r,tblachievement a where u.userId=r.userId AND a.userId=u.userId and r.requirementId='"+rid +"' AND a.userId='"+uid +"' ").getResultList();
+    }
+
+    @Override
+    public void comment(int uid, int aid, String description, int fromuid) {
+        Tbluser u1=em.find(Tbluser.class,uid);
+        Tbluser u2=em.find(Tbluser.class,fromuid);
+        Tblachievement a=em.find(Tblachievement.class,aid);
+        Tblcomment c=new Tblcomment();
+        c.setDescription(description);
+        c.setToUserId(new Tbluser(u1.getUserId()));
+        c.setFromUserId(new Tbluser(u2.getUserId()));
+        c.setAchievementId(new Tblachievement(a.getAchievementId()));
+        em.persist(c);
+      
+    }
+    
 }

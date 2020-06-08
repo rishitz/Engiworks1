@@ -185,7 +185,7 @@ public class userResource {
     @Path("bidAssign")
     public void bidassign(Tblbidassigned ba)
     {
-        ul.bidassign(ba.getUserId().getUserId(), ba.getRequirementBidId().getRequirementBidId());
+        ul.bidassign(ba.getUserId().getUserId(), ba.getRequirementBidId().getRequirementBidId(),ba.getRequirementId().getRequirementId());
     }
     
     @RolesAllowed("User")
@@ -194,5 +194,23 @@ public class userResource {
     public void deleteBid(@PathParam("rbid") int rbid)
     {
         ul.removeBid(rbid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("manageTask/{rid}")
+    public List<Object[]> manageTask(@PathParam("rid") int rid)
+    {
+        return ul.manageTask(rid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("manageBidders/{uid}/{rid}")
+    public List<Object[]> manageBidders(@PathParam("uid") int uid,@PathParam("rid") int rid)
+    {
+        return ul.ManageBidders(uid, rid);
     }
 }

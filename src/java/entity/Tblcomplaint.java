@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tblcomplaint")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblcomplaint.findAll", query = "SELECT t FROM Tblcomplaint t"),
     @NamedQuery(name = "Tblcomplaint.findByComplaintId", query = "SELECT t FROM Tblcomplaint t WHERE t.complaintId = :complaintId"),
@@ -56,6 +56,9 @@ public class Tblcomplaint implements Serializable {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Tbluser userId;
+    @JoinColumn(name = "toUserId", referencedColumnName = "userId")
+    @ManyToOne(optional = false)
+    private Tbluser toUserId;
 
     public Tblcomplaint() {
     }
@@ -109,6 +112,14 @@ public class Tblcomplaint implements Serializable {
 
     public void setUserId(Tbluser userId) {
         this.userId = userId;
+    }
+
+    public Tbluser getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(Tbluser toUserId) {
+        this.toUserId = toUserId;
     }
 
     @Override
