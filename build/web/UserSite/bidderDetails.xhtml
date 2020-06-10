@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Header.xhtml"></ui:include>
+        <c:forEach var="x" items="${achivementManagedBean.viewblist}">
+            ${x[0]}
+            <h:form>
+                <h:inputText value="#{achivementManagedBean.complaint}" ></h:inputText>
+                <h:commandButton action="${achivementManagedBean.Complaint(x[0])}" value="Post" />
+            </h:form>
+            
+        </c:forEach>
+        
+        <ui:include src="Footer.xhtml"></ui:include>
+    </h:body>
+</html>
+

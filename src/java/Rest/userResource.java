@@ -7,6 +7,8 @@ package Rest;
 
 import ejb.UserbeanLocal;
 import entity.Tblbidassigned;
+import entity.Tblcomment;
+import entity.Tblcomplaint;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tbluser;
@@ -213,4 +215,33 @@ public class userResource {
     {
         return ul.ManageBidders(uid, rid);
     }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("commnet")
+    public void Commnet(Tblcomment c)
+    {
+        ul.comment(c.getToUserId().getUserId(), c.getAchievementId().getAchievementId(),c.getDescription(), c.getFromUserId().getUserId());
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("viewBidder/{rid}")
+    public List<Object[]> viewBidder(@PathParam("rid") int rid)
+    {
+        return ul.viewBidder(rid);
+    }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("complaint")
+    public void Complaint(Tblcomplaint c)
+    {
+        ul.complaint(c.getToUserId().getUserId(),c.getComplaint(), c.getUserId().getUserId());
+    }
+    
+    
 }

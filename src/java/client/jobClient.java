@@ -75,6 +75,12 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T viewBidder(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("viewBidder/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
+    }
+
     public void updateUser(Object requestEntity) throws ClientErrorException {
         webTarget.path("updateUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
@@ -89,6 +95,10 @@ public class jobClient {
 
     public void deleteBid(String rbid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("deleteBid/{0}", new Object[]{rbid})).request().delete();
+    }
+
+    public void Commnet(Object requestEntity) throws ClientErrorException {
+        webTarget.path("commnet").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void putJson(Object requestEntity) throws ClientErrorException {
@@ -121,6 +131,10 @@ public class jobClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getuser/{0}", new Object[]{uid}));
         return resource.request().get(responseType);
+    }
+
+    public void Complaint(Object requestEntity) throws ClientErrorException {
+        webTarget.path("complaint").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T getBidJob(Class<T> responseType, String rid) throws ClientErrorException {

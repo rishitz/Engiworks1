@@ -10,6 +10,7 @@ import entity.Tblattachement;
 import entity.Tblbidassigned;
 import entity.Tblcity;
 import entity.Tblcomment;
+import entity.Tblcomplaint;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
 import entity.Tblrequirement;
@@ -249,6 +250,25 @@ public class Userbean implements UserbeanLocal {
         c.setAchievementId(new Tblachievement(a.getAchievementId()));
         em.persist(c);
       
+    }
+
+    @Override
+    public List<Object[]> viewBidder(int rid) {
+        return em.createNativeQuery("SELECT * FROM tbluser u,tblbidassigned b WHERE u.userId=b.userId AND b.requirementId="+rid).getResultList();
+    }
+
+    @Override
+    public void complaint(int uid, String complaint, int fromuid) {
+        Tbluser u1=em.find(Tbluser.class,uid);
+        Tbluser u2=em.find(Tbluser.class,fromuid);
+        
+        Tblcomplaint c=new Tblcomplaint();
+       c.setComplaint(complaint);
+        c.setToUserId(new Tbluser(u1.getUserId()));
+        c.setUserId(new Tbluser(u2.getUserId()));
+        c.setStatus(1);
+        
+        em.persist(c);
     }
     
 }

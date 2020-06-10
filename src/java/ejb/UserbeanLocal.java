@@ -41,5 +41,7 @@ public interface UserbeanLocal {
      List<Object[]> manageTask(int rid);
      List<Object[]> ManageBidders(int uid,int rid);
      void comment(int uid,int aid,String description,int fromuid);
+     List<Object[]> viewBidder(int rid);
+     void complaint(int uid,String complaint,int fromuid);
      
 }

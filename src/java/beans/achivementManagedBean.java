@@ -7,7 +7,10 @@ package beans;
 
 import client.jobClient;
 import ejb.UserbeanLocal;
+import entity.Tblachievement;
 import entity.Tblbidassigned;
+import entity.Tblcomment;
+import entity.Tblcomplaint;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tbluser;
@@ -39,7 +42,7 @@ public class achivementManagedBean implements Serializable {
     @EJB
     private UserbeanLocal userbean;
     private int uid, duration, jobId, bdur,userId;
-    private String title, description;
+    private String title, description,comment,complaint;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -49,8 +52,34 @@ public class achivementManagedBean implements Serializable {
     private Date edate;
     List<Object[]> jlist;
     List<Object[]> blist;
+    List<Object[]> viewblist;
     List<Object[]> bidderlist;
     private String acdescription;
+
+    public String getComplaint() {
+        return complaint;
+    }
+
+    public void setComplaint(String complaint) {
+        this.complaint = complaint;
+    }
+
+    public List<Object[]> getViewblist() {
+        return viewblist;
+    }
+
+    public void setViewblist(List<Object[]> viewblist) {
+        this.viewblist = viewblist;
+    }
+    
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getAcdescription() {
         return acdescription;
@@ -497,8 +526,56 @@ public class achivementManagedBean implements Serializable {
         bidderlist = (List<Object[]>) resp.readEntity(type);
         return "/UserSite/manageBidder.xhtml?faces-redirect=true";
     }
-    public void Comment()
+    public void Comment(int uid,int aid)
     {
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        Tblcomment c=new Tblcomment();
+        c.setAchievementId(new Tblachievement(aid));
+        c.setToUserId(new Tbluser(uid));
+        c.setFromUserId(new Tbluser(ud));
+        c.setDescription(comment);
+        jc.Commnet(c);
+        
         
     }
+    
+    public String viewBidder(int rid)           
+    {
+        System.out.println("Manage Bidder"+rid);
+        //System.out.println("Manage job:"+jobId);
+        Response resp=jc.viewBidder(Response.class,rid+"");
+          
+        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+        viewblist = (List<Object[]>) resp.readEntity(type);
+          
+        return "/UserSite/bidderDetails.xhtml?faces-redirect=true";
+    }
+     public void Complaint(int uid)
+    {
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        Tblcomplaint c=new Tblcomplaint();
+       
+        c.setToUserId(new Tbluser(uid));
+        c.setUserId(new Tbluser(ud));
+        c.setComplaint(complaint);
+        jc.Complaint(c);
+        
+        
+    }
+    
+    
 }
