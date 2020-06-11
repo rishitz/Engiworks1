@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tblreview.findAll", query = "SELECT t FROM Tblreview t"),
     @NamedQuery(name = "Tblreview.findByReviewId", query = "SELECT t FROM Tblreview t WHERE t.reviewId = :reviewId"),
     @NamedQuery(name = "Tblreview.findByReview", query = "SELECT t FROM Tblreview t WHERE t.review = :review"),
+    @NamedQuery(name = "Tblreview.findByRatings", query = "SELECT t FROM Tblreview t WHERE t.ratings = :ratings"),
     @NamedQuery(name = "Tblreview.findByCreatedDate", query = "SELECT t FROM Tblreview t WHERE t.createdDate = :createdDate"),
     @NamedQuery(name = "Tblreview.findByStatus", query = "SELECT t FROM Tblreview t WHERE t.status = :status")})
 public class Tblreview implements Serializable {
@@ -46,6 +47,9 @@ public class Tblreview implements Serializable {
     @Basic(optional = false)
     @Column(name = "review")
     private String review;
+    @Basic(optional = false)
+    @Column(name = "ratings")
+    private int ratings;
     @Basic(optional = false)
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
@@ -67,9 +71,10 @@ public class Tblreview implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Tblreview(Integer reviewId, String review, Date createdDate, int status) {
+    public Tblreview(Integer reviewId, String review, int ratings, Date createdDate, int status) {
         this.reviewId = reviewId;
         this.review = review;
+        this.ratings = ratings;
         this.createdDate = createdDate;
         this.status = status;
     }
@@ -88,6 +93,14 @@ public class Tblreview implements Serializable {
 
     public void setReview(String review) {
         this.review = review;
+    }
+
+    public int getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(int ratings) {
+        this.ratings = ratings;
     }
 
     public Date getCreatedDate() {

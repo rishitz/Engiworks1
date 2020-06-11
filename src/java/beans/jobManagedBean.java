@@ -12,6 +12,9 @@ import entity.Tbljobcategory;
 //import client.userdetailClient;
 import entity.Tblrequirement;
 import entity.Tbluser;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -41,10 +45,28 @@ public class jobManagedBean {
     String username;
     String password;
     jobClient jc;
+    private String profile;
     Collection<Tblrequirement> job;
     GenericType<Collection<Tblrequirement>> gjob;
     //userdetailClient uc=new userdetailClient();
     private int uid,cid,jid;
+    private Part filename;
+
+    public Part getFilename() {
+        return filename;
+    }
+
+    public void setFilename(Part filename) {
+        this.filename = filename;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
     public int getCid() {
         return cid;
@@ -204,12 +226,23 @@ public class jobManagedBean {
         cid=u2.getCityId().getCityId();
         jid=u2.getJobCategoryId().getJobCategoryId();
         address=u2.getAddress();
+        profile=u2.getProfileImage();
+        
         System.out.println("Uid & Name"+uid+username);
         
         
     }   
     public void updateUser()
     {
+        String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
+       String f1=null;
+        try(InputStream input=filename.getInputStream()){
+            f1=filename.getSubmittedFileName();
+            Files.copy(input,new File(folder,f1).toPath());           
+        }catch(Exception e)
+        {
+            
+        }
         //userbean.updateUser(userName, cid, address, email, jid);
         System.out.println("update Id"+uid);
         Tbluser u=new Tbluser();
@@ -219,6 +252,7 @@ public class jobManagedBean {
         u.setCityId(new Tblcity(cid));
         u.setJobCategoryId(new Tbljobcategory(jid));
        u.setAddress(address);
+       u.setProfileImage(f1);
         jc.updateUser(u);
     }
     

@@ -13,8 +13,10 @@ import entity.Tblcomment;
 import entity.Tblcomplaint;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
+import entity.Tblnotification;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
+import entity.Tblreview;
 import entity.Tbluser;
 import entity.Tblusergroup;
 import java.util.Collection;
@@ -50,7 +52,7 @@ public class Userbean implements UserbeanLocal {
     }
 
     @Override
-    public void addUser(String userName, String gender, int cityId, String address, String email, String password, int jobCategoryId, int status) {
+    public void addUser(String userName, String gender, int cityId, String address, String email, String password, int jobCategoryId, int status,String picture) {
         Tbluser u=new Tbluser();
         Pbkdf2PasswordHashImpl pass = new Pbkdf2PasswordHashImpl();
         u.setUserName(userName);
@@ -58,6 +60,7 @@ public class Userbean implements UserbeanLocal {
         u.setCityId(new Tblcity(cityId));
         u.setAddress(address);
         u.setEmail(email);
+        u.setProfileImage(picture);
         u.setPassword(pass.generate(password.toCharArray()));
         u.setJobCategoryId(new Tbljobcategory(jobCategoryId));
         u.setStatus(status);
@@ -94,7 +97,7 @@ public class Userbean implements UserbeanLocal {
     }
 
     @Override
-    public void updateUser(int uid, String userName, int cityId, String address, String email, int jobCategoryId) {
+    public void updateUser(int uid, String userName, int cityId, String address, String email, int jobCategoryId,String picture) {
         Tbluser u=em.find(Tbluser.class, uid);
         Tblcity c=em.find(Tblcity.class, cityId);
         Collection<Tbluser> ulist=c.getTbluserCollection();
@@ -105,6 +108,7 @@ public class Userbean implements UserbeanLocal {
         u.setAddress(address);
         u.setEmail(email);
         u.setJobCategoryId(j);
+        u.setProfileImage(picture);
         em.merge(u);
         ulist.add(u);
         jlist.add(u);
@@ -270,5 +274,29 @@ public class Userbean implements UserbeanLocal {
         
         em.persist(c);
     }
-    
+    @Override
+    public void review(int uid, String review, int fromuid,int rat) {
+        Tbluser u1=em.find(Tbluser.class,uid);
+        Tbluser u2=em.find(Tbluser.class,fromuid);
+        
+        Tblreview c=new Tblreview();
+        Tblnotification n=new Tblnotification();
+        n.setUserId(new Tbluser(u1.getUserId()));
+        n.setFromUserId(new Tbluser(u2.getUserId()));
+        n.setNotification(review);
+        n.setStatus(0);
+        em.persist(n);
+       c.setReview(review);
+       c.setRatings(rat);
+        c.setToUserId(new Tbluser(u1.getUserId()));
+        c.setFromUserId(new Tbluser(u2.getUserId()));
+        c.setStatus(1);
+        
+        em.persist(c);
+    }
+
+    @Override
+    public List<Object[]> notification(int uid) {
+        return em.createNativeQuery("select * from tblnotification n,tbluser u where u.userId=n.userId and u.userId=n.fromUserId and userId="+uid).getResultList();
+    }
 }

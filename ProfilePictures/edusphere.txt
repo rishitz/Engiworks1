@@ -1,0 +1,39 @@
+ <script>
+        function checkemail() {
+
+            var email = $("#txtemail1").val();
+            $("#status").html("checking...");
+            $.post("@Url.Action("checkuser","UserDemo")",
+            {
+                user: $("#txtemail1").val()
+
+            },
+            function (data) {
+                if (data == 0) {
+                    $("#status").html('<font color="Green">Available.</font>');
+                    $("#txtemail1").css("border-email", "Green");
+                }
+                else {
+                    $("#status").html('<font color="Red">Not Available.</font>');
+                    $("#txtemail1").css("border-email", "Red");
+                }
+
+            });
+
+        }
+      
+        $("#img").change(function () {
+            var abc = $("#img").val().split('.').pop().toLowerCase();
+            if ($.inArray(abc,["jpeg", "jpg", "png", "bmp"]) == -1) {
+                $("#lbl").text("Upload only image types");
+                $("#lbl").css('color', 'Red');
+                $("#img").val("");
+                $("#sub").attr('disabled', true);
+            }
+            else {
+                $("#sub").attr('disabled', false);
+                $("#lbl").text("");
+            }
+        });
+
+        </script>

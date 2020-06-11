@@ -12,11 +12,15 @@ import ejb.UserbeanLocal;
 import entity.Tblcity;
 import entity.Tbljobcategory;
 import entity.Tbluser;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -38,6 +42,16 @@ public class registrationManagedBean {
     private Collection<Tbljobcategory> jlist;
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
+    private Part filename;
+
+    public Part getFilename() {
+        return filename;
+    }
+
+    public void setFilename(Part filename) {
+        this.filename = filename;
+    }
+    
 
     public int getJid() {
         return jid;
@@ -129,6 +143,15 @@ public class registrationManagedBean {
     }
     public String adduser()
     {
+         String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
+       String f1=null;
+        try(InputStream input=filename.getInputStream()){
+            f1=filename.getSubmittedFileName();
+            Files.copy(input,new File(folder,f1).toPath());           
+        }catch(Exception e)
+        {
+            
+        }
         //userbean.addUser(userName, gender, cid, address, email, password, jid, status);
         System.out.println("username"+userName);
         Tbluser u = new Tbluser();
@@ -140,6 +163,7 @@ public class registrationManagedBean {
         u.setPassword(password);
         u.setJobCategoryId(new Tbljobcategory(jid));
         u.setStatus(status);
+        u.setProfileImage(f1);
         rc.addUser(u);
         return "/UserSite/Login.xhtml?faces-redirect=true";
         

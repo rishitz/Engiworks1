@@ -24,10 +24,10 @@ public interface UserbeanLocal {
     Collection<Tblrequirement> alljob();
      Collection<Tbljobcategory> getalljob();
      Collection<Tblcity> getallcity();
-    void addUser(String userName,String gender,int cityId,String address, String email,String password,int jobCategoryId,int status);
+    void addUser(String userName,String gender,int cityId,String address, String email,String password,int jobCategoryId,int status,String picture);
     public Tbluser user(String uname);
     public Tbluser userDetail(int uid);
-    public void updateUser(int uid,String userName, int cityId, String address, String email, int jobCategoryId);
+    public void updateUser(int uid,String userName, int cityId, String address, String email, int jobCategoryId,String picture);
     public List<Object[]> userPostJob(int uid);
      public void addJob(int uid,String title, String description, float budget, int duration, String pdf);
      void addAchivement(int uid,String title,String description,String attachment);
@@ -43,5 +43,8 @@ public interface UserbeanLocal {
      void comment(int uid,int aid,String description,int fromuid);
      List<Object[]> viewBidder(int rid);
      void complaint(int uid,String complaint,int fromuid);
+     void review(int uid,String review,int fromuid,int rat);
+     List<Object[]> notification(int uid);
+
      
 }

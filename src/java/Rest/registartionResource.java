@@ -75,7 +75,7 @@ public class registartionResource {
     public void addUser(Tbluser u)
     {
         System.out.println("name"+u.getUserName());
-        userbean.addUser(u.getUserName(),u.getGender(),u.getCityId().getCityId(),u.getAddress(),u.getEmail(), u.getPassword(),u.getJobCategoryId().getJobCategoryId(),u.getStatus());
+        userbean.addUser(u.getUserName(),u.getGender(),u.getCityId().getCityId(),u.getAddress(),u.getEmail(), u.getPassword(),u.getJobCategoryId().getJobCategoryId(),u.getStatus(),u.getProfileImage());
     }
 
     private UserbeanLocal lookupUserbeanLocal() {

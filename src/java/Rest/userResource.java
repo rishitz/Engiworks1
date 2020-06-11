@@ -11,6 +11,7 @@ import entity.Tblcomment;
 import entity.Tblcomplaint;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
+import entity.Tblreview;
 import entity.Tbluser;
 import java.util.Collection;
 import java.util.Date;
@@ -104,7 +105,7 @@ public class userResource {
     @Path("updateUser")
     public void updateUser(Tbluser u)
     {
-        ul.updateUser(u.getUserId(), u.getUserName(), u.getCityId().getCityId(), u.getAddress(), u.getEmail(),u.getJobCategoryId().getJobCategoryId());
+        ul.updateUser(u.getUserId(), u.getUserName(), u.getCityId().getCityId(), u.getAddress(), u.getEmail(),u.getJobCategoryId().getJobCategoryId(),u.getProfileImage());
     }
     
     @RolesAllowed("User")
@@ -241,6 +242,16 @@ public class userResource {
     public void Complaint(Tblcomplaint c)
     {
         ul.complaint(c.getToUserId().getUserId(),c.getComplaint(), c.getUserId().getUserId());
+    }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("review")
+    public void Review(Tblreview c)
+    {
+        
+        ul.review(c.getToUserId().getUserId(),c.getReview(), c.getFromUserId().getUserId(),c.getRatings());
     }
     
     

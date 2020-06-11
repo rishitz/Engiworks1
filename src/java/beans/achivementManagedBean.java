@@ -13,6 +13,7 @@ import entity.Tblcomment;
 import entity.Tblcomplaint;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
+import entity.Tblreview;
 import entity.Tbluser;
 import java.io.File;
 import java.io.InputStream;
@@ -41,8 +42,8 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId;
-    private String title, description,comment,complaint;
+    private int uid, duration, jobId, bdur,userId,ratings;
+    private String title, description,comment,complaint,review;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -55,6 +56,22 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
     private String acdescription;
+
+    public int getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(int ratings) {
+        this.ratings = ratings;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
 
     public String getComplaint() {
         return complaint;
@@ -576,6 +593,28 @@ public class achivementManagedBean implements Serializable {
         
         
     }
+     public void Review(int uid)
+    {
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        Tblreview c=new Tblreview();
+        System.out.println("review"+review);
+        System.out.println("rating"+ratings);
+        c.setToUserId(new Tbluser(uid));
+        c.setFromUserId(new Tbluser(ud));
+        c.setReview(review);
+        c.setRatings(ratings);
+        jc.Review(c);
+        
+        
+    }
+     
     
     
 }

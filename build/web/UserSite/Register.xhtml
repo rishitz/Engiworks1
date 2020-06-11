@@ -203,7 +203,7 @@
                      <div class="border1"></div>
                      
                      <!--<form class="form-horizontal" method="post">-->
-                    <h:form class="form-horizontal" >
+                    <h:form class="form-horizontal" enctype="multipart/form-data">
                         <fieldset>
                            <div class="form-group">
                               <div class="col-sm-12">
@@ -260,6 +260,13 @@
                                   <h:selectOneMenu class="form-control" value="#{registrationManagedBean.cid}" required="true">
                                       <f:selectItems var="item" value="#{registrationManagedBean.clist}" itemValue="#{item.cityId}" itemLabel="#{item.cityName}"/>
                                      </h:selectOneMenu>
+                                 
+                              </div>
+                           </div>
+                                  <div class="form-group">
+                              <div class="col-sm-12">
+                                 <label>Upload Photo</label>
+                                 <h:inputFile value="#{registrationManagedBean.filename}" />
                                  
                               </div>
                            </div>
