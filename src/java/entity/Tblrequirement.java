@@ -79,6 +79,8 @@ public class Tblrequirement implements Serializable {
     @ManyToOne(optional = false)
     private Tbluser userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
+    private Collection<Tblreview> tblreviewCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
     private Collection<Tblbidassigned> tblbidassignedCollection;
 
     public Tblrequirement() {
@@ -178,6 +180,15 @@ public class Tblrequirement implements Serializable {
 
     public void setUserId(Tbluser userId) {
         this.userId = userId;
+    }
+
+    @XmlTransient
+    public Collection<Tblreview> getTblreviewCollection() {
+        return tblreviewCollection;
+    }
+
+    public void setTblreviewCollection(Collection<Tblreview> tblreviewCollection) {
+        this.tblreviewCollection = tblreviewCollection;
     }
 
     @XmlTransient

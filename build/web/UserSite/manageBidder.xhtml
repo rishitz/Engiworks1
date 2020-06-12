@@ -13,11 +13,18 @@
             <h1>${x[0]}</h1>
             ${x[19]}
             <h:form>
+                Comment:
                 <h:inputText value="#{achivementManagedBean.comment}" ></h:inputText>
-                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Post" />
+                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Send" />
+                
+                
             </h:form>
+            
         </c:forEach>
-        
+<!--        <c:forEach var="u" items="">
+            <p><c:forEach  begin="1" end=""><i class="fa fa-star"></i></c:forEach></p>
+        </c:forEach>-->
+       
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>
 </html>

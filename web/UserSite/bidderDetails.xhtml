@@ -12,15 +12,26 @@
         <ui:include src="Header.xhtml"></ui:include>
         <c:forEach var="x" items="${achivementManagedBean.viewblist}">
             ${x[0]}
+            <h5>${x[13]}</h5>
+            
             <h:form>
                 <h:outputLabel value="Comment"></h:outputLabel>
                 <h:inputText value="#{achivementManagedBean.complaint}" ></h:inputText>
                 <h:commandButton action="${achivementManagedBean.Complaint(x[0])}" value="Post" />
             </h:form>
              <h:form>
+                 <c:choose>
+                     <c:when test="${achivementManagedBean.checkreview()==0}">
                  <h:outputLabel value="Review"></h:outputLabel>
                  <h:inputText value="#{achivementManagedBean.review}" ></h:inputText>                 
-                 <h:commandButton action="${achivementManagedBean.Review(x[0])}" value="Post" />
+                 <h:commandButton action="${achivementManagedBean.Review(x[0],x[13])}" value="Post" />
+                     </c:when>
+                     <c:when test="${achivementManagedBean.checkreview() > 0}">
+                                                                               
+                                        Your review is submitted...
+                                        <!--</div>-->
+                                    </c:when>
+                 </c:choose>
                  <h:outputLabel value="Ratings"></h:outputLabel>
                 <h:panelGrid columns="2" cellpadding="5">  
                     <p:rating value="#{achivementManagedBean.ratings}" />  

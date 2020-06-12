@@ -251,8 +251,33 @@ public class userResource {
     public void Review(Tblreview c)
     {
         
-        ul.review(c.getToUserId().getUserId(),c.getReview(), c.getFromUserId().getUserId(),c.getRatings());
+        ul.review(c.getToUserId().getUserId(),c.getReview(), c.getFromUserId().getUserId(),c.getRatings(),c.getRequirementId().getRequirementId());
     }
     
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("notification/{uid}")
+    public List<Object[]> notification(@PathParam("uid") int uid)
+    {
+        return ul.notification(uid);
+    }
     
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getreview/{uid}")
+    public List<Object[]> getReviews(@PathParam("uid") int uid)
+    {
+        return ul.getUserReview(uid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("checkreview/{uid}/{rid}")
+    public List<Object[]> checkReviews(@PathParam("uid") int uid,@PathParam("rid") int rid)
+    {
+        return ul.checkReview(uid, rid);
+    }
 }

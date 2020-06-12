@@ -53,13 +53,9 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
-    public void bidassign(Object requestEntity) throws ClientErrorException {
-        webTarget.path("bidAssign").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T manageTask(Class<T> responseType, String rid) throws ClientErrorException {
+    public <T> T checkReviews(Class<T> responseType, String uid, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("manageTask/{0}", new Object[]{rid}));
+        resource = resource.path(java.text.MessageFormat.format("checkreview/{0}/{1}", new Object[]{uid, rid}));
         return resource.request().get(responseType);
     }
 
@@ -75,24 +71,6 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
-    public <T> T viewBidder(Class<T> responseType, String rid) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("viewBidder/{0}", new Object[]{rid}));
-        return resource.request().get(responseType);
-    }
-
-    public void updateUser(Object requestEntity) throws ClientErrorException {
-        webTarget.path("updateUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void addJob(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addJob").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void addBid(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
     public void Review(Object requestEntity) throws ClientErrorException {
         webTarget.path("review").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
@@ -101,16 +79,10 @@ public class jobClient {
         webTarget.path(java.text.MessageFormat.format("deleteBid/{0}", new Object[]{rbid})).request().delete();
     }
 
-    public void Commnet(Object requestEntity) throws ClientErrorException {
-        webTarget.path("commnet").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void putJson(Object requestEntity) throws ClientErrorException {
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("addAchivement/{0}/{1}/{2}/{3}", new Object[]{uid, attachment, title, description})).request().post(null);
+    public <T> T notification(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("notification/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T getuserJob(Class<T> responseType, String uid) throws ClientErrorException {
@@ -141,15 +113,61 @@ public class jobClient {
         webTarget.path("complaint").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public String getJson() throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public void bidassign(Object requestEntity) throws ClientErrorException {
+        webTarget.path("bidAssign").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T manageTask(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("manageTask/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T viewBidder(Class<T> responseType, String rid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("viewBidder/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
+    }
+
+    public void updateUser(Object requestEntity) throws ClientErrorException {
+        webTarget.path("updateUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addJob(Object requestEntity) throws ClientErrorException {
+        webTarget.path("addJob").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addBid(Object requestEntity) throws ClientErrorException {
+        webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void Commnet(Object requestEntity) throws ClientErrorException {
+        webTarget.path("commnet").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void putJson(Object requestEntity) throws ClientErrorException {
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("addAchivement/{0}/{1}/{2}/{3}", new Object[]{uid, attachment, title, description})).request().post(null);
+    }
+
+    public <T> T getReviews(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getreview/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
+    }
+
     public <T> T getBidJob(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getBidJob/{0}", new Object[]{rid}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public String getJson() throws ClientErrorException {
-        WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
     public <T> T homeJob(Class<T> responseType, String uid) throws ClientErrorException {

@@ -270,33 +270,44 @@ public class Userbean implements UserbeanLocal {
        c.setComplaint(complaint);
         c.setToUserId(new Tbluser(u1.getUserId()));
         c.setUserId(new Tbluser(u2.getUserId()));
-        c.setStatus(1);
-        
+        c.setStatus(1);        
         em.persist(c);
     }
     @Override
-    public void review(int uid, String review, int fromuid,int rat) {
+    public void review(int uid, String review, int fromuid,int rat,int rid) {
         Tbluser u1=em.find(Tbluser.class,uid);
         Tbluser u2=em.find(Tbluser.class,fromuid);
+        Tblrequirement r=em.find(Tblrequirement.class,rid);
         
         Tblreview c=new Tblreview();
         Tblnotification n=new Tblnotification();
         n.setUserId(new Tbluser(u1.getUserId()));
         n.setFromUserId(new Tbluser(u2.getUserId()));
-        n.setNotification(review);
+        n.setNotification("review "+review+" on achivement");
         n.setStatus(0);
         em.persist(n);
-       c.setReview(review);
-       c.setRatings(rat);
+        c.setReview(review);
+        c.setRatings(rat);
         c.setToUserId(new Tbluser(u1.getUserId()));
         c.setFromUserId(new Tbluser(u2.getUserId()));
         c.setStatus(1);
+        c.setRequirementId(new Tblrequirement(r.getRequirementId()));
         
         em.persist(c);
     }
 
     @Override
     public List<Object[]> notification(int uid) {
-        return em.createNativeQuery("select * from tblnotification n,tbluser u where u.userId=n.userId and u.userId=n.fromUserId and userId="+uid).getResultList();
+        return em.createNativeQuery("select * from tblnotification n,tbluser u where u.userId=n.fromUserId and n.userId="+uid).getResultList();
+    }
+
+    @Override
+    public List<Object[]> getUserReview(int uid) {
+        return em.createNativeQuery("select Avg(ratings) from tblreview where toUserId="+uid).getResultList();
+    }
+
+    @Override
+    public List<Object[]> checkReview(int uid, int rid) {        
+        return em.createNativeQuery("select * from tblrequirement r,tblreview re where r.requirementId=re.requirementId and re.requirementId='"+rid +"' AND re.fromUserId='"+uid +"' ").getResultList();
     }
 }

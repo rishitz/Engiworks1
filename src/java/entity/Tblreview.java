@@ -63,6 +63,9 @@ public class Tblreview implements Serializable {
     @JoinColumn(name = "fromUserId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Tbluser fromUserId;
+    @JoinColumn(name = "requirementId", referencedColumnName = "requirementId")
+    @ManyToOne(optional = false)
+    private Tblrequirement requirementId;
 
     public Tblreview() {
     }
@@ -133,6 +136,14 @@ public class Tblreview implements Serializable {
 
     public void setFromUserId(Tbluser fromUserId) {
         this.fromUserId = fromUserId;
+    }
+
+    public Tblrequirement getRequirementId() {
+        return requirementId;
+    }
+
+    public void setRequirementId(Tblrequirement requirementId) {
+        this.requirementId = requirementId;
     }
 
     @Override

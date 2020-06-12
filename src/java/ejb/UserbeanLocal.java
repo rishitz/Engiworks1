@@ -43,8 +43,11 @@ public interface UserbeanLocal {
      void comment(int uid,int aid,String description,int fromuid);
      List<Object[]> viewBidder(int rid);
      void complaint(int uid,String complaint,int fromuid);
-     void review(int uid,String review,int fromuid,int rat);
+     void review(int uid,String review,int fromuid,int rat,int rid);
      List<Object[]> notification(int uid);
+     List<Object[]> getUserReview(int uid);
+     List<Object[]> checkReview(int uid,int rid);
+     
 
      
 }

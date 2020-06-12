@@ -55,7 +55,16 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> blist;
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
+    List<Object[]> reviewlist;
     private String acdescription;
+
+    public List<Object[]> getReviewlist() {
+        return reviewlist;
+    }
+
+    public void setReviewlist(List<Object[]> reviewlist) {
+        this.reviewlist = reviewlist;
+    }
 
     public int getRatings() {
         return ratings;
@@ -296,6 +305,7 @@ public class achivementManagedBean implements Serializable {
         jlist=new ArrayList<Object[]>();
         blist=new ArrayList<Object[]>();
         bidderlist=new ArrayList<Object[]>();
+        reviewlist=new ArrayList<Object[]>();
 //        this.getJobData();
     }
 
@@ -523,7 +533,8 @@ public class achivementManagedBean implements Serializable {
     }
     public String manageJob(int rid)           
     {
-        System.out.println("Manage Bid"+rid);
+        System.out.println("Manage Bid in session"+rid);
+        
         //System.out.println("Manage job:"+jobId);
         Response resp=jc.manageTask(Response.class,rid+"");
          //List<Object[]> alist=new ArrayList<Object[]>();
@@ -535,12 +546,16 @@ public class achivementManagedBean implements Serializable {
     }
     public String manageBidder(int uid,int rid)           
     {
-        System.out.println("Manage Bidder"+rid+","+uid);
+        System.out.println("Manage Bidder in function"+rid+","+uid);
         //System.out.println("Manage job:"+jobId);
         Response resp=jc.manageBidders(Response.class,uid+"",rid+"");
+       //Response res=jc.getReviews(Response.class,uid+"");
           
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         bidderlist = (List<Object[]>) resp.readEntity(type);
+        
+//        GenericType<List<Object[]>> rtype = new GenericType<List<Object[]>>() {};
+//        reviewlist = (List<Object[]>) res.readEntity(rtype);
         return "/UserSite/manageBidder.xhtml?faces-redirect=true";
     }
     public void Comment(int uid,int aid)
@@ -566,6 +581,8 @@ public class achivementManagedBean implements Serializable {
     public String viewBidder(int rid)           
     {
         System.out.println("Manage Bidder"+rid);
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        req.getSession().setAttribute("jobid", rid);
         //System.out.println("Manage job:"+jobId);
         Response resp=jc.viewBidder(Response.class,rid+"");
           
@@ -593,7 +610,7 @@ public class achivementManagedBean implements Serializable {
         
         
     }
-     public void Review(int uid)
+     public void Review(int uid,int rid)
     {
          HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session=req.getSession(false);
@@ -610,9 +627,52 @@ public class achivementManagedBean implements Serializable {
         c.setFromUserId(new Tbluser(ud));
         c.setReview(review);
         c.setRatings(ratings);
-        jc.Review(c);
         
+        c.setRequirementId(new Tblrequirement(rid));
+        jc.Review(c);        
+    }
+     public List<Object[]> notification()           
+    {
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
         
+        //System.out.println("Manage job:"+jobId);
+        Response resp=jc.notification(Response.class,ud+"");
+           List<Object[]> alist=new ArrayList<Object[]>();
+        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+        alist = (List<Object[]>) resp.readEntity(type);
+          
+        return alist;
+    }
+     
+      public List<Object[]> checkRe() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("diff" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int userid = u1.getUserId();
+       int jid=(int) session.getAttribute("jobid");
+          System.out.println("Check jobid"+jid);
+        Response resp = jc.checkReviews(Response.class, userid + "", jid + "");
+        List<Object[]> alist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        alist = resp.readEntity(rb);
+        return alist;
+    }
+
+    public int checkreview() {
+        return this.checkRe().size();
     }
      
     
