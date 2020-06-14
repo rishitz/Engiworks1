@@ -199,8 +199,7 @@ public class jobManagedBean {
        
        jc=new jobClient(token);
        job=new ArrayList<Tblrequirement>();
-       gjob=new GenericType<Collection<Tblrequirement>>(){};
-       
+       gjob=new GenericType<Collection<Tblrequirement>>(){};       
     }
     
     
@@ -273,5 +272,23 @@ public class jobManagedBean {
          GenericType<List<Object[]>> gAdd = new GenericType<List<Object[]>>(){};
          alist = (List<Object[]>) resp.readEntity(gAdd);
        return alist;
+    }
+    public List<Object[]> assignJob() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("diff" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {};
+        Tbluser u1 = response.readEntity(us);
+        int userid = u1.getUserId();
+       int jid=(int) session.getAttribute("jobid");
+          System.out.println("Check jobid"+jid);
+        Response resp = jc.assignJob(Response.class, userid + "");
+        List<Object[]> alist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        alist = resp.readEntity(rb);
+        return alist;
     }
 }

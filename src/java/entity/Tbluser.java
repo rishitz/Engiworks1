@@ -75,8 +75,10 @@ public class Tbluser implements Serializable {
     private Collection<Tblrequirementbid> tblrequirementbidCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Tblusergroup> tblusergroupCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "toUserId")
     private Collection<Tbllikes> tbllikesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromUserId")
+    private Collection<Tbllikes> tbllikesCollection1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Tblrequirement> tblrequirementCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
@@ -222,6 +224,15 @@ public class Tbluser implements Serializable {
 
     public void setTbllikesCollection(Collection<Tbllikes> tbllikesCollection) {
         this.tbllikesCollection = tbllikesCollection;
+    }
+
+    @XmlTransient
+    public Collection<Tbllikes> getTbllikesCollection1() {
+        return tbllikesCollection1;
+    }
+
+    public void setTbllikesCollection1(Collection<Tbllikes> tbllikesCollection1) {
+        this.tbllikesCollection1 = tbllikesCollection1;
     }
 
     @XmlTransient

@@ -40,9 +40,12 @@ public class Tbllikes implements Serializable {
     @JoinColumn(name = "achievementId", referencedColumnName = "achievementId")
     @ManyToOne(optional = false)
     private Tblachievement achievementId;
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JoinColumn(name = "toUserId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
-    private Tbluser userId;
+    private Tbluser toUserId;
+    @JoinColumn(name = "fromUserId", referencedColumnName = "userId")
+    @ManyToOne(optional = false)
+    private Tbluser fromUserId;
 
     public Tbllikes() {
     }
@@ -67,12 +70,20 @@ public class Tbllikes implements Serializable {
         this.achievementId = achievementId;
     }
 
-    public Tbluser getUserId() {
-        return userId;
+    public Tbluser getToUserId() {
+        return toUserId;
     }
 
-    public void setUserId(Tbluser userId) {
-        this.userId = userId;
+    public void setToUserId(Tbluser toUserId) {
+        this.toUserId = toUserId;
+    }
+
+    public Tbluser getFromUserId() {
+        return fromUserId;
+    }
+
+    public void setFromUserId(Tbluser fromUserId) {
+        this.fromUserId = fromUserId;
     }
 
     @Override

@@ -13,6 +13,7 @@ import entity.Tblcomment;
 import entity.Tblcomplaint;
 import entity.Tblgroup;
 import entity.Tbljobcategory;
+import entity.Tbllikes;
 import entity.Tblnotification;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
@@ -239,7 +240,7 @@ public class Userbean implements UserbeanLocal {
     @Override
     public List<Object[]> ManageBidders(int uid, int rid) {
        // SELECT * FROM tbluser u,tblbidassigned b WHERE u.userId=b.userId AND b.requirementId=1
-        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r,tblachievement a where u.userId=r.userId AND a.userId=u.userId and r.requirementId='"+rid +"' AND a.userId='"+uid +"' ").getResultList();
+        return em.createNativeQuery("select * from tbluser u,tblrequirementbid r,tblachievement a,tblattachement t where u.userId=r.userId AND a.userId=u.userId and a.attechementId=t.attachementId and r.requirementId='"+rid +"' AND a.userId='"+uid +"' ").getResultList();
     }
 
     @Override
@@ -309,5 +310,28 @@ public class Userbean implements UserbeanLocal {
     @Override
     public List<Object[]> checkReview(int uid, int rid) {        
         return em.createNativeQuery("select * from tblrequirement r,tblreview re where r.requirementId=re.requirementId and re.requirementId='"+rid +"' AND re.fromUserId='"+uid +"' ").getResultList();
+    }
+
+    @Override
+    public void like(int touid, int fuid, int aid) {
+        Tbluser u1=em.find(Tbluser.class,touid);
+        Tbluser u2=em.find(Tbluser.class,fuid);
+        Tblachievement a=em.find(Tblachievement.class, aid);
+        Tbllikes l=new Tbllikes();
+        l.setToUserId(new Tbluser(u1.getUserId()));
+        l.setFromUserId(new Tbluser(u2.getUserId()));
+        l.setAchievementId(new Tblachievement(a.getAchievementId()));
+        em.persist(l);      
+        
+    }
+
+    @Override
+    public List<Object[]> checkLike(int uid, int aid) {
+        return em.createNativeQuery("select * from tbllikes l,tbluser u where l.fromUserId=u.userId and l.achievementId='"+aid+"' AND l.fromUserId='"+uid+"' ").getResultList();
+    }
+
+    @Override
+    public List<Object[]> assignJob(int uid) {
+        return em.createNativeQuery("select *from tbluser u,tblbidassigned b,tblrequirement r where u.userId=b.userId and b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
     }
 }

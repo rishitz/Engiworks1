@@ -9,6 +9,7 @@ import ejb.UserbeanLocal;
 import entity.Tblbidassigned;
 import entity.Tblcomment;
 import entity.Tblcomplaint;
+import entity.Tbllikes;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tblreview;
@@ -279,5 +280,32 @@ public class userResource {
     public List<Object[]> checkReviews(@PathParam("uid") int uid,@PathParam("rid") int rid)
     {
         return ul.checkReview(uid, rid);
+    }
+    
+    @RolesAllowed("User")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("like")
+    public void Like(Tbllikes l)
+    {
+        ul.like(l.getToUserId().getUserId(), l.getFromUserId().getUserId(),l.getAchievementId().getAchievementId());
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("checklike/{uid}/{aid}")
+    public List<Object[]> checkLike(@PathParam("uid") int uid,@PathParam("aid") int aid)
+    {
+        return ul.checkLike(uid, aid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("assignJob/{uid}")
+    public List<Object[]> assignJob(@PathParam("uid") int uid)
+    {
+        return ul.assignJob(uid);
     }
 }

@@ -59,9 +59,21 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T checkLike(Class<T> responseType, String uid, String aid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("checklike/{0}/{1}", new Object[]{uid, aid}));
+        return resource.request().get(responseType);
+    }
+
     public <T> T bidcheck(Class<T> responseType, String uid, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getbidcheck/{0}/{1}", new Object[]{uid, rid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T assignJob(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("assignJob/{0}", new Object[]{uid}));
         return resource.request().get(responseType);
     }
 
@@ -95,6 +107,10 @@ public class jobClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("manageBidders/{0}/{1}", new Object[]{uid, rid}));
         return resource.request().get(responseType);
+    }
+
+    public void Like(Object requestEntity) throws ClientErrorException {
+        webTarget.path("like").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T alljob(Class<T> responseType) throws ClientErrorException {

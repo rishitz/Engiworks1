@@ -11,6 +11,7 @@ import entity.Tblachievement;
 import entity.Tblbidassigned;
 import entity.Tblcomment;
 import entity.Tblcomplaint;
+import entity.Tbllikes;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tblreview;
@@ -42,7 +43,7 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings;
+    private int uid, duration, jobId, bdur,userId,ratings,aid;
     private String title, description,comment,complaint,review;
     private Part filename;
     jobClient jc;
@@ -57,6 +58,14 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> bidderlist;
     List<Object[]> reviewlist;
     private String acdescription;
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
 
     public List<Object[]> getReviewlist() {
         return reviewlist;
@@ -553,6 +562,11 @@ public class achivementManagedBean implements Serializable {
           
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         bidderlist = (List<Object[]>) resp.readEntity(type);
+        for (Object[] objects : bidderlist) {
+            aid=Integer.parseInt(objects[19].toString());
+            System.out.println("achid="+aid);
+            
+        }
         
 //        GenericType<List<Object[]>> rtype = new GenericType<List<Object[]>>() {};
 //        reviewlist = (List<Object[]>) res.readEntity(rtype);
@@ -620,6 +634,7 @@ public class achivementManagedBean implements Serializable {
         GenericType<Tbluser> us=new GenericType<Tbluser>(){};
         Tbluser u1=response.readEntity(us);
         int ud=u1.getUserId();
+        
         Tblreview c=new Tblreview();
         System.out.println("review"+review);
         System.out.println("rating"+ratings);
@@ -674,6 +689,48 @@ public class achivementManagedBean implements Serializable {
     public int checkreview() {
         return this.checkRe().size();
     }
+    
+    public void like(int uid,int aid)
+    {
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session=req.getSession(false);
+        String uname=(String) session.getAttribute("userName");
+        System.out.println("session name"+uname);
+        Response response=  jc.getUser(Response.class,uname);
+        GenericType<Tbluser> us=new GenericType<Tbluser>(){};
+        Tbluser u1=response.readEntity(us);
+        int ud=u1.getUserId();
+        System.out.println("In like"+uid+aid);
+        Tbllikes l=new Tbllikes();
+        l.setFromUserId(new Tbluser(ud));
+        l.setToUserId(new Tbluser(uid));
+        l.setAchievementId(new Tblachievement(aid));
+        jc.Like(l);
+        
+    }
+    public List<Object[]> checklike() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("diff" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {};
+        Tbluser u1 = response.readEntity(us);
+        int userid = u1.getUserId();
+       int jid=(int) session.getAttribute("jobid");
+          System.out.println("Check jobid"+jid);
+        Response resp = jc.checkLike(Response.class, userid + "", aid + "");
+        List<Object[]> alist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        alist = resp.readEntity(rb);
+        return alist;
+    }
+
+    public int checkl() {
+        return this.checklike().size();
+    }
+    
      
     
     
