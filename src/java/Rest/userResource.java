@@ -268,7 +268,7 @@ public class userResource {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("getreview/{uid}")
-    public List<Object[]> getReviews(@PathParam("uid") int uid)
+    public Object getReviews(@PathParam("uid") int uid)
     {
         return ul.getUserReview(uid);
     }
@@ -307,5 +307,14 @@ public class userResource {
     public List<Object[]> assignJob(@PathParam("uid") int uid)
     {
         return ul.assignJob(uid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showReviews/{uid}")
+    public List<Object[]> showReviews(@PathParam("uid") int uid)
+    {
+        return ul.viewAllreviews(uid);
     }
 }

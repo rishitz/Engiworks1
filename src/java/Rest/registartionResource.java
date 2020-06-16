@@ -23,6 +23,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -77,7 +78,15 @@ public class registartionResource {
         System.out.println("name"+u.getUserName());
         userbean.addUser(u.getUserName(),u.getGender(),u.getCityId().getCityId(),u.getAddress(),u.getEmail(), u.getPassword(),u.getJobCategoryId().getJobCategoryId(),u.getStatus(),u.getProfileImage());
     }
-
+    
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("checkDetails/{uname}/{email}")
+    public Object checkDetails(@PathParam("uname") String uname,@PathParam("email") String email)
+    {
+        return userbean.checkDetails(uname,email);
+    }
+    
     private UserbeanLocal lookupUserbeanLocal() {
         try {
             javax.naming.Context c = new InitialContext();

@@ -18,7 +18,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-14T16:36:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-16T15:47:25")
 @StaticMetamodel(Tbluser.class)
 public class Tbluser_ { 
 
@@ -41,6 +41,7 @@ public class Tbluser_ {
     public static volatile SingularAttribute<Tbluser, String> userName;
     public static volatile SingularAttribute<Tbluser, Integer> userId;
     public static volatile CollectionAttribute<Tbluser, Tbllikes> tbllikesCollection;
+    public static volatile CollectionAttribute<Tbluser, Tbllikes> tbllikesCollection1;
     public static volatile CollectionAttribute<Tbluser, Tblreview> tblreviewCollection;
     public static volatile CollectionAttribute<Tbluser, Tblnotification> tblnotificationCollection;
     public static volatile CollectionAttribute<Tbluser, Tblusergroup> tblusergroupCollection;

@@ -42,7 +42,7 @@ public class jobManagedBean {
     private UserbeanLocal userbean;
     
      Response res;
-    String username;
+  private  String username;
     String password;
     jobClient jc;
     private String profile;
@@ -282,13 +282,19 @@ public class jobManagedBean {
         GenericType<Tbluser> us = new GenericType<Tbluser>() {};
         Tbluser u1 = response.readEntity(us);
         int userid = u1.getUserId();
-       int jid=(int) session.getAttribute("jobid");
-          System.out.println("Check jobid"+jid);
+      // int jid=(int) session.getAttribute("jobid");
+          //System.out.println("Check jobid"+jid);
         Response resp = jc.assignJob(Response.class, userid + "");
         List<Object[]> alist = new ArrayList<Object[]>();
         GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
         };
         alist = resp.readEntity(rb);
         return alist;
+    }
+    
+    public void checkDetails()
+    {
+        System.out.println("Username"+username);
+        System.out.println("email"+email);
     }
 }

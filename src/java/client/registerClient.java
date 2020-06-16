@@ -31,9 +31,15 @@ public class registerClient {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("gen");
     }
-  
+
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T checkDetails(Class<T> responseType, String uname, String email) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("checkDetails/{0}/{1}", new Object[]{uname, email}));
+        return resource.request().get(responseType);
     }
 
     public void addUser(Object requestEntity) throws ClientErrorException {

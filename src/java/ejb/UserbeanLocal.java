@@ -45,11 +45,14 @@ public interface UserbeanLocal {
      void complaint(int uid,String complaint,int fromuid);
      void review(int uid,String review,int fromuid,int rat,int rid);
      List<Object[]> notification(int uid);
-     List<Object[]> getUserReview(int uid);
+      Object getUserReview(int uid);
      List<Object[]> checkReview(int uid,int rid);
      void like(int touid,int fuid,int aid);
      List<Object[]> checkLike(int uid,int aid);
       List<Object[]> assignJob(int uid);
+     List<Object[]> viewAllreviews(int uid);
+     List<Object[]> checkDetails(String uname,String email);
+     
      
 
      

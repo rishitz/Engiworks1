@@ -43,8 +43,8 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings,aid;
-    private String title, description,comment,complaint,review;
+    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId;
+    private String title, description,comment,complaint,review,username,email;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -56,8 +56,32 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> blist;
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
-    List<Object[]> reviewlist;
+    Object reviewlist;
     private String acdescription;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getBidderId() {
+        return bidderId;
+    }
+
+    public void setBidderId(int bidderId) {
+        this.bidderId = bidderId;
+    }
 
     public int getAid() {
         return aid;
@@ -67,11 +91,11 @@ public class achivementManagedBean implements Serializable {
         this.aid = aid;
     }
 
-    public List<Object[]> getReviewlist() {
+    public Object getReviewlist() {
         return reviewlist;
     }
 
-    public void setReviewlist(List<Object[]> reviewlist) {
+    public void setReviewlist(Object reviewlist) {
         this.reviewlist = reviewlist;
     }
 
@@ -314,7 +338,7 @@ public class achivementManagedBean implements Serializable {
         jlist=new ArrayList<Object[]>();
         blist=new ArrayList<Object[]>();
         bidderlist=new ArrayList<Object[]>();
-        reviewlist=new ArrayList<Object[]>();
+        reviewlist=new Object();
 //        this.getJobData();
     }
 
@@ -558,7 +582,7 @@ public class achivementManagedBean implements Serializable {
         System.out.println("Manage Bidder in function"+rid+","+uid);
         //System.out.println("Manage job:"+jobId);
         Response resp=jc.manageBidders(Response.class,uid+"",rid+"");
-       //Response res=jc.getReviews(Response.class,uid+"");
+       Response res=jc.getReviews(Response.class,uid+"");
           
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         bidderlist = (List<Object[]>) resp.readEntity(type);
@@ -568,9 +592,10 @@ public class achivementManagedBean implements Serializable {
             
         }
         
-//        GenericType<List<Object[]>> rtype = new GenericType<List<Object[]>>() {};
-//        reviewlist = (List<Object[]>) res.readEntity(rtype);
-        return "/UserSite/manageBidder.xhtml?faces-redirect=true";
+        GenericType<Object> rtype = new GenericType<Object>() {};
+        reviewlist = res.readEntity(rtype);
+        System.out.println("RList : "+reviewlist.toString());
+        return "/UserSite/manageBidder.xhtml";
     }
     public void Comment(int uid,int aid)
     {
@@ -602,6 +627,11 @@ public class achivementManagedBean implements Serializable {
           
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         viewblist = (List<Object[]>) resp.readEntity(type);
+        for (Object[] objects : viewblist) {
+            bidderId=Integer.parseInt(objects[0].toString());
+            System.out.println("Bidder Id send"+bidderId);
+            
+        }
           
         return "/UserSite/bidderDetails.xhtml?faces-redirect=true";
     }
@@ -729,6 +759,25 @@ public class achivementManagedBean implements Serializable {
 
     public int checkl() {
         return this.checklike().size();
+    }
+    
+    public List<Object[]> showReviews() {
+//        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+//        HttpSession session = req.getSession(false);
+//        String uname = (String) session.getAttribute("userName");
+//        System.out.println("diff" + uname);
+//        Response response = jc.getUser(Response.class, uname);
+//        GenericType<Tbluser> us = new GenericType<Tbluser>() {};
+//        Tbluser u1 = response.readEntity(us);
+//        int userid = u1.getUserId();
+//       int jid=(int) session.getAttribute("jobid");
+//          System.out.println("Check jobid"+jid);
+        Response resp = jc.showReviews(Response.class, bidderId + "");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        Reviewlist = resp.readEntity(rb);
+        return Reviewlist;
     }
     
      

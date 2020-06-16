@@ -15,7 +15,7 @@
             <h5>${x[13]}</h5>
             
             <h:form>
-                <h:outputLabel value="Comment"></h:outputLabel>
+                <h:outputLabel value="Complaint:"></h:outputLabel>
                 <h:inputText value="#{achivementManagedBean.complaint}" ></h:inputText>
                 <h:commandButton action="${achivementManagedBean.Complaint(x[0])}" value="Post" />
             </h:form>
@@ -38,6 +38,10 @@
                 </h:panelGrid>  
 
             </h:form>
+            All Reviews:<br/>
+            <c:forEach var="x" items="${achivementManagedBean.showReviews()}">
+                ${x[1]}:${x[12]}<br/>
+            </c:forEach>
         </c:forEach>
         
         <ui:include src="Footer.xhtml"></ui:include>

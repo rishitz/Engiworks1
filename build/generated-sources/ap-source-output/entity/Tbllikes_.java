@@ -6,12 +6,13 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-14T16:36:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-16T15:47:25")
 @StaticMetamodel(Tbllikes.class)
 public class Tbllikes_ { 
 
+    public static volatile SingularAttribute<Tbllikes, Tbluser> fromUserId;
     public static volatile SingularAttribute<Tbllikes, Integer> likeId;
     public static volatile SingularAttribute<Tbllikes, Tblachievement> achievementId;
-    public static volatile SingularAttribute<Tbllikes, Tbluser> userId;
+    public static volatile SingularAttribute<Tbllikes, Tbluser> toUserId;
 
 }

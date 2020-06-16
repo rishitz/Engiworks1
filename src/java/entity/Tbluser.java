@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tbluser")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tbluser.findAll", query = "SELECT t FROM Tbluser t"),
     @NamedQuery(name = "Tbluser.findByUserId", query = "SELECT t FROM Tbluser t WHERE t.userId = :userId"),
@@ -190,7 +191,7 @@ public class Tbluser implements Serializable {
         this.profileImage = profileImage;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblattachement> getTblattachementCollection() {
         return tblattachementCollection;
     }
@@ -199,7 +200,7 @@ public class Tbluser implements Serializable {
         this.tblattachementCollection = tblattachementCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblrequirementbid> getTblrequirementbidCollection() {
         return tblrequirementbidCollection;
     }
@@ -208,7 +209,7 @@ public class Tbluser implements Serializable {
         this.tblrequirementbidCollection = tblrequirementbidCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblusergroup> getTblusergroupCollection() {
         return tblusergroupCollection;
     }
@@ -217,7 +218,7 @@ public class Tbluser implements Serializable {
         this.tblusergroupCollection = tblusergroupCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tbllikes> getTbllikesCollection() {
         return tbllikesCollection;
     }
@@ -226,7 +227,7 @@ public class Tbluser implements Serializable {
         this.tbllikesCollection = tbllikesCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tbllikes> getTbllikesCollection1() {
         return tbllikesCollection1;
     }
@@ -235,7 +236,7 @@ public class Tbluser implements Serializable {
         this.tbllikesCollection1 = tbllikesCollection1;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblrequirement> getTblrequirementCollection() {
         return tblrequirementCollection;
     }
@@ -244,7 +245,7 @@ public class Tbluser implements Serializable {
         this.tblrequirementCollection = tblrequirementCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblcomplaint> getTblcomplaintCollection() {
         return tblcomplaintCollection;
     }
@@ -253,7 +254,7 @@ public class Tbluser implements Serializable {
         this.tblcomplaintCollection = tblcomplaintCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblcomplaint> getTblcomplaintCollection1() {
         return tblcomplaintCollection1;
     }
@@ -262,7 +263,7 @@ public class Tbluser implements Serializable {
         this.tblcomplaintCollection1 = tblcomplaintCollection1;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblreview> getTblreviewCollection() {
         return tblreviewCollection;
     }
@@ -271,7 +272,7 @@ public class Tbluser implements Serializable {
         this.tblreviewCollection = tblreviewCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblreview> getTblreviewCollection1() {
         return tblreviewCollection1;
     }
@@ -280,7 +281,7 @@ public class Tbluser implements Serializable {
         this.tblreviewCollection1 = tblreviewCollection1;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblachievement> getTblachievementCollection() {
         return tblachievementCollection;
     }
@@ -289,7 +290,7 @@ public class Tbluser implements Serializable {
         this.tblachievementCollection = tblachievementCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblbidassigned> getTblbidassignedCollection() {
         return tblbidassignedCollection;
     }
@@ -298,7 +299,7 @@ public class Tbluser implements Serializable {
         this.tblbidassignedCollection = tblbidassignedCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblnotification> getTblnotificationCollection() {
         return tblnotificationCollection;
     }
@@ -307,7 +308,7 @@ public class Tbluser implements Serializable {
         this.tblnotificationCollection = tblnotificationCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblnotification> getTblnotificationCollection1() {
         return tblnotificationCollection1;
     }
@@ -316,7 +317,7 @@ public class Tbluser implements Serializable {
         this.tblnotificationCollection1 = tblnotificationCollection1;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblcomment> getTblcommentCollection() {
         return tblcommentCollection;
     }
@@ -325,7 +326,7 @@ public class Tbluser implements Serializable {
         this.tblcommentCollection = tblcommentCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblcomment> getTblcommentCollection1() {
         return tblcommentCollection1;
     }

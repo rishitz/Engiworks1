@@ -15,12 +15,16 @@ import entity.Tbluser;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.Part;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -37,12 +41,20 @@ public class registrationManagedBean {
      * Creates a new instance of registrationManagedBean
      */
     
-    private int jid,cid,status;
+    private int jid,cid,status,uid;
     private String userName,gender,address,email,password;
     private Collection<Tbljobcategory> jlist;
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
     private Part filename;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     public Part getFilename() {
         return filename;
@@ -168,5 +180,25 @@ public class registrationManagedBean {
         return "/UserSite/Login.xhtml?faces-redirect=true";
         
     }
+     public List<Object[]> checkDetails()
+    {
+        System.out.println("Username"+userName);
+        System.out.println("email"+email);
+        Response resp = rc.checkDetails(Response.class, userName, email);
+        List<Object[]> alist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        alist = resp.readEntity(rb);
+        for (Object[] objects : alist) {
+            System.out.println("In uid"+Integer.parseInt(objects[0].toString()));
+            uid=Integer.parseInt(objects[0].toString());
+            
+        }
+        return alist;
+    }
+     public int checkDet()
+     {
+         return this.checkDetails().size();
+     }
     
 }

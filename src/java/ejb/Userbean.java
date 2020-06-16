@@ -303,8 +303,8 @@ public class Userbean implements UserbeanLocal {
     }
 
     @Override
-    public List<Object[]> getUserReview(int uid) {
-        return em.createNativeQuery("select Avg(ratings) from tblreview where toUserId="+uid).getResultList();
+    public Object getUserReview(int uid) {
+        return em.createNativeQuery("select Avg(ratings) from tblreview where toUserId="+uid).getSingleResult();
     }
 
     @Override
@@ -333,5 +333,16 @@ public class Userbean implements UserbeanLocal {
     @Override
     public List<Object[]> assignJob(int uid) {
         return em.createNativeQuery("select *from tbluser u,tblbidassigned b,tblrequirement r where u.userId=b.userId and b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
+    }
+
+    @Override
+    public List<Object[]> viewAllreviews(int uid) {
+        return em.createNativeQuery("SELECT *FROM tbluser u,tblreview r WHERE r.fromUserId=u.userId AND r.toUserId="+uid).getResultList();
+    }
+
+    @Override
+    public List<Object[]> checkDetails(String uname, String email) {
+        System.out.println("In bean"+uname+email);
+        return em.createNativeQuery("select *from tbluser where userName='"+uname+"' and email='"+email+"' ").getResultList();
     }
 }

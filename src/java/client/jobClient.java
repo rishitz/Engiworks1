@@ -162,6 +162,12 @@ public class jobClient {
         webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public <T> T showReviews(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showReviews/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
+    }
+
     public void Commnet(Object requestEntity) throws ClientErrorException {
         webTarget.path("commnet").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
