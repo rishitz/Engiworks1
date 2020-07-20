@@ -13,15 +13,21 @@
             Email:
             <h:inputText value="${registrationManagedBean.email}"/>
             <h:commandButton action="${registrationManagedBean.checkDetails()}" value="Send"></h:commandButton>
-        </h:form>
+  
         <c:choose>
             <c:when test="${registrationManagedBean.checkDet()==0}">
                 Wrng uname and email..
             </c:when>
             <c:when test="${registrationManagedBean.checkDet() > 0}">
-                correct.
+               Hello " #{registrationManagedBean.userName}"
+              
+               Change Your password:
+                <h:inputText value="${registrationManagedBean.chngpwd}"/>
+                <h:commandButton action="${registrationManagedBean.changePass()}" value="change"></h:commandButton>
+              
             </c:when>
         </c:choose>
+             </h:form>
     </h:body>
 </html>
 

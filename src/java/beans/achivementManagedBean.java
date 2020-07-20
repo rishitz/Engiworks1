@@ -43,7 +43,7 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId;
+    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid;
     private String title, description,comment,complaint,review,username,email;
     private Part filename;
     jobClient jc;
@@ -57,7 +57,24 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
     Object reviewlist;
+    Object likelist;
     private String acdescription;
+
+    public Object getLikelist() {
+        return likelist;
+    }
+
+    public void setLikelist(Object likelist) {
+        this.likelist = likelist;
+    }
+
+    public int getAchid() {
+        return achid;
+    }
+
+    public void setAchid(int achid) {
+        this.achid = achid;
+    }
 
     public String getUsername() {
         return username;
@@ -339,6 +356,7 @@ public class achivementManagedBean implements Serializable {
         blist=new ArrayList<Object[]>();
         bidderlist=new ArrayList<Object[]>();
         reviewlist=new Object();
+        likelist=new Object();
 //        this.getJobData();
     }
 
@@ -583,6 +601,7 @@ public class achivementManagedBean implements Serializable {
         //System.out.println("Manage job:"+jobId);
         Response resp=jc.manageBidders(Response.class,uid+"",rid+"");
        Response res=jc.getReviews(Response.class,uid+"");
+      
           
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         bidderlist = (List<Object[]>) resp.readEntity(type);
@@ -591,11 +610,16 @@ public class achivementManagedBean implements Serializable {
             System.out.println("achid="+aid);
             
         }
+         Response re=jc.getLikes(Response.class,aid+"");
+         GenericType<Object> ltype = new GenericType<Object>() {};
         
-        GenericType<Object> rtype = new GenericType<Object>() {};
+        GenericType<Object> rtype = new GenericType<Object>(){};
         reviewlist = res.readEntity(rtype);
+        
+        likelist=re.readEntity(ltype);
+        System.out.println("Likes==="+likelist.toString());
         System.out.println("RList : "+reviewlist.toString());
-        return "/UserSite/manageBidder.xhtml";
+        return "/UserSite/manageBidder.xhtml?faces-redirect=true";
     }
     public void Comment(int uid,int aid)
     {
@@ -747,8 +771,8 @@ public class achivementManagedBean implements Serializable {
         GenericType<Tbluser> us = new GenericType<Tbluser>() {};
         Tbluser u1 = response.readEntity(us);
         int userid = u1.getUserId();
-       int jid=(int) session.getAttribute("jobid");
-          System.out.println("Check jobid"+jid);
+       //int jid=(int) session.getAttribute("jobid");
+          //System.out.println("Check jobid"+jid);
         Response resp = jc.checkLike(Response.class, userid + "", aid + "");
         List<Object[]> alist = new ArrayList<Object[]>();
         GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {

@@ -77,6 +77,12 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T getLikes(Class<T> responseType, String aid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("getLikes/{0}", new Object[]{aid}));
+        return resource.request().get(responseType);
+    }
+
     public <T> T getUser(Class<T> responseType, String userName) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getUser/{0}", new Object[]{userName}));

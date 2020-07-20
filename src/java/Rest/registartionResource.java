@@ -87,6 +87,15 @@ public class registartionResource {
         return userbean.checkDetails(uname,email);
     }
     
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("changePassword")
+    public void changePassword(Tbluser u)
+    {
+        userbean.changePassword(u.getUserId(),u.getPassword());
+    }
+    
     private UserbeanLocal lookupUserbeanLocal() {
         try {
             javax.naming.Context c = new InitialContext();

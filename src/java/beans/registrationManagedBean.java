@@ -14,6 +14,7 @@ import entity.Tbljobcategory;
 import entity.Tbluser;
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +23,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -31,8 +33,8 @@ import javax.ws.rs.core.Response;
  * @author sebatsian
  */
 @Named(value = "registrationManagedBean")
-@RequestScoped
-public class registrationManagedBean {
+@SessionScoped
+public class registrationManagedBean implements Serializable{
 
     @EJB
     private UserbeanLocal userbean;
@@ -42,11 +44,19 @@ public class registrationManagedBean {
      */
     
     private int jid,cid,status,uid;
-    private String userName,gender,address,email,password;
+    private String userName,gender,address,email,password,chngpwd;
     private Collection<Tbljobcategory> jlist;
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
     private Part filename;
+
+    public String getChngpwd() {
+        return chngpwd;
+    }
+
+    public void setChngpwd(String chngpwd) {
+        this.chngpwd = chngpwd;
+    }
 
     public int getUid() {
         return uid;
@@ -192,7 +202,7 @@ public class registrationManagedBean {
         for (Object[] objects : alist) {
             System.out.println("In uid"+Integer.parseInt(objects[0].toString()));
             uid=Integer.parseInt(objects[0].toString());
-            
+            userName=objects[1].toString();
         }
         return alist;
     }
@@ -200,5 +210,13 @@ public class registrationManagedBean {
      {
          return this.checkDetails().size();
      }
-    
+   public void changePass()
+   {
+       System.out.println("bbye");
+       System.out.println("uid===="+uid);
+       Tbluser u=new Tbluser();
+       u.setUserId(uid);
+       u.setPassword(chngpwd);
+       rc.changePassword(u);
+   }
 }

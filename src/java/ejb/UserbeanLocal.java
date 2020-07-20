@@ -52,6 +52,8 @@ public interface UserbeanLocal {
       List<Object[]> assignJob(int uid);
      List<Object[]> viewAllreviews(int uid);
      List<Object[]> checkDetails(String uname,String email);
+     void changePassword(int uid,String password);
+     Object getLikes(int aid);
      
      
 

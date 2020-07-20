@@ -345,4 +345,17 @@ public class Userbean implements UserbeanLocal {
         System.out.println("In bean"+uname+email);
         return em.createNativeQuery("select *from tbluser where userName='"+uname+"' and email='"+email+"' ").getResultList();
     }
+
+    @Override
+    public void changePassword(int uid, String password) {
+        Tbluser u=em.find(Tbluser.class,uid);
+        Pbkdf2PasswordHashImpl pass=new Pbkdf2PasswordHashImpl();
+        u.setPassword(pass.generate(password.toCharArray()));
+        em.merge(u);
+    }
+
+    @Override
+    public Object getLikes(int aid) {       
+       return em.createNativeQuery("SELECT COUNT(likeId) FROM tbllikes where achievementId="+aid).getSingleResult();
+    }
 }

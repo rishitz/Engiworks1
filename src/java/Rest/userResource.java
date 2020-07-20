@@ -317,4 +317,15 @@ public class userResource {
     {
         return ul.viewAllreviews(uid);
     }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getLikes/{aid}")
+    public Object getLikes(@PathParam("aid") int aid)
+    {
+        return ul.getLikes(aid);
+    }
+    
+    
 }

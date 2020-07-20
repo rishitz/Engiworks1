@@ -12,27 +12,25 @@
         <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
             <h1>${x[0]}</h1>
            Aid: ${x[19]}
-          Achievement: ${x[26]}
+          
             <h:form>
                 <c:choose>
                     <c:when test="${achivementManagedBean.checkl()==0}">
-                Like:<h:commandButton action="${achivementManagedBean.like(x[0],x[19])}" value="Like" />
+                        Like:<h:commandButton action="${achivementManagedBean.like(x[0],x[19])}" value="Like" />${achivementManagedBean.likelist}
                     </c:when>
                     <c:when test="${achivementManagedBean.checkl() > 0}">
-                        Like submitted..
+                        Like submitted..<br/>
                     </c:when>
                 </c:choose>
                 Comment:
                 <h:inputText value="#{achivementManagedBean.comment}" ></h:inputText>
-                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Send" />
-                
-                
+                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Send" />             
             </h:form>
             
         </c:forEach>
-        <span>${achivementManagedBean.reviewlist}</span>
-            <p><c:forEach  begin="1" end=""><i class="fa fa-star"></i></c:forEach></p>
         
+         Ratings:
+            
        
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>

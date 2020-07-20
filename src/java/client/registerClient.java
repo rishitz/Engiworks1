@@ -51,6 +51,10 @@ public class registerClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
+    public void changePassword(Object requestEntity) throws ClientErrorException {
+        webTarget.path("changePassword").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
     public void close() {
         client.close();
     }
