@@ -10,8 +10,9 @@
     <h:body>
         <ui:include src="Header.xhtml"></ui:include>
         <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
-            <h1>${x[0]}</h1>
+            <h1>${x[1]}</h1>
            Aid: ${x[19]}
+           <h4> Achievement: ${x[26]}</h4>
           
             <h:form>
                 <c:choose>
@@ -23,13 +24,17 @@
                     </c:when>
                 </c:choose>
                 Comment:
+                
                 <h:inputText value="#{achivementManagedBean.comment}" ></h:inputText>
                 <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Send" />             
             </h:form>
             
         </c:forEach>
         
-         Ratings:
+         Reviews:<br/>
+         <c:forEach var="x" items="${achivementManagedBean.allBidderList()}">
+                ${x[1]}:${x[12]}<br/>
+            </c:forEach>
             
        
         <ui:include src="Footer.xhtml"></ui:include>

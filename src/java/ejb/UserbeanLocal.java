@@ -55,6 +55,9 @@ public interface UserbeanLocal {
      void changePassword(int uid,String password);
      Object getLikes(int aid);
      
+     List<Object[]> checkBid(int uid,int jid);
+     List<Object[]> showEngname(int uid);
+     
      
 
      

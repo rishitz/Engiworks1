@@ -327,5 +327,23 @@ public class userResource {
         return ul.getLikes(aid);
     }
     
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("checkBid/{uid}/{jid}")
+    public List<Object[]> checkBid(@PathParam("uid") int uid,@PathParam("jid") int jid)
+    {
+        return ul.checkBid(uid, jid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showengname/{uid}")
+    public List<Object[]> showEngName(@PathParam("uid") int uid)
+    {
+        return ul.showEngname(uid);
+    }
+    
     
 }

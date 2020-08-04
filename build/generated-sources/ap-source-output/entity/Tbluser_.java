@@ -18,7 +18,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-30T15:39:22")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-04T23:07:46")
 @StaticMetamodel(Tbluser.class)
 public class Tbluser_ { 
 

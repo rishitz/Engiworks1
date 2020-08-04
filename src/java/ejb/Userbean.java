@@ -234,6 +234,7 @@ public class Userbean implements UserbeanLocal {
 
     @Override
     public List<Object[]> manageTask(int rid) {
+        //Select *FROM tbluser u,tbljobcategory j WHERE u.jobcategoryId=j.jobCategoryId AND u.userId=20
         return em.createNativeQuery("select * from tbluser u,tblrequirementbid r where u.userId=r.userId and r.requirementId="+rid).getResultList();
     }
 
@@ -357,5 +358,15 @@ public class Userbean implements UserbeanLocal {
     @Override
     public Object getLikes(int aid) {       
        return em.createNativeQuery("SELECT COUNT(likeId) FROM tbllikes where achievementId="+aid).getSingleResult();
+    }
+
+    @Override
+    public List<Object[]> checkBid(int uid, int jid) {
+        return em.createNativeQuery("select * from tblbidassigned where userId='"+uid+"' AND requirementId='"+jid+"' ").getResultList();
+    }
+
+    @Override
+    public List<Object[]> showEngname(int uid) {
+        return em.createNativeQuery("Select *FROM tbluser u,tbljobcategory j WHERE u.jobcategoryId=j.jobCategoryId AND u.userId="+uid).getResultList();
     }
 }

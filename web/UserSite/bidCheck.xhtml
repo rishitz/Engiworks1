@@ -42,10 +42,7 @@
                         <img src="images/p6.png" alt="p6" title="p6" class="img-responsive" />
                         <div class="left-side">
                             <ul class="list-unstyled">
-                                <li>
-                                    <h5><i class="fa fa-map-marker" aria-hidden="true"></i> Location</h5>
-                                    <p>Sector 17, Chandigarh</p>
-                                </li>
+                                
                                 <li>
                                     <h5><i class="fa fa-money" aria-hidden="true"></i> 
                                         Budget
@@ -135,7 +132,8 @@
                         <h5>Job Description</h5>
                         <p><span>#{achivementManagedBean.description}</span>
                         </p>
-                        <p><span>#{achivementManagedBean.jobId}</span></p>
+                        PDF:
+                        <h4><span>#{achivementManagedBean.pdf}</span></h4>
                         <!--                        <button type="submit" class="btn btn-info">APPLY THIS JOB</button>-->
                         <div class="clearfix"></div>
 
@@ -168,10 +166,18 @@
                                                                                <tr><td> Budget:</td>
                                                                                    <td> <h5><h:outputText value="${x[12]}"/></h5></td></tr>
                                                     </table>
-                                                                               <h:form>                                                                
+                                                                               <h:form> 
+                                                                                   <c:choose>
+                                                                                      <c:when test="${achivementManagedBean.checkBid()==0}">
 <!--                                                    <a href="javascript: void(0)"><button type="button" class="btn btn-info" id="btn">Activate Offer</button></a>-->
-<h:commandButton class="btn btn-info" action="${achivementManagedBean.bidAssign(x[10],x[0],x[17])}" value="Accept"></h:commandButton>
-<h:commandButton action="${achivementManagedBean.removeBid(x[10])}" class="btn btn-info" value="Delete"></h:commandButton>                                                  
+                                                                                      <h:commandButton class="btn btn-info" action="${achivementManagedBean.bidAssign(x[10],x[0],x[17])}" value="Accept"></h:commandButton>
+                                                                                      <h:commandButton action="${achivementManagedBean.removeBid(x[10])}" class="btn btn-info" value="Delete"></h:commandButton>  
+                                                                                      </c:when>
+                                                                                      
+                                                                                       <c:when test="${achivementManagedBean.checkBid()==1}">
+                                                                                          Already assigned..
+                                                                                          </c:when>
+                                                                                       </c:choose>
                                                                                </h:form>
 <!--                                                </div>-->
                                             </div>

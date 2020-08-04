@@ -97,6 +97,12 @@ public class jobClient {
         webTarget.path(java.text.MessageFormat.format("deleteBid/{0}", new Object[]{rbid})).request().delete();
     }
 
+    public <T> T checkBid(Class<T> responseType, String uid, String jid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("checkBid/{0}/{1}", new Object[]{uid, jid}));
+        return resource.request().get(responseType);
+    }
+
     public <T> T notification(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("notification/{0}", new Object[]{uid}));
@@ -180,6 +186,12 @@ public class jobClient {
 
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T showEngName(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showengname/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public void addAchivement(String uid, String attachment, String title, String description) throws ClientErrorException {

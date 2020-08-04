@@ -25,6 +25,10 @@
                  <h:outputLabel value="Review"></h:outputLabel>
                  <h:inputText value="#{achivementManagedBean.review}" ></h:inputText>                 
                  <h:commandButton action="${achivementManagedBean.Review(x[0],x[13])}" value="Post" />
+                 
+                 <h:panelGrid columns="2" cellpadding="5">  
+                    <p:rating value="#{achivementManagedBean.ratings}" />  
+                </h:panelGrid>  
                      </c:when>
                      <c:when test="${achivementManagedBean.checkreview() > 0}">
                                                                                
@@ -33,9 +37,7 @@
                                     </c:when>
                  </c:choose>
                  <h:outputLabel value="Ratings"></h:outputLabel>
-                <h:panelGrid columns="2" cellpadding="5">  
-                    <p:rating value="#{achivementManagedBean.ratings}" />  
-                </h:panelGrid>  
+                
 
             </h:form>
             All Reviews:<br/>
