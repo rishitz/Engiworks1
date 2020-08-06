@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
      <head>
@@ -24,24 +24,22 @@
       <!--bootstrap select-->
       <link href="js/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
    </head>
-    <h:body>
+    <h:body class="homepage2">
+        
+        
         
         <header>
-         <!-- header container start here-->
          <div class="container">
             <div class="row">
-               <div class="col-sm-3 col-md-3 col-xs-12">
-                  <!-- logo start here-->
+               <div class="col-sm-12 col-md-12 col-xs-12">
                   <div id="logo">
                      <a href="Home.xhtml">
-                     <img class="img-responsive logochange" alt="logo" title="logo" src="images/logo.png" />
+<!--                         <p><img class="img-responsive logochange" alt="log" title="logo" src="images/img2.jpg"/></p>-->
+                         <h:graphicImage value="images/engiworks.jpg" class="img-responsive"></h:graphicImage>
                      </a>
                   </div>
-                  <!-- logo end here-->
                </div>
-
-               <div class="col-sm-6 col-md-9 col-xs-12 padd0">
-                  <!-- menu start here-->
+               <div class="col-sm-12 col-md-12 col-xs-12">
                   <nav class="navbar" id="menu">
                      <div class="navbar-header">
                         <span class="menutext visible-xs">Menu</span>
@@ -49,33 +47,30 @@
                      </div>
                      <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
                         <ul class="nav navbar-nav">
-                           <li>                              
-                              <a href="Home.xhtml">Home <i class="fa fa-home" aria-hidden="true"></i></a>
+                           <li >
+                              <a href="Home.xhtml">HOME</a>
                            </li>
                            <li class="dropdown">
-                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">JOBS  <i class="fa fa-briefcase" aria-hidden="true"></i></a>
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">JOBS</a>
                               <div class="dropdown-menu animated fadeInDown">
                                  <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                       
-                                       <li>
+                                        <li>
                                           <a href="PostJob.xhtml">Post Job</a>
                                        </li>
                                          
                                          <li>
                                           <a href="#">Manage Job</a>
                                        </li>
-                                       
                                     </ul>
                                  </div>
                               </div>
                            </li>
-                            <li class="dropdown">
-                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">Task  <i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                           <li class="dropdown">
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">TASK</a>
                               <div class="dropdown-menu animated fadeInDown">
                                  <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                       
                                        <li>
                                           <a href="mannageJob.xhtml"> Manage Task</a>
                                        </li>
@@ -86,22 +81,19 @@
                                          <li>
                                           <a href="#">My Active Bid</a>
                                        </li>
-                                       
                                     </ul>
                                  </div>
                               </div>
                            </li>
-                           <li>                             
-                               <a href="About.xhtml">About Us  <i class="fa fa-users" aria-hidden="true"></i></a>                                
+                            <li>                             
+                               <a href="About.xhtml">About Us  </a>                                
                            </li>
 
                            <li>
-                             <a href="Contact.xhtml">Contact us  <i class="fa fa-phone"></i> </a>
+                             <a href="Contact.xhtml">Contact us </a>
                            </li>
-
-                           
                            <li class="dropdown">
-                              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Settings <i class="fa fa-cog"></i></a>                                                         
+                               <a data-toggle="dropdown" class="dropdown-toggle" href="#">SETTINGS</a>
                               <div class="dropdown-menu animated fadeInDown">
                                  <div class="dropdown-inner">
                                     <ul class="list-unstyled">
@@ -115,29 +107,22 @@
                                            <h:form>
                                                <h:commandLink action="#{loginManagedBean.logout()}" value="Logout"/>
                                            </h:form>
-                                       </li>                                                                           
+                                       </li>  
                                     </ul>
                                  </div>
-                              </div>                                                         
+                              </div>
                            </li>
-                           
                             <li>
-                                <a href="notification.xhtml">Notification <i class="fa fa-bell"></i></a>                              
+                                <a type="button" onclick="">Notification</a>                              
                             </li>
-                            
+                           
                         </ul>
                      </div>
                   </nav>
-
-                  <!-- menu end here -->
                </div>
-
-               
             </div>
          </div>
-         <!-- header container end here -->
       </header>
-       
     </h:body>
 </html>
 

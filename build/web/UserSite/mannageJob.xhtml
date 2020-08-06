@@ -9,46 +9,86 @@
     </h:head>
     <h:body>
         <ui:include src="Header.xhtml"></ui:include>
-        <div id="job">
-                        <div class="container">
-
-                            <div class="row">
-                                <div class="col-md-8 col-sm-12 col-xs-12 padd0 product-list">
-                                    <!--FOR EACH LOOP StART -->  
-                                    <c:forEach var="x" items="${achivementManagedBean.jlist}">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 padd0 product-list">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="product-box">
-<!--                                                <div class="image">
-                                                    <a href="jobs-detail.html">
-                                                        <img hspace="70" width="218"  class="img-responsive" src="images/new/01.jpg" alt="p1" title="p1"/>
-                                                    </a>	                          
-                                                </div>-->
-<!--                                                <div class="matter">-->
-                                                    <table>
-                                                        ${x[0]}
-                                                        <tr><td>    Title: </td><td><h5>${x[2]}</h5></td></tr>
-                                                        
-                                                    </table>
-                                                                               <h:form>                                                                
+        <div class="banner">
+         <img src="images/title_bar.jpg" alt="banner" title="banner" class="img-responsive"/>
+         <div class="container">
+            <h1>Web Developer</h1>
+         </div>
+      </div>
+        
+        
+        
+           
+                
+                
+                <!--FOR EACH LOOP END -->
+                
+        <div class="listpage1">
+         <div class="container">
+            <!-- breadcrumb start here -->
+            <div class="breadcrumb row">
+               <div class="col-sm-6 col-xs-12">
+                  <ul class="list-inline breads">
+                     <li><a href="index-2.html"><img src="images/img_home.png" alt="home" title="home" class="img-responsive"/> HomePage</a></li>
+                     <li><a href="jobs-list-view1.html">CategoryPage</a></li>
+                  </ul>
+               </div>
+               <div class="sort col-sm-6 col-xs-12">
+                  <div class="row">
+                     <div class="search-bar col-sm-offset-3 col-sm-6 col-xs-12">
+                        <div class="row">
+                           <div class="search col-sm-6 col-xs-12">
+                              <button type="submit" class="btnsrch" onclick="location.href='jobs.html'"><img src="images/search_icon.png" class="img-responsive" alt="img" title="img"/></button>
+                              <input placeholder="search" name="search" class="form-control" type="text"/>		
+                           </div>
+                           <div class="col-sm-6 col-xs-12 padd0">
+                              
+                           </div>
+                        </div>
+                     </div>
+                     <div class="btn-group col-sm-3 hidden-xs">
+                        <label>View</label>
+                        <button class="btn-primary" id="grid-view"><i class="fa fa-th-large" aria-hidden="true"></i></button>
+                        <button class="btn-primary active" id="list-view"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- breadcrumb end here -->
+            <div class="row">
+                <c:forEach var="x" items="${achivementManagedBean.jlist}">
+               <div class="product-list col-md-12 col-sm-12 col-xs-12">
+                  <div class="product-list-view">
+                     <div class="matter col-sm-12 col-xs-12">
+                        <div class="pull-left">
+                           <h1>${x[2]}</h1>
+                           <ul class="list-inline">
+                              <li>
+                                 <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                              </li>
+                              <li>
+                                 <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="pull-right">
+                             <h:form>                                                                
 <!--                                                    <a href="javascript: void(0)"><button type="button" class="btn btn-info" id="btn">Activate Offer</button></a>-->
                                     <h:commandButton class="btn btn-info" action="${achivementManagedBean.manageJob(x[0])}"  value="Manage Bidders"></h:commandButton><!--
 <h:commandButton action="" class="btn btn-info" value="Delete"></h:commandButton>                                                  -->
                                                                                </h:form>
-<!--                                                </div>-->
-                                            </div>
-                                        </div>         
-                                    </div>
-                                    </c:forEach>
-
-
-                                    <!--FOR EACH LOOP END -->   
-
-
-                                </div>
-                            </div>
+                           
                         </div>
-                    </div>
+                     </div>
+                     <p><b>Budget:</b> ${x[6]}<br/><b>Duration:</b> ${x[7]}<br/><b>Description:</b> ${x[3]}</p>
+ 
+                  </div>
+               </div>
+               
+                </c:forEach> 
+            </div>
+         </div>
+      </div>
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>
 </html>

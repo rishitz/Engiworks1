@@ -369,4 +369,10 @@ public class Userbean implements UserbeanLocal {
     public List<Object[]> showEngname(int uid) {
         return em.createNativeQuery("Select *FROM tbluser u,tbljobcategory j WHERE u.jobcategoryId=j.jobCategoryId AND u.userId="+uid).getResultList();
     }
+    
+     @Override
+    public List<Object[]> getAllUsersData() {
+          return em.createNativeQuery("SELECT u.userId,userName,gender,cityId,address,email,j.jobCategoryName,u.profileImage FROM tbluser u,tblusergroup ug,tbljobcategory j WHERE u.userId = ug.userId AND ug.groupId = 2 AND u.jobCategoryId=j.jobCategoryId").getResultList();
+//        return em.createNamedQuery("Tblusergroup.findAll").getResultList();
+    }
 }

@@ -6,7 +6,15 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
        <ui:include src="Header.xhtml"></ui:include>
-       <div class="row">
+<div id="featured">
+          <div class="container">
+             <div class="row">
+                <!-- featured-jobs start here -->
+                <div class="featured-jobs">
+                   <h1>MANAGE BIDDERS</h1>
+                   <div class="border"></div>
+                   <div class="border1"></div>
+                </div>
            <c:forEach var="u" items="${achivementManagedBean.blist}">
              <div class="col-md-3 col-sm-3 col-xs-12">
                         <div class="product-box profile">
@@ -14,33 +22,27 @@
                               <a href="jobs.html">
                               <img class="img-responsive" src="images/new/13.jpg" alt="p1" title="p1"/>
                               </a>	
-                              <div class="buttons">
-                                 <div class="open-down">
-                                    <button type="button" class="rotate1">
-                                    <i class="fa fa-link" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="rotate1">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
-                                 </div>
-                              </div>
                            </div>
-                            <h1><h:outputText value="${u[0]}"/></h1>
+                
+                           <div class="matter">     
+                              <ul class="list-inline">
+                             <h1><h:outputText value="${u[0]}"/></h1>
                             <h5><h:outputText value="${u[17]}"/></h5>
                             <h1><h:outputText value="${u[1]}"/></h1>
-                           <div class="matter">
-                              
-                             
-                              <ul class="list-inline">
-                                 <li>
+                                 <ul class="list-inline">
                                      <c:forEach var="x" items="${achivementManagedBean.showEngName()}">
+                                 <li>
+                                     
                          
                                     <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i>  ${x[11]}</a>
-                                    </c:forEach>
+                                   
                                  </li>
                                  <li>
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> ${x[4]}</a>
+                                    
                                  </li>
+                                     </c:forEach>
+                              </ul>
                               </ul>
                                <p></p>
                            </div>
@@ -51,9 +53,9 @@
                         </div>
                      </div>
         </c:forEach>
-           
-       </div>   
+             </div>
+          </div>
+       </div>
     </h:body>
 <ui:include src="Footer.xhtml"></ui:include>
-   <!-- Mirrored from ocsolutions.co.in/html/jobportal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 12:20:42 GMT -->
 </html>

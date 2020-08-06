@@ -44,7 +44,7 @@ public class achivementManagedBean implements Serializable {
     @EJB
     private UserbeanLocal userbean;
     private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid;
-    private String title, description,comment,complaint,review,username,email,pdf;
+    private String title, description,comment,complaint,review,username,email,pdf,rlist;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -56,9 +56,32 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> blist;
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
+    List<Object[]> userlist;
     Object reviewlist;
     Object likelist;
     private String acdescription;
+    private int avg=0;
+
+    public List<Object[]> getUserlist() {
+        GenericType gc = new GenericType<List<Object[]>>() {
+        };
+       Response res = jc.getAllUserData(Response.class);
+        userlist = (List<Object[]>) res.readEntity(gc);
+        return (List<Object[]>) userlist;
+    }
+
+    public void setUserlist(List<Object[]> userlist) {
+        this.userlist = userlist;
+    }
+    
+    
+    public String getRlist() {
+        return rlist;
+    }
+
+    public void setRlist(String rlist) {
+        this.rlist = rlist;
+    }
 
     public int getAlbdid() {
         return albdid;
@@ -672,7 +695,11 @@ public class achivementManagedBean implements Serializable {
         
         GenericType<Object> rtype = new GenericType<Object>(){};
         reviewlist = res.readEntity(rtype);
-        
+        //int i = Integer. valueOf((String) reviewlist);
+        //avg=Integer.parseInt((String)reviewlist);
+        //String s=reviewlist.toString();
+         
+        //System.out.println("rlist====="+ri);
         likelist=re.readEntity(ltype);
         System.out.println("Likes==="+likelist.toString());
         System.out.println("RList : "+reviewlist.toString());

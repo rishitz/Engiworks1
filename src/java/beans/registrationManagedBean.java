@@ -208,6 +208,8 @@ public class registrationManagedBean implements Serializable{
     }
      public int checkDet()
      {
+         this.userName=" ";
+         this.email=" ";
          return this.checkDetails().size();
      }
    public void changePass()

@@ -433,81 +433,35 @@
       </div>-->
       <!-- browse end here -->
       <!-- testimonial start here -->
-<!--      <div id="testimonial">
+<div id="testimonial">
          <div class="container">
             <div class="row">
                 testimonial-jobs start here 
                <div class="testimonial-jobs">
-                  <h1>TESTIMONIAL</h1>
+                  <h1>ENGINEERS</h1>
                   <div class="border"></div>
                   <div class="border1"></div>
                </div>
                 testimonial-jobs end here 
                <div id="testimonials" class="col-md-12 col-sm-12 col-xs-12 owl-carousel">
+                   <c:forEach var="x" items="${achivementManagedBean.userlist}">
                   <div class="item">
                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="photo">
-                           <img src="images/pic-1.png" class="img-responsive" alt="pic-1" title="pic-1" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
+                            <h:graphicImage  value="images/img6.jpg" class="img-responsive" alt="pic-1" title="pic-1" />
+                            <b><p>${x[1]}</p></b>
+                           <p>${x[6]}</p>
+                           
                         </div>
+                         
                      </div>
                   </div>
-                  <div class="item">
-                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="photo">
-                           <img src="images/pic-2.png" class="img-responsive" alt="pic-2" title="pic-2" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="photo">
-                           <img src="images/pic-3.png" class="img-responsive" alt="pic-3" title="pic-3" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="photo">
-                           <img src="images/pic-1.png" class="img-responsive" alt="pic-1" title="pic-1" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="photo">
-                           <img src="images/pic-2.png" class="img-responsive" alt="pic-2" title="pic-2" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="photo">
-                           <img src="images/pic-3.png" class="img-responsive" alt="pic-3" title="pic-3" />
-                           <i class="fa fa-quote-left" aria-hidden="true"></i>
-                           <p>There are many variations of passages of Lorem Ipsum available, temporary  type  words </p>
-                           <span class="fa fa-quote-right" aria-hidden="true"></span>
-                        </div>
-                     </div>
-                  </div>
+            
+                   </c:forEach>
                </div>
             </div>
          </div>
-      </div>-->
+      </div>
       <!-- testimonial end here -->
       <!-- blog start here -->
 <!--      <div id="blog">
@@ -586,12 +540,11 @@
             <div class="row">
                <!-- latest-candidate start here -->
                <div class="latest-candidate">
-                  <h1>OUR LATEST CANDIDATES</h1>
-                  <div class="border"></div>
-                  <div class="border1"></div>
+                  
+                 
                </div>
                <!-- latest-candidate end here -->
-               <div id="latests" class="owl-carousel">
+<!--               <div id="latests" class="owl-carousel">
                   <div class="item">
                      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                         <div class="candidate">
@@ -682,7 +635,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div>-->
             </div>
          </div>
       </div>

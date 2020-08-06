@@ -82,27 +82,38 @@
                                  </div>
                               </div>-->
 <!--<h:outputText value="#{jobManagedBean.getuserDetails()}"/>-->
-                                <div class="form-group">
-                                  <div class="col-sm-2"></div>
+<div class="form-group">
+                                 <div class="col-sm-4">
+                                     <img src="images/img2.jpg" alt="my_profile" title="my_profile" height="325px" width="380px" />
+                                     
+                                 </div>
                                  <div class="col-sm-8">
-                                    <div class="matter">
+                                     <div class="matter">
                                        <label>USER Id</label>
                                        <span><h:inputText class="form-control" id="name" value="#{jobManagedBean.uid}"  required="" /></span>
                                     </div>
-                                 </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
-                                    <div class="matter">
+                                     
+                                     <div class="matter">
                                        <label>USER NAME</label>
                                        <span><h:inputText class="form-control"  value="#{jobManagedBean.username}"  required="" /></span>
                                     </div>
+                                     
                                  </div>
                               </div>
+                                 <div class="form-group">
+                                 <div class="col-sm-12">
+                                    <div class="matter">
+                                       <label>Your Profile</label>
+                                       
+                                       
+                                       <span><h:inputFile value="#{jobManagedBean.filename}"/></span>
+                                    </div>
+                                 </div>
+                              </div>
+                              
                               <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
+                                  
+                                 <div class="col-sm-12">
                                     <div class="matter">
                                        <label>EMAIL</label>
                                        <span><h:inputText class="form-control" id="email" value="#{jobManagedBean.email}"  required="" /></span>
@@ -110,8 +121,7 @@
                                  </div>
                               </div>
                               <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
+                                 <div class="col-sm-12">
                                     <div class="matter">
                                        <label>CITY</label>
                                        <h:selectOneMenu value="#{jobManagedBean.cid}" class="form-control">
@@ -121,8 +131,8 @@
                                  </div>
                               </div>
                               <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
+                                  
+                                 <div class="col-sm-12">
                                     <div class="matter">
                                        <label>JOB</label>
                                        <h:selectOneMenu value="#{jobManagedBean.jid}" class="form-control">
@@ -133,25 +143,14 @@
                               </div>
                              
                               <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
+                                 <div class="col-sm-12">
                                     <div class="matter">
                                        <label>ADDRESS</label>
                                        <span><h:inputTextarea class="form-control" id="address" value="#{jobManagedBean.address}"  required="" /></span>
                                     </div>
                                  </div>
                               </div>
-                               <div class="form-group">
-                                  <div class="col-sm-2"></div>
-                                 <div class="col-sm-8">
-                                    <div class="matter">
-                                       <label>Your Profile</label>
-                                       <img src="home/sebatsian/NetBeansProjects/Engiworks1/ProfilePictures/admin.JPG"></img>
-                                       <span><h:inputText class="form-control" value="#{jobManagedBean.profile}"  required="" /></span>
-                                       <span><h:inputFile value="#{jobManagedBean.filename}"/></span>
-                                    </div>
-                                 </div>
-                              </div>
+                              
 
                               
                               <div class="button">

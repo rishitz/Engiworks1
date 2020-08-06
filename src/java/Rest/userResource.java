@@ -345,5 +345,14 @@ public class userResource {
         return ul.showEngname(uid);
     }
     
+    @RolesAllowed({"Admin","User"})
+    @GET
+    @Path("getAllusrs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Object[]> getAllUserData(){
+        //System.out.println(adminBean.getAllJob());
+        return ul.getAllUsersData();
+    } 
+    
     
 }

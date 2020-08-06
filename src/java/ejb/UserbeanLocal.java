@@ -58,6 +58,8 @@ public interface UserbeanLocal {
      List<Object[]> checkBid(int uid,int jid);
      List<Object[]> showEngname(int uid);
      
+     List<Object[]> getAllUsersData();
+     
      
 
      
