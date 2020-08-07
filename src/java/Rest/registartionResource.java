@@ -84,6 +84,7 @@ public class registartionResource {
     @Path("checkDetails/{uname}/{email}")
     public Object checkDetails(@PathParam("uname") String uname,@PathParam("email") String email)
     {
+        System.out.println("Uname"+uname+"email:"+email);
         return userbean.checkDetails(uname,email);
     }
     

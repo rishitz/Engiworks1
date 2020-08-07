@@ -353,6 +353,14 @@ public class userResource {
         //System.out.println(adminBean.getAllJob());
         return ul.getAllUsersData();
     } 
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showbiddetails/{uid}")
+    public List<Object[]> showbiddetails(@PathParam("uid") int uid)
+    {
+        return ul.showBidDetails(uid);
+    }
     
     
 }

@@ -19,11 +19,17 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -44,11 +50,19 @@ public class registrationManagedBean implements Serializable{
      */
     
     private int jid,cid,status,uid;
-    private String userName,gender,address,email,password,chngpwd;
+    private String userName,gender,address,email,password,chngpwd,message;
     private Collection<Tbljobcategory> jlist;
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
     private Part filename;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getChngpwd() {
         return chngpwd;
@@ -162,6 +176,7 @@ public class registrationManagedBean implements Serializable{
     {
         jlist=userbean.getalljob();
         clist=userbean.getallcity();
+        
     }
     public String adduser()
     {
@@ -196,8 +211,7 @@ public class registrationManagedBean implements Serializable{
         System.out.println("email"+email);
         Response resp = rc.checkDetails(Response.class, userName, email);
         List<Object[]> alist = new ArrayList<Object[]>();
-        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
-        };
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {};
         alist = resp.readEntity(rb);
         for (Object[] objects : alist) {
             System.out.println("In uid"+Integer.parseInt(objects[0].toString()));
@@ -207,18 +221,22 @@ public class registrationManagedBean implements Serializable{
         return alist;
     }
      public int checkDet()
-     {
-         this.userName=" ";
-         this.email=" ";
+     {        
          return this.checkDetails().size();
      }
    public void changePass()
    {
        System.out.println("bbye");
        System.out.println("uid===="+uid);
+       
        Tbluser u=new Tbluser();
        u.setUserId(uid);
        u.setPassword(chngpwd);
        rc.changePassword(u);
+       
+       message="SuccessFully changed ps.";
+       this.userName=" ";
+       this.email=" ";
+       
    }
 }

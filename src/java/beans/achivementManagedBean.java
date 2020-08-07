@@ -921,6 +921,25 @@ System.out.println("Bider===="+bidderId);
         Reviewlist = resp.readEntity(rb);
         return Reviewlist;
     }
+    public List<Object[]> showBiddetails()
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        Response res = jc.showbiddetails(Response.class,uid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        Reviewlist = res.readEntity(rb);
+        return Reviewlist;      
+        
+    }
     
     
      

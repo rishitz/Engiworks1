@@ -250,6 +250,8 @@ public class Userbean implements UserbeanLocal {
         Tbluser u2=em.find(Tbluser.class,fromuid);
         Tblachievement a=em.find(Tblachievement.class,aid);
         Tblcomment c=new Tblcomment();
+        Tblnotification n=new Tblnotification();
+        n.setNotification("commented "+description+" on achivement");
         c.setDescription(description);
         c.setToUserId(new Tbluser(u1.getUserId()));
         c.setFromUserId(new Tbluser(u2.getUserId()));
@@ -269,7 +271,11 @@ public class Userbean implements UserbeanLocal {
         Tbluser u2=em.find(Tbluser.class,fromuid);
         
         Tblcomplaint c=new Tblcomplaint();
+         Tblnotification n=new Tblnotification();
        c.setComplaint(complaint);
+       n.setNotification("complaint "+complaint);
+       n.setUserId(new Tbluser(u1.getUserId()));
+       n.setFromUserId(new Tbluser(u2.getUserId()));
         c.setToUserId(new Tbluser(u1.getUserId()));
         c.setUserId(new Tbluser(u2.getUserId()));
         c.setStatus(1);        
@@ -285,7 +291,7 @@ public class Userbean implements UserbeanLocal {
         Tblnotification n=new Tblnotification();
         n.setUserId(new Tbluser(u1.getUserId()));
         n.setFromUserId(new Tbluser(u2.getUserId()));
-        n.setNotification("review "+review+" on achivement");
+        n.setNotification("review "+review);
         n.setStatus(0);
         em.persist(n);
         c.setReview(review);
@@ -374,5 +380,10 @@ public class Userbean implements UserbeanLocal {
     public List<Object[]> getAllUsersData() {
           return em.createNativeQuery("SELECT u.userId,userName,gender,cityId,address,email,j.jobCategoryName,u.profileImage FROM tbluser u,tblusergroup ug,tbljobcategory j WHERE u.userId = ug.userId AND ug.groupId = 2 AND u.jobCategoryId=j.jobCategoryId").getResultList();
 //        return em.createNamedQuery("Tblusergroup.findAll").getResultList();
+    }
+
+    @Override
+    public List<Object[]> showBidDetails(int uid) {
+        return em.createNativeQuery("SELECT *FROM tblbidassigned b,tblrequirement r WHERE b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
     }
 }

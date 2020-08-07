@@ -32,7 +32,7 @@ public class jobClient {
         client.register(new RestFilter(token));
         webTarget = client.target(BASE_URI).path("generic");
     }
-    static {
+     static {
         //for localhost testing only
         javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
                 new javax.net.ssl.HostnameVerifier() {
@@ -95,6 +95,12 @@ public class jobClient {
 
     public void deleteBid(String rbid) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("deleteBid/{0}", new Object[]{rbid})).request().delete();
+    }
+
+    public <T> T showbiddetails(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showbiddetails/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T checkBid(Class<T> responseType, String uid, String jid) throws ClientErrorException {
@@ -174,7 +180,7 @@ public class jobClient {
         webTarget.path("addBid").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-        public <T> T getAllUserData(Class<T> responseType) throws ClientErrorException {
+    public <T> T getAllUserData(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("getAllusrs");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);

@@ -14,6 +14,36 @@
            ${x[7]}  "${x[1]}"
         </c:forEach>
         
+        <c:forEach var="u" items="${achivementManagedBean.showBiddetails()}">
+           You get job " ${u[6]} ".
+        </c:forEach>
+        
+        <div class="testimonial" style="background-color:#a19f9f">  
+         <div class="container">
+            <!-- testimonial-jobs start here -->
+            <div class="latest-jobs">
+               <h1>NOTIFICATIONS</h1>
+               <div class="border"></div>
+               <div class="border1"></div>
+            </div>
+            <!-- testimonial-jobs end here -->
+            <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                   <div class="comment-detail"><b>
+                    <c:forEach var="x" items="${achivementManagedBean.notification()}">
+           ${x[7]}  "${x[1]}"<br/>
+        </c:forEach>
+        
+        <c:forEach var="u" items="${achivementManagedBean.showBiddetails()}">
+           You get job " ${u[6]} ".
+        </c:forEach>
+                       </b></div>
+        
+                  
+               </div>
+            </div>
+         </div>
+      </div>
         
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>

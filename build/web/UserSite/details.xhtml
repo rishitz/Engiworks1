@@ -89,65 +89,55 @@
                </div>
                <div class="tab-content">
                   <div class="tab-pane active" id="profile">
-                     <div class="col-sm-offset-3 col-md-6 col-sm-6  col-xs-12">
-                         <h:form class="form-horizontal password">
-                             
-                             
+
+                      
+                      <div class="col-sm-offset-3 col-md-6 col-sm-6  col-xs-12">
+                        <h:form class="form-horizontal password">
                            <fieldset>
-                               
                               <div class="form-group">
                                  <div class="col-sm-12">
                                     <label>USERNAME:</label>
-                                    <h:inputText class="form-control" id="old-password" value="${registrationManagedBean.userName}"/>
+                                   <h:inputText class="form-control"  value="${registrationManagedBean.userName}"/>
                                  </div>
                               </div>
                               <div class="form-group">
                                  <div class="col-sm-12">
                                     <label>EMAIL</label>
-                                    <h:inputText class="form-control" id="new-password" value="${registrationManagedBean.email}"  />
+                                    <h:inputText class="form-control"  value="${registrationManagedBean.email}"/>
                                  </div>
                               </div>
-                               
+                               <div class="button">
+                               <h:commandButton action="${registrationManagedBean.checkDetails()}"  value="Send" class="btn btn-primary btnus"></h:commandButton>
+                               </div>
+                               <c:choose>
+                                      <c:when test="${registrationManagedBean.checkDet()==0}">
+                                                Wrng uname and email..
+               
+               
+                                       </c:when>
+                               <c:when test="${registrationManagedBean.checkDet() > 0}">
+                                             <h3>  Hello " #{registrationManagedBean.userName}"</h3>
                               <div class="form-group">
                                  <div class="col-sm-12">
-                                     <c:choose>
-                                      <c:when test="${registrationManagedBean.checkDet()==0}">
-                Wrng uname and email..
-               
-                <div class="button">
-                    
-<!--                <h:commandButton action="" value="Send" class="btn btn-primary btnus"></h:commandButton>-->
-<h:commandButton action="${registrationManagedBean.checkDetails()}"  value="Send" class="btn btn-primary btnus">
-    
-</h:commandButton>
-                </div>
-            </c:when>
-                                         
-                                         <c:when test="${registrationManagedBean.checkDet() > 0}">
-                                             <h3>  Hello " #{registrationManagedBean.userName}"</h3>
-              
-               <label>CHANGE PASSWORD:
+                                    <label>CONFIRM PASSWORD
                                     </label>
-                                     <h:inputText class="form-control" id="confirm-password" value="${registrationManagedBean.chngpwd}" />
-                <div class="button">
-                                  <h:commandButton action="${registrationManagedBean.changePass()}"  value="SAVE" class="btn btn-primary btnus"/>
-                              </div>
-              
-            </c:when>
-                                         
-                                     </c:choose>
-                                    
+                                    <h:inputText class="form-control" value="${registrationManagedBean.chngpwd}" />
                                  </div>
                               </div>
-                              
+                              <div class="button">
+                                  <h:commandButton action="${registrationManagedBean.changePass()}"  value="SAVE" class="btn btn-primary btnus"/>
+                              </div>
+                                             ${registrationManagedBean.message}
+                               </c:when>
+                               </c:choose>
                            </fieldset>
                           
                                                 
-                             
+                    
                         </h:form>
-<!--                         <c:forEach var="u" items="">-->
+<!--                         <c:forEach var="u" items="">
                             
-                         <!--</c:forEach>-->    
+                         </c:forEach>    -->
                      </div>
                   </div>
                    
