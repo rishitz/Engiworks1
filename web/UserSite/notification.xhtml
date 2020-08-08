@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" >
     
     <h:head>
         <title>Facelet Title</title>
@@ -44,7 +46,24 @@
             </div>
          </div>
       </div>
-        
+        <h:form>
+
+	<p:inputText id="email" required="true" label="email" size="40"
+		requiredMessage="Please enter your email address."
+		validatorMessage="Invalid email format"
+                value="#{registrationManagedBean.email}">
+
+	  <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+	</p:inputText>
+	<p:watermark for="email" value="Email Address *" />
+	<p:message for="email" />
+
+	<p:commandButton value="test" style="margin:20px"
+		action="#{userBean.register}" ajax="false" />
+
+   </h:form>
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>
 </html>

@@ -52,9 +52,9 @@
                      <li class="">
                         <a href="#post" data-toggle="tab" aria-expanded="false">POST JOBS</a>
                      </li>
-                     <li class="">
+<!--                     <li class="">
                         <a href="#password" data-toggle="tab" aria-expanded="false">CHANGE PASSWORD</a>
-                     </li>
+                     </li>-->
                   </ul>
                </div>
                <div class="tab-content">
@@ -84,7 +84,8 @@
 <!--<h:outputText value="#{jobManagedBean.getuserDetails()}"/>-->
 <div class="form-group">
                                  <div class="col-sm-4">
-                                     <img src="images/img2.jpg" alt="my_profile" title="my_profile" height="325px" width="380px" />
+                                     <h:graphicImage value="ProfilePictures/#{jobManagedBean.profile}" height="325px" width="380px"></h:graphicImage>
+<!--                                     <img src="images/img2.jpg" alt="my_profile" title="my_profile" height="325px" width="380px" />-->
                                      
                                  </div>
                                  <div class="col-sm-8">
@@ -105,9 +106,13 @@
                                     <div class="matter">
                                        <label>Your Profile</label>
                                        
-                                       
-                                       <span><h:inputFile value="#{jobManagedBean.filename}"/></span>
-                                    </div>
+                                         <div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+     <span><h:inputFile value="#{jobManagedBean.filename}" class="upload"><i class="fa fa-home"></i></h:inputFile></span>
+</div>
+                                      
+                                    </div>                                       
+
                                  </div>
                               </div>
                               
@@ -151,7 +156,8 @@
                                  </div>
                               </div>
                               
-
+                            
+                                
                               
                               <div class="button">
                                   <div class="col-sm-5"></div>
@@ -250,19 +256,17 @@
                            </div>
                            
                             <h4><h:outputText value="${x[2]}"/></h4>
-                            <h4><h:outputText value="${x[0]}"/></h4>
+                            
                            <div class="matter">
                               
                              
                               <ul class="list-inline">
                                  <li>
-                                    <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                                    <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i>${x[6]}</a>
                                  </li>
-                                 <li>
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                 </li>
+                                 
                               </ul>
-                              <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                              <p>${x[3]}</p>
                            </div>
                             <h:form>
                                 <h:commandLink action="${achivementManagedBean.viewBidder(x[0])}" value="ViewBidder" class="btn btn-info"/>
@@ -347,6 +351,24 @@
          </div>
       </div>
       <!-- job end here -->
+      <style>
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+</style>
         
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>

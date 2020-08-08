@@ -152,7 +152,7 @@ public class loginManagedBean {
         }
         catch (Exception e)
         {
-             message = "Out- Either user or login is wrong !!!";
+             message = " Either user or password is wrong !!!";
               e.printStackTrace();
         }
 //        

@@ -21,14 +21,16 @@
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <!-- box start here -->
                         <div class="box">
+                            <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
                            <a href="blog-detail.html">
+                               <h:graphicImage value="ProfilePictures/${x[9]}" class="img-responsive"></h:graphicImage>
                            <img src="images/b5.jpg" alt="b5" title="b5" class="img-responsive"/>
                            </a>
                            <div class="matter">
                              
                             
                               
-                              <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
+                              
             <h1>${x[1]}</h1>
          
            <h4> Achievement:</h4>

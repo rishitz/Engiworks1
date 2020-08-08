@@ -10,11 +10,33 @@
     </h:head>
     <h:body>
         <ui:include src="Header.xhtml"></ui:include>
-        <c:forEach var="x" items="${achivementManagedBean.viewblist}">
-            ${x[0]}
-            <h5>${x[13]}</h5>
-            
-            <h:form>
+        <div id="blogs">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12 padd0">
+                  <div id="bloggs">
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!-- box start here -->
+                        <div class="box">
+                           <a href="blog-detail.html">
+                           <img src="images/b5.jpg" alt="b5" title="b5" class="img-responsive"/>
+                           </a>
+                           <div class="matter">
+                             
+                            
+                              
+                              <c:forEach var="x" items="${achivementManagedBean.viewblist}">
+            <h1>${x[1]}</h1>
+         
+<!--           <h4> Achievement:</h4>
+           <h:panelGrid>
+               <p:media value="" width="100%" height="300px" player="pdf"/> 
+           </h:panelGrid>-->
+<!--           Ratings:
+           <c:forEach  begin="1" end=""><i class="fa fa-star" style="color:orange"></i></c:forEach>-->
+           
+           
+          <h:form>
                 <h:outputLabel value="Complaint:"></h:outputLabel>
                 <h:inputText value="#{achivementManagedBean.complaint}" ></h:inputText>
                 <h:commandButton action="${achivementManagedBean.Complaint(x[0])}" value="Post" />
@@ -40,11 +62,59 @@
                 
 
             </h:form>
-            All Reviews:<br/>
-            <c:forEach var="x" items="${achivementManagedBean.showReviews()}">
-                ${x[1]}:${x[12]}<br/>
-            </c:forEach>
-        </c:forEach>
+          
+            
+            
+        </c:forEach>                             
+                              
+                           </div>
+                        </div>
+                        <!-- box end here -->
+                     </div>                    
+                  </div>                  
+               </div>             
+            </div>
+         </div>
+      </div>
+        
+        
+            
+            
+            <h1><center>All Reviews:</center></h1>   
+             <div id="featured">
+         <div class="container">
+            <div class="row">
+                     <div class="blog-detail">       
+                         <c:forEach var="x" items="${achivementManagedBean.showReviews()}">
+                        <div class="commentbox col-md-12 col-sm-12 col-xs-12 ">
+                            
+<!--                            C:FOREACH STARTS HERE-->
+                    
+                        
+                           <ul class="list-unstyled">
+                              
+                              <li>
+                                 <img src="images/usr1.png" alt="user" title="user" class="img-responsive"/>
+                                 <div class="profile">
+                                    <h5> ${x[1]}</h5>
+                                    <p>${x[12]}</p> <br/>
+                                    <c:forEach  begin="1" end="${x[13]}"><i class="fa fa-star" style="color:orange"></i></c:forEach>
+                                 </div>
+                                 
+                              </li>
+                           </ul>
+                   
+
+<!--                            C:FOREACH ENDS HERE-->                      
+                        </div>
+                              </c:forEach>
+                         
+                     </div>
+                  </div>
+               </div>
+      </div>
+            
+     
         
         <ui:include src="Footer.xhtml"></ui:include>
     </h:body>
