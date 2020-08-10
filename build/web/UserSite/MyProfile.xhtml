@@ -188,19 +188,21 @@
                               </div>
                            </div>
                            <div class="matter">
-                              <h1>${x[2]}</h1>
+                              <h1>${x[16]}</h1>
                               <ul class="list-inline">
                                  <li>
-                                    <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                                    <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> ${x[24]}</a>
                                  </li>
                                  <li>
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${x[4]}</a>
                                  </li>
                               </ul>
-                              <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                              <p>${x[17]}</p>
                            </div>
-                           <button type="button" class="btn btn-info" onclick="location.href='jobs.html'">VIEW MORE</button>
-                           <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
+                            <h:form>
+                                <h:commandLink action="${achivementManagedBean.showappliedViewmore(x[13])}" value="Viewmore" class="btn btn-info"/>
+                            </h:form>
+                           
                         </div>
                      </div>
                       </c:forEach>

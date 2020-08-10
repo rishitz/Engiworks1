@@ -57,10 +57,20 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> viewblist;
     List<Object[]> bidderlist;
     List<Object[]> userlist;
+    List<Object[]> mlist;
+    
     Object reviewlist;
     Object likelist;
     private String acdescription;
     private int avg=0;
+
+    public List<Object[]> getMlist() {
+        return mlist;
+    }
+
+    public void setMlist(List<Object[]> mlist) {
+        this.mlist = mlist;
+    }
 
     public List<Object[]> getUserlist() {
         GenericType gc = new GenericType<List<Object[]>>() {
@@ -938,6 +948,32 @@ System.out.println("Bider===="+bidderId);
         };
         Reviewlist = res.readEntity(rb);
         return Reviewlist;      
+        
+    }
+    
+    public String showappliedViewmore(int rid)
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        Response res = jc.showAppliedJob(Response.class,uid+"",rid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+       
+        
+        
+        GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
+        mlist = (List<Object[]>) res.readEntity(type);
+        return "/UserSite/message.xhtml?faces-redirect=true";     
+        
+    }
+    public void addMessage(int uid,int jid)
+    {
         
     }
     

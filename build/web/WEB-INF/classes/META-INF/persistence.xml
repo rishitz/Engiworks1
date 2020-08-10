@@ -21,6 +21,7 @@
     <class>entity.Tbljobverificationrequest</class>
     <class>entity.Tblreview</class>
     <class>entity.Tblcity</class>
+    <class>entity.TblMessage</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

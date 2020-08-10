@@ -1,5 +1,6 @@
 package entity;
 
+import entity.TblMessage;
 import entity.Tblachievement;
 import entity.Tblattachement;
 import entity.Tblbidassigned;
@@ -18,7 +19,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-08T22:25:08")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-10T23:45:41")
 @StaticMetamodel(Tbluser.class)
 public class Tbluser_ { 
 
@@ -26,6 +27,7 @@ public class Tbluser_ {
     public static volatile CollectionAttribute<Tbluser, Tblcomment> tblcommentCollection1;
     public static volatile CollectionAttribute<Tbluser, Tblrequirement> tblrequirementCollection;
     public static volatile CollectionAttribute<Tbluser, Tblreview> tblreviewCollection1;
+    public static volatile CollectionAttribute<Tbluser, TblMessage> tblMessageCollection1;
     public static volatile SingularAttribute<Tbluser, String> profileImage;
     public static volatile CollectionAttribute<Tbluser, Tblachievement> tblachievementCollection;
     public static volatile CollectionAttribute<Tbluser, Tblcomment> tblcommentCollection;
@@ -43,6 +45,7 @@ public class Tbluser_ {
     public static volatile CollectionAttribute<Tbluser, Tbllikes> tbllikesCollection;
     public static volatile CollectionAttribute<Tbluser, Tbllikes> tbllikesCollection1;
     public static volatile CollectionAttribute<Tbluser, Tblreview> tblreviewCollection;
+    public static volatile CollectionAttribute<Tbluser, TblMessage> tblMessageCollection;
     public static volatile CollectionAttribute<Tbluser, Tblnotification> tblnotificationCollection;
     public static volatile CollectionAttribute<Tbluser, Tblusergroup> tblusergroupCollection;
     public static volatile CollectionAttribute<Tbluser, Tblbidassigned> tblbidassignedCollection;

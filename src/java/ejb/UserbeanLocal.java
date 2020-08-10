@@ -60,6 +60,13 @@ public interface UserbeanLocal {
      
      List<Object[]> getAllUsersData();
      List<Object[]> showBidDetails(int uid);
+     List<Object[]> AppliedViewMore(int uid,int rid);
+     
+     void addMessage(int fromuid,int touid,String message,int jid);
+     
+     List<Object[]> message(int jid);
+     
+     //SELECT *from tbluser u,tblrequirement r,tblbidassigned b WHERE u.userid=b.userId AND r.requirementId=b.requirementId AND b.requirementId=3 AND b.userId=21
      
      
 

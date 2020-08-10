@@ -32,7 +32,7 @@ public class jobClient {
         client.register(new RestFilter(token));
         webTarget = client.target(BASE_URI).path("generic");
     }
-     static {
+    static {
         //for localhost testing only
         javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
                 new javax.net.ssl.HostnameVerifier() {
@@ -46,6 +46,7 @@ public class jobClient {
             }
         });
     }
+
 
     public <T> T Viemore(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
@@ -77,6 +78,12 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T showMessages(Class<T> responseType, String jid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showMessages/{0}", new Object[]{jid}));
+        return resource.request().get(responseType);
+    }
+
     public <T> T getLikes(Class<T> responseType, String aid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getLikes/{0}", new Object[]{aid}));
@@ -86,6 +93,12 @@ public class jobClient {
     public <T> T getUser(Class<T> responseType, String userName) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getUser/{0}", new Object[]{userName}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T showAppliedJob(Class<T> responseType, String uid, String jid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showAppliedJob/{0}/{1}", new Object[]{uid, jid}));
         return resource.request().get(responseType);
     }
 
@@ -100,6 +113,12 @@ public class jobClient {
     public <T> T showbiddetails(Class<T> responseType, String uid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("showbiddetails/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T addMessage(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("addMessage");
         return resource.request().get(responseType);
     }
 

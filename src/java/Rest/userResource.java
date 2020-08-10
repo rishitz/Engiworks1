@@ -6,6 +6,7 @@
 package Rest;
 
 import ejb.UserbeanLocal;
+import entity.TblMessage;
 import entity.Tblbidassigned;
 import entity.Tblcomment;
 import entity.Tblcomplaint;
@@ -361,6 +362,34 @@ public class userResource {
     {
         return ul.showBidDetails(uid);
     }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showAppliedJob/{uid}/{jid}")
+    public List<Object[]> showAppliedJob(@PathParam("uid") int uid,@PathParam("jid") int jid)
+    {
+        return ul.AppliedViewMore(uid, jid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("addMessage")
+    public void addMessage(TblMessage m)
+    {
+        ul.addMessage(m.getFromUserId().getUserId(),m.getToUserId().getUserId(),m.getMessage(),m.getRequirementId().getRequirementId());
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showMessages/{jid}")
+    public List<Object[]> showMessages(@PathParam("jid") int jid)
+    {
+        return ul.message(jid);
+    }
+    
     
     
 }

@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import entity.TblMessage;
 import entity.Tblachievement;
 import entity.Tblattachement;
 import entity.Tblbidassigned;
@@ -142,6 +143,7 @@ public class Userbean implements UserbeanLocal {
         r.setBudget(budget);
         r.setDuration(duration);
         r.setPdf(pdf);
+        r.setStatus(1);
         em.persist(r);
         em.merge(u2);
     }
@@ -339,7 +341,7 @@ public class Userbean implements UserbeanLocal {
 
     @Override
     public List<Object[]> assignJob(int uid) {
-        return em.createNativeQuery("select *from tbluser u,tblbidassigned b,tblrequirement r where u.userId=b.userId and b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
+        return em.createNativeQuery("select *from tbluser u,tblbidassigned b,tblrequirement r,tbljobcategory j where u.jobcategoryId=j.jobcategoryId AND u.userId=b.userId and b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
     }
 
     @Override
@@ -386,4 +388,32 @@ public class Userbean implements UserbeanLocal {
     public List<Object[]> showBidDetails(int uid) {
         return em.createNativeQuery("SELECT *FROM tblbidassigned b,tblrequirement r WHERE b.requirementId=r.requirementId AND b.userId="+uid).getResultList();
     }
+
+    @Override
+    public List<Object[]> AppliedViewMore(int uid,int rid) {
+        return em.createNativeQuery("SELECT *from tbluser u,tblrequirement r,tblbidassigned b WHERE u.userid=b.userId AND r.requirementId=b.requirementId AND b.requirementId="+rid+" AND b.userId="+uid).getResultList();
+    }
+
+    @Override
+    public void addMessage(int fromuid, int touid, String message,int jid) {      
+        TblMessage m=new TblMessage();
+        Tbluser u1=em.find(Tbluser.class,touid);
+        Tbluser u2=em.find(Tbluser.class,fromuid);
+        Tblrequirement r=em.find(Tblrequirement.class, jid);
+        m.setMessage(message);
+        m.setFromUserId(new Tbluser(u2.getUserId()));
+        m.setToUserId(new Tbluser(u1.getUserId()));
+        m.setRequirementId(new Tblrequirement(r.getRequirementId()));
+        em.persist(m);
+        
+    }
+
+    @Override
+    public List<Object[]> message(int jid) {
+                       
+        return em.createNativeQuery("SELECT * FROM tblMessage m,tbluser u WHERE m.toUserId=u.userId AND m.fromUserId=u.userId AND m.requirementId="+jid).getResultList();
+    }
+    
+    
+    
 }

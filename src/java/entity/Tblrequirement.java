@@ -8,7 +8,6 @@ package entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tblrequirement")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblrequirement.findAll", query = "SELECT t FROM Tblrequirement t"),
     @NamedQuery(name = "Tblrequirement.findByRequirementId", query = "SELECT t FROM Tblrequirement t WHERE t.requirementId = :requirementId"),
@@ -81,6 +80,8 @@ public class Tblrequirement implements Serializable {
     private Tbluser userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
     private Collection<Tblreview> tblreviewCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
+    private Collection<TblMessage> tblMessageCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementId")
     private Collection<Tblbidassigned> tblbidassignedCollection;
 
@@ -166,7 +167,7 @@ public class Tblrequirement implements Serializable {
         this.pdf = pdf;
     }
 
-    @JsonbTransient
+    @XmlTransient
     public Collection<Tblrequirementbid> getTblrequirementbidCollection() {
         return tblrequirementbidCollection;
     }
@@ -183,7 +184,7 @@ public class Tblrequirement implements Serializable {
         this.userId = userId;
     }
 
-    @JsonbTransient
+    @XmlTransient
     public Collection<Tblreview> getTblreviewCollection() {
         return tblreviewCollection;
     }
@@ -192,7 +193,16 @@ public class Tblrequirement implements Serializable {
         this.tblreviewCollection = tblreviewCollection;
     }
 
-    @JsonbTransient
+    @XmlTransient
+    public Collection<TblMessage> getTblMessageCollection() {
+        return tblMessageCollection;
+    }
+
+    public void setTblMessageCollection(Collection<TblMessage> tblMessageCollection) {
+        this.tblMessageCollection = tblMessageCollection;
+    }
+
+    @XmlTransient
     public Collection<Tblbidassigned> getTblbidassignedCollection() {
         return tblbidassignedCollection;
     }
