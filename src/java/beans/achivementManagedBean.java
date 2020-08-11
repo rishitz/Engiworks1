@@ -7,6 +7,7 @@ package beans;
 
 import client.jobClient;
 import ejb.UserbeanLocal;
+import entity.TblMessage;
 import entity.Tblachievement;
 import entity.Tblbidassigned;
 import entity.Tblcomment;
@@ -43,8 +44,8 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid;
-    private String title, description,comment,complaint,review,username,email,pdf,rlist;
+    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid;
+    private String title, description,comment,complaint,review,username,email,pdf,rlist,message;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -63,6 +64,22 @@ public class achivementManagedBean implements Serializable {
     Object likelist;
     private String acdescription;
     private int avg=0;
+
+    public int getJid() {
+        return jid;
+    }
+
+    public void setJid(int jid) {
+        this.jid = jid;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public List<Object[]> getMlist() {
         return mlist;
@@ -964,21 +981,65 @@ System.out.println("Bider===="+bidderId);
         int uid=u1.getUserId();
         Response res = jc.showAppliedJob(Response.class,uid+"",rid+"");
         List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        
        
         
         
         GenericType<List<Object[]>> type = new GenericType<List<Object[]>>() {};
         mlist = (List<Object[]>) res.readEntity(type);
+        for (Object[] objects : mlist) {
+            jid=Integer.parseInt(objects[22].toString());
+            System.out.println("jId="+jid);
+            
+        }
         return "/UserSite/message.xhtml?faces-redirect=true";     
         
     }
     public void addMessage(int uid,int jid)
     {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int ud=u1.getUserId();
+        
+        TblMessage m=new TblMessage();
+        m.setFromUserId(new Tbluser(ud));
+        m.setToUserId(new Tbluser(uid));
+        m.setMessage(message);
+        m.setRequirementId(new Tblrequirement(jid));
+        jc.addMessages(m);
+        
+        
         
     }
     
-    
-     
+    public List<Object[]> showMessage()
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        Response res = jc.showMessages(Response.class,jid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        Reviewlist = res.readEntity(rb);
+        
+        return Reviewlist;  
+        
+        
+    }
+//     
     
     
 }

@@ -373,10 +373,10 @@ public class userResource {
     }
     
     @RolesAllowed("User")
-    @GET
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("addMessage")
-    public void addMessage(TblMessage m)
+    @Path("addMessages")
+    public void addMessages(TblMessage m)
     {
         ul.addMessage(m.getFromUserId().getUserId(),m.getToUserId().getUserId(),m.getMessage(),m.getRequirementId().getRequirementId());
     }

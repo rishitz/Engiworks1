@@ -116,12 +116,6 @@ public class jobClient {
         return resource.request().get(responseType);
     }
 
-    public <T> T addMessage(Class<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("addMessage");
-        return resource.request().get(responseType);
-    }
-
     public <T> T checkBid(Class<T> responseType, String uid, String jid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("checkBid/{0}/{1}", new Object[]{uid, jid}));
@@ -213,6 +207,10 @@ public class jobClient {
 
     public void Commnet(Object requestEntity) throws ClientErrorException {
         webTarget.path("commnet").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void addMessages(Object requestEntity) throws ClientErrorException {
+        webTarget.path("addMessages").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void putJson(Object requestEntity) throws ClientErrorException {

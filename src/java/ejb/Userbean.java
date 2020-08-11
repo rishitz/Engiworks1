@@ -410,8 +410,8 @@ public class Userbean implements UserbeanLocal {
 
     @Override
     public List<Object[]> message(int jid) {
-                       
-        return em.createNativeQuery("SELECT * FROM tblMessage m,tbluser u WHERE m.toUserId=u.userId AND m.fromUserId=u.userId AND m.requirementId="+jid).getResultList();
+                 System.out.println("in jid"+jid);      
+        return em.createNativeQuery("SELECT * FROM tblMessage m,tbluser u,tblrequirement r WHERE m.fromUserId=u.userId AND m.requirementId=r.requirementId AND m.requirementId="+jid+" ORDER BY m.messageId ASC").getResultList();
     }
     
     

@@ -9,10 +9,18 @@
     <h:body>
         <c:forEach var="x" items="${achivementManagedBean.mlist}">
            title: ${x[12]}
+           uid:${x[0]}
+           jid:${x[10]}
            <h:form>
-               <h:inputText value=""/>
-               <h:commandButton action="" value="Send"></h:commandButton>
+               <h:inputText value="#{achivementManagedBean.message}"/>
+               <h:commandButton action="#{achivementManagedBean.addMessage(x[11],x[10])}" value="Send"></h:commandButton>
            </h:form>
+        </c:forEach>
+        
+        <c:forEach var="u" items="${achivementManagedBean.showMessage()}">
+         
+            ${u[7]}:${u[1]}<br/>
+           
         </c:forEach>
     </h:body>
 </html>

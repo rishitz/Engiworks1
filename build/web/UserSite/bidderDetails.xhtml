@@ -27,7 +27,7 @@
                               
                               <c:forEach var="x" items="${achivementManagedBean.viewblist}">
             <h1>${x[1]}</h1>
-         
+         ${x[13]}
 <!--           <h4> Achievement:</h4>
            <h:panelGrid>
                <p:media value="" width="100%" height="300px" player="pdf"/> 
@@ -37,9 +37,9 @@
            
            
           <h:form>
-                <h:outputLabel value="Complaint:"></h:outputLabel>
-                <h:inputText value="#{achivementManagedBean.complaint}" ></h:inputText>
-                <h:commandButton action="${achivementManagedBean.Complaint(x[0])}" value="Post" />
+                <h:outputLabel value="Message:"></h:outputLabel>
+                <h:inputText value="#{achivementManagedBean.message}" ></h:inputText>
+                <h:commandButton action="${achivementManagedBean.addMessage(x[0],x[13])}" value="Send" />
             </h:form>
              <h:form>
                  <c:choose>
