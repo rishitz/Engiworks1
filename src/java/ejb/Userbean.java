@@ -365,7 +365,7 @@ public class Userbean implements UserbeanLocal {
 
     @Override
     public Object getLikes(int aid) {       
-       return em.createNativeQuery("SELECT COUNT(likeId) FROM tbllikes where achievementId="+aid).getSingleResult();
+        return em.createNativeQuery("SELECT COUNT(likeId) FROM tbllikes where achievementId="+aid).getSingleResult();
     }
 
     @Override

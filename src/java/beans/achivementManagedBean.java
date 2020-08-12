@@ -44,7 +44,7 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid;
+    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid,jobid;
     private String title, description,comment,complaint,review,username,email,pdf,rlist,message;
     private Part filename;
     jobClient jc;
@@ -64,6 +64,14 @@ public class achivementManagedBean implements Serializable {
     Object likelist;
     private String acdescription;
     private int avg=0;
+
+    public int getJobid() {
+        return jobid;
+    }
+
+    public void setJobid(int jobid) {
+        this.jobid = jobid;
+    }
 
     public int getJid() {
         return jid;
@@ -748,6 +756,7 @@ public class achivementManagedBean implements Serializable {
         c.setFromUserId(new Tbluser(ud));
         c.setDescription(comment);
         jc.Commnet(c);
+        this.comment=" ";
         
         
     }
@@ -764,7 +773,8 @@ public class achivementManagedBean implements Serializable {
         viewblist = (List<Object[]>) resp.readEntity(type);
         for (Object[] objects : viewblist) {
                 bidderId=Integer.parseInt(objects[0].toString());
-            System.out.println("Bidder Id send"+bidderId);
+                jobid=Integer.parseInt(objects[13].toString());
+            System.out.println("Bidder Id send"+jobid);
             
         }
           
@@ -810,6 +820,7 @@ public class achivementManagedBean implements Serializable {
         
         c.setRequirementId(new Tblrequirement(rid));
         jc.Review(c);        
+        this.review=" ";
     }
      public List<Object[]> notification()           
     {
@@ -1013,6 +1024,8 @@ System.out.println("Bider===="+bidderId);
         m.setMessage(message);
         m.setRequirementId(new Tblrequirement(jid));
         jc.addMessages(m);
+        this.message = " ";
+        
         
         
         
@@ -1030,6 +1043,28 @@ System.out.println("Bider===="+bidderId);
         Tbluser u1 = response.readEntity(us);
         int uid=u1.getUserId();
         Response res = jc.showMessages(Response.class,jid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+        Reviewlist = res.readEntity(rb);
+        
+        return Reviewlist;  
+        
+        
+    }
+    
+    public List<Object[]> showallMessage()
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        Response res = jc.showMessages(Response.class,jobid+"");
         List<Object[]> Reviewlist = new ArrayList<Object[]>();
         GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
         };

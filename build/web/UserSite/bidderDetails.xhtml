@@ -6,18 +6,21 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui" >
     <h:head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:include src="Header.xhtml"></ui:include>
         <div id="blogs">
+            <c:forEach var="x" items="${achivementManagedBean.viewblist}">
+               <center> <h1>${x[1]}</h1></center>
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12 col-xs-12 padd0">
                   <div id="bloggs">
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <!-- box start here -->
-                        <div class="box">
+                        <div class="w3-container box">
                            <a href="blog-detail.html">
                            <img src="images/b5.jpg" alt="b5" title="b5" class="img-responsive"/>
                            </a>
@@ -25,9 +28,9 @@
                              
                             
                               
-                              <c:forEach var="x" items="${achivementManagedBean.viewblist}">
-            <h1>${x[1]}</h1>
-         ${x[13]}
+                              
+            
+        
 <!--           <h4> Achievement:</h4>
            <h:panelGrid>
                <p:media value="" width="100%" height="300px" player="pdf"/> 
@@ -36,21 +39,24 @@
            <c:forEach  begin="1" end=""><i class="fa fa-star" style="color:orange"></i></c:forEach>-->
            
            
-          <h:form>
+          <h:form >
+              
                 <h:outputLabel value="Message:"></h:outputLabel>
-                <h:inputText value="#{achivementManagedBean.message}" ></h:inputText>
-                <h:commandButton action="${achivementManagedBean.addMessage(x[0],x[13])}" value="Send" />
+                <h:inputText value="#{achivementManagedBean.message}" class="w3-input w3-border w3-animate-input" style="width:30%"></h:inputText>
+                <h:commandButton action="${achivementManagedBean.addMessage(x[0],x[13])}" class="button" value="Send" />
             </h:form>
              <h:form>
                  <c:choose>
                      <c:when test="${achivementManagedBean.checkreview()==0}">
-                 <h:outputLabel value="Review"></h:outputLabel>
-                 <h:inputText value="#{achivementManagedBean.review}" ></h:inputText>                 
-                 <h:commandButton action="${achivementManagedBean.Review(x[0],x[13])}" value="Post" />
+                 <h:outputLabel value="Review:"></h:outputLabel>
+                 <h:inputText value="#{achivementManagedBean.review}" class="w3-input w3-border w3-animate-input" style="width:30%" ></h:inputText>                 
+                 
                  
                  <h:panelGrid columns="2" cellpadding="5">  
+                     <h:outputLabel value="Ratings :"></h:outputLabel>
                     <p:rating value="#{achivementManagedBean.ratings}" />  
-                </h:panelGrid>  
+                </h:panelGrid>
+                 <h:commandButton action="${achivementManagedBean.Review(x[0],x[13])}" class="button" value="Post" />
                      </c:when>
                      <c:when test="${achivementManagedBean.checkreview() > 0}">
                                                                                
@@ -58,14 +64,14 @@
                                         <!--</div>-->
                                     </c:when>
                  </c:choose>
-                 <h:outputLabel value="Ratings"></h:outputLabel>
+                 
                 
 
             </h:form>
           
             
             
-        </c:forEach>                             
+                                     
                               
                            </div>
                         </div>
@@ -75,11 +81,32 @@
                </div>             
             </div>
          </div>
+          </c:forEach>  
+<!--            
+            CFOREACH BANDH-->
       </div>
         
+         
+        <div id="job">
+         <div class="container">
+            <div class="row">
         
+        <div class="canditate-profile">
+                  <ul class="nav nav-tabs list-inline">
+                     <li class="active">
+                        <a href="#profile" data-toggle="tab" aria-expanded="true">REVIEWS</a>
+                     </li>
+                     <li class="">
+                        <a href="#applied" data-toggle="tab" aria-expanded="false">MESSAGES</a>
+                     </li>
+
+                  </ul>
+               </div>
             
             
+       </div>
+            <div class="tab-content">
+                  <div class="tab-pane active" id="profile">
             <h1><center>All Reviews:</center></h1>   
              <div id="featured">
          <div class="container">
@@ -113,10 +140,66 @@
                   </div>
                </div>
       </div>
-            
-     
+                  </div>
+                
+                
+                <div class="tab-pane" id="applied">
+                    
+                    <div class="testimonial" style="background-color:#a19f9f">  
+         <div class="container">
+            <!-- testimonial-jobs start here -->
+            <div class="latest-jobs">
+               <h1>MESSAGES:</h1>
+               <div class="border"></div>
+               <div class="border1"></div>
+            </div>
+            <!-- testimonial-jobs end here -->
+            <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-11">
+                   <div class="comment-detail"><b>
+                           <c:forEach var="u" items="${achivementManagedBean.showallMessage()}">
+         
+            ${u[7]}: ${u[1]}<br/>
+           
+        </c:forEach>
+                       </b></div>
+        
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+                </div>
+            </div>
+     </div>
+         </div>
+        
         
         <ui:include src="Footer.xhtml"></ui:include>
+        <style>
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 px #666;
+  transform: translateY(4px);
+}
+</style>
     </h:body>
 </html>
 

@@ -7,6 +7,7 @@
       xmlns:p="http://primefaces.org/ui" 
       >
     <h:head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
@@ -14,24 +15,26 @@
         
      
         <div id="blogs">
+            <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
+                <center><h1>${x[1]}</h1></center>
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12 col-xs-12 padd0">
                   <div id="bloggs">
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <!-- box start here -->
-                        <div class="box">
-                            <c:forEach var="x" items="${achivementManagedBean.bidderlist}">
+                        <div class="w3-container box">
+                            
                            <a href="blog-detail.html">
-                               <h:graphicImage value="ProfilePictures/${x[9]}" class="img-responsive"></h:graphicImage>
-                           <img src="images/b5.jpg" alt="b5" title="b5" class="img-responsive"/>
+                               <h:graphicImage value="ProfilePictures/${x[9]}" alt="b5" title="b5" class="img-responsive"></h:graphicImage>
+<!--                           <img src="images/b5.jpg" alt="b5" title="b5" class="img-responsive"/>-->
                            </a>
                            <div class="matter">
                              
                             
                               
                               
-            <h1>${x[1]}</h1>
+            
             
          
            <h4> Achievement:</h4>
@@ -47,20 +50,22 @@
             <h:form>
                 <c:choose>
                     <c:when test="${achivementManagedBean.checkl()==0}">
-                        Like:<h:commandButton action="${achivementManagedBean.like(x[0],x[19])}" value="Like ${achivementManagedBean.likelist}"  ><i class="fa fa-thumbs-o-up fa-3x"></i></h:commandButton>
+                        <h:commandButton action="${achivementManagedBean.like(x[0],x[19])}" value="Like :${achivementManagedBean.likelist}" class="button"  ></h:commandButton>
                     </c:when>
                     <c:when test="${achivementManagedBean.checkl() > 0}">
                         Like submitted..<br/>
                     </c:when>
                 </c:choose>
-                Comment:              
-                <h:inputTextarea value="#{achivementManagedBean.comment}"  ></h:inputTextarea>
-                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" value="Send" />             
+<br/>                <b>
+                    Comment:</b>              
+                <h:inputText value="#{achivementManagedBean.comment}" class="w3-input w3-border w3-animate-input" style="width:30%" />
+                <h:commandButton action="${achivementManagedBean.Comment(x[0],x[19])}" class="button1" value="Send" />             
             </h:form>
             
-        </c:forEach>                             
+                                   
                               
                            </div>
+                               
                         </div>
                         <!-- box end here -->
                      </div>                    
@@ -68,6 +73,7 @@
                </div>             
             </div>
          </div>
+                 </c:forEach>  
       </div>
         <h1><center>Reviews:</center></h1>                 
          <div id="featured">
@@ -105,6 +111,49 @@
             
        
         <ui:include src="Footer.xhtml"></ui:include>
+        <style>
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+        <style>
+.button1 {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.button1:hover {opacity: 1}
+</style>
     </h:body>
 </html>
 

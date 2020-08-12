@@ -87,7 +87,15 @@
                                      <h:graphicImage value="ProfilePictures/#{jobManagedBean.profile}" height="325px" width="380px"></h:graphicImage>
 <!--                                     <img src="images/img2.jpg" alt="my_profile" title="my_profile" height="325px" width="380px" />-->
                                      
+<div class="col-sm-12 fileUpload btn btn-primary">
+                                 <h4>Upload Profile</h4>
+                                 
+                                 <h:inputFile class="upload" id="file" value="#{jobManagedBean.filename}"/>
+                                   
+                               	
+                              </div>
                                  </div>
+    
                                  <div class="col-sm-8">
                                      <div class="matter">
                                        <label>USER Id</label>
@@ -101,20 +109,11 @@
                                      
                                  </div>
                               </div>
-                                 <div class="form-group">
-                                 <div class="col-sm-12">
-                                    <div class="matter">
-                                       <label>Your Profile</label>
-                                       
-                                         <div class="fileUpload btn btn-primary">
-    <span>Upload</span>
-     <span><h:inputFile value="#{jobManagedBean.filename}" class="upload"><i class="fa fa-home"></i></h:inputFile></span>
-</div>
-                                      
-                                    </div>                                       
+                                 
+<div class="form-group">
 
-                                 </div>
-                              </div>
+                              
+                           </div>
                               
                               <div class="form-group">
                                   

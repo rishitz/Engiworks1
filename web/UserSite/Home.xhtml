@@ -196,7 +196,7 @@
                <c:forEach var="x" items="${achivementManagedBean.lobj}">
                    <c:if test="${x[4]==0}">
                <div class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="product-box">
+                  <div class="product-box profile">
                      <div class="image">
                         <a href="jobs.html">
                         <img class="img-responsive" src="images/new/01.jpg" alt="p1" title="p1"/>
@@ -228,11 +228,11 @@
                       <h:form>
                       <h:commandLink action="${achivementManagedBean.sample(x[0])}" value="ViewMore" class="btn btn-info"/>
                      </h:form>
-                      <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html?'">VIEW MORE</button>
-                     <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
-                  </div>
+                     </div>
                </div>
                    </c:if>
+                   
+                   
                </c:forEach>
 <!--               <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">
