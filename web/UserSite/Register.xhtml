@@ -212,7 +212,7 @@
                            <div class="form-group">
                               <div class="col-sm-12">
                                  <label>Username</label>
-                                 <h:inputText class="form-control" id="input-username"  value="#{registrationManagedBean.userName}"  required="true"/>
+                                 <h:inputText class="form-control"  value="#{registrationManagedBean.userName}"  required="true"/>
                                  
                               </div>
                            </div>
@@ -237,7 +237,7 @@
                            <div class="form-group">
                               <div class="col-sm-12">
                                  <label>Password</label>
-                                 <h:inputSecret class="form-control" id="input-password"  value="#{registrationManagedBean.password}"  required=""/>
+                                 <h:inputSecret class="form-control" value="#{registrationManagedBean.password}"  required=""/>
                                 
                               </div>
                            </div>
@@ -283,10 +283,13 @@
                                   <div class="form-group">
                               <div class="col-sm-12 fileUpload btn btn-primary">
                                  <label>Upload Photo</label>
-                                 <h:inputFile value="#{registrationManagedBean.filename}" class="upload" id="file" />
-                                 
+                                 <h:inputFile value="#{registrationManagedBean.filename}" class="upload" id="file" >
+                                 <f:validator validatorId="fileUploadValidator"/>
+                                 </h:inputFile>
                               </div>
+                                      
                            </div>
+                            <p> <h:messages id="messages1"/></p>
                            <div class="form-group">
                               <div class="col-sm-12 confirmation">
                                  <label>
