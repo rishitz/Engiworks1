@@ -39,24 +39,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs">
-                        <img src="images/p6.png" alt="p6" title="p6" class="img-responsive" />
+                        <img src="images/new/09.jpg" alt="p6" title="p6" class="img-responsive" />
                         <div class="left-side">
                             <ul class="list-unstyled">
-                                <li>
-                                    <h5><i class="fa fa-map-marker" aria-hidden="true"></i> Location</h5>
-                                    <p>Sector 17, Chandigarh</p>
-                                </li>
+                                
                                 <li>
                                     <h5><i class="fa fa-money" aria-hidden="true"></i> 
                                         Budget
                                     </h5>
-                                    <p>#{achivementManagedBean.budget}</p>
+                                    <p> ₹ #{achivementManagedBean.budget}</p>
                                 </li>
                                 <li>
                                     <h5><i class="fa fa-shield" aria-hidden="true"></i> 
                                         Duration
                                     </h5>
-                                    <p>#{achivementManagedBean.duration}</p>
+                                    <p>#{achivementManagedBean.duration} days</p>
                                 </li>
                                 <!--                        <li>
                                                            <h5><i class="fa fa-clock-o" aria-hidden="true"></i> Posted</h5>
@@ -64,78 +61,18 @@
                                                         </li>-->
                             </ul>
                         </div>
-                        <div class="leftside margin-t">
-                            <div class="latest-jobs">
-                                <h1>LATEST JOBS</h1>
-                                <div class="border"></div>
-                                <div class="border1"></div>
-                            </div>
-                            <div class="job-content">
-                                <img src="images/new/01.jpg" alt="p1" title="p1"/>
-                                <h1>IT Department Manager</h1>
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                    </li>
-                                </ul>
-                                <a href="apply-job-form.html">Apply Now <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="job-content">
-                                <img src="images/new/02.jpg" alt="p2" title="p2"/>
-                                <h1>IT Department Manager</h1>
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                    </li>
-                                </ul>
-                                <a href="apply-job-form.html">Apply Now <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="job-content">
-                                <img src="images/new/03.jpg" alt="p3" title="p3"/>
-                                <h1>IT Department Manager</h1>
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                    </li>
-                                </ul>
-                                <a href="apply-job-form.html">Apply Now <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="job-content">
-                                <img src="images/new/04.jpg" alt="p4" title="p4"/>
-                                <h1>IT Department Manager</h1>
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                    </li>
-                                </ul>
-                                <a href="apply-job-form.html">Apply Now <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12 paddleft content">
                         <h1>#{achivementManagedBean.jobname}</h1>
                         <ul class="list-inline">
-                            <li>
-                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                            </li>
+                            
                         </ul>
 
-                        <h5>Job Description</h5>
-                        <p><span>#{achivementManagedBean.description}</span>
-                        </p>
-                        <p><span>#{achivementManagedBean.jobId}</span></p>
+                        <h5><b>Job Description :</b> #{achivementManagedBean.description}</h5>
+                        
+                        
+                        
                         <button type="submit" class="btn btn-info">APPLY THIS JOB</button>
                         <div class="clearfix"></div>
                         <div class="job-form col-md-12 col-sm-12 col-xs-12">
@@ -205,147 +142,7 @@
                         </div>
                     </div>
                     <!-- featured start here -->
-                    <div id="similar" class="col-md-12 col-sm-12 col-xs-12 padd0">
-                        <!-- similar-jobs start here -->
-                        <div class="similar-jobs">
-                            <div class="border"></div>
-                            <h1><span>Similars</span> JOBS</h1>
-                            <div class="border1"></div>
-                        </div>
-                        <!-- similar-jobs end here -->
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="product-box">
-                                <div class="image">
-                                    <a href="jobs.html">
-                                        <img class="img-responsive" src="images/new/01.jpg" alt="p1" title="p1"/>
-                                    </a>  
-                                    <div class="buttons">
-                                        <div class="open-down">
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-link" aria-hidden="true"></i>
-                                            </button>
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="matter">
-                                    <h1>IT Department Manager</h1>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                        </li>
-                                    </ul>
-                                    <p>There are many variations of passages of lorem Ipsum available [...]</p>
-                                </div>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'list-detail-page.html'">VIEW MORE</button>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'apply-job-form.html'">APPLY NOW</button>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="product-box">
-                                <div class="image">
-                                    <a href="jobs.html">
-                                        <img class="img-responsive" src="images/new/02.jpg" alt="p2" title="p2"/>
-                                    </a>  
-                                    <div class="buttons">
-                                        <div class="open-down">
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-link" aria-hidden="true"></i>
-                                            </button>
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="matter">
-                                    <h1>IT Department Manager</h1>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                        </li>
-                                    </ul>
-                                    <p>There are many variations of passages of lorem Ipsum available [...]</p>
-                                </div>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'list-detail-page.html'">VIEW MORE</button>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'apply-job-form.html'">APPLY NOW</button>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="product-box">
-                                <div class="image">
-                                    <a href="jobs.html">
-                                        <img class="img-responsive" src="images/new/03.jpg" alt="p3" title="p3"/>
-                                    </a>  
-                                    <div class="buttons">
-                                        <div class="open-down">
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-link" aria-hidden="true"></i>
-                                            </button>
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="matter">
-                                    <h1>IT Department Manager</h1>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                        </li>
-                                    </ul>
-                                    <p>There are many variations of passages of lorem Ipsum available [...]</p>
-                                </div>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'list-detail-page.html'">VIEW MORE</button>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'apply-job-form.html'">APPLY NOW</button>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="product-box">
-                                <div class="image">
-                                    <a href="jobs.html">
-                                        <img class="img-responsive" src="images/new/04.jpg" alt="p4" title="p4"/>
-                                    </a>  
-                                    <div class="buttons">
-                                        <div class="open-down">
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-link" aria-hidden="true"></i>
-                                            </button>
-                                            <button type="button" class="rotate1">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="matter">
-                                    <h1>IT Department Manager</h1>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
-                                        </li>
-                                    </ul>
-                                    <p>There are many variations of passages of lorem Ipsum available [...]</p>
-                                </div>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'list-detail-page.html'">VIEW MORE</button>
-                                <button type="button" class="btn btn-info" onclick="location.href = 'apply-job-form.html'">APPLY NOW</button>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- featured end here -->
                 </div>
             </div>

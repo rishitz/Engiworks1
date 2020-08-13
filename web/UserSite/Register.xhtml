@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     
-    
-<html lang="en" dir="ltr">
+
    <!-- Mirrored from ocsolutions.co.in/html/jobportal/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 12:22:27 GMT -->
-   <head>
+   <h:head>
       <meta charset="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -28,8 +28,12 @@
       <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
       <!--bootstrap select-->
       <link href="js/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-   </head>
-   <body>
+      
+   </h:head>
+   <h:body>
+<!--       <f:facet name="last">
+	<h:outputStylesheet library="mytheme" name="css/style.css" />
+  </f:facet>-->
       <!-- top start here -->
 <!--      <div id="top">
           top container start here
@@ -215,8 +219,19 @@
                            <div class="form-group">
                               <div class="col-sm-12">
                                  <label>Email</label>
-                                 <h:inputText class="form-control" id="input-email"  value="#{registrationManagedBean.email}"  required=""/>
-                                 
+<!--                                 <h:inputText class="form-control" id="input-email"  value=""  required=""/>-->
+                                 <p:inputText id="email" required="true" label="email" class="form-control"
+		requiredMessage="Please enter your email address."
+		validatorMessage="Invalid email format"
+                value="#{registrationManagedBean.email}">
+
+	  <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+	</p:inputText>
+	<p:watermark for="email" value="Email Address *" />
+	<p:message for="email"/>
+
                               </div>
                            </div>
                            <div class="form-group">
@@ -233,13 +248,15 @@
                                 
                               </div>
                            </div>
-                             
+                           <div class="form-group">
+                               <div class="col-sm-12">
                                  <label>Gender</label>
                                  <h:selectOneRadio value="#{registrationManagedBean.gender}">
                                      <f:selectItem itemLabel="Male" itemValue="Male"/>
                                      <f:selectItem itemLabel="Female" itemValue="Female"/>
                                  </h:selectOneRadio>
-                                 
+                               </div>
+                           </div>
                               
                            
                           
@@ -264,9 +281,9 @@
                               </div>
                            </div>
                                   <div class="form-group">
-                              <div class="col-sm-12">
+                              <div class="col-sm-12 fileUpload btn btn-primary">
                                  <label>Upload Photo</label>
-                                 <h:inputFile value="#{registrationManagedBean.filename}" />
+                                 <h:inputFile value="#{registrationManagedBean.filename}" class="upload" id="file" />
                                  
                               </div>
                            </div>
@@ -434,8 +451,32 @@
       <script src="js/internal.js"></script>
       <!-- color switcher-->
       <script src="js/switcher.js"></script>
-   </body>
+      <style>
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    background-color: lightgrey;
+    
+}
+.fileUpload:hover {
+  background-color: lightgrey; /* Green */
+  color: white;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+</style>
+   </h:body>
    <!-- Mirrored from ocsolutions.co.in/html/jobportal/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 12:22:27 GMT -->
-</html>
+
 </html>
 

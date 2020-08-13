@@ -6,6 +6,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
     <h:head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
@@ -37,8 +38,9 @@
            
            
           <h:form>
-               <h:inputText value="#{achivementManagedBean.message}"/>
-               <h:commandButton action="#{achivementManagedBean.addMessage(x[11],x[10])}" value="Send"></h:commandButton>
+              <label>Message: </label>
+               <h:inputText value="#{achivementManagedBean.message}" class="w3-input w3-border w3-animate-input" style="width:30%"/>
+               <h:commandButton action="#{achivementManagedBean.addMessage(x[11],x[10])}" class="button1" value="Send"></h:commandButton>
            </h:form>
           
             
@@ -80,6 +82,25 @@
          </div>
       </div>
         <ui:include src="Footer.xhtml"></ui:include>
+        <style>
+.button1 {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.button1:hover {opacity: 1}
+</style>
     </h:body>
 </html>
 
