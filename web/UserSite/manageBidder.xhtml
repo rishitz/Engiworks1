@@ -32,13 +32,26 @@
                            <div class="matter">
                              
                             
-                              
+                       <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">PDF</button>
+    <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container" style="color:white"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-button w3-display-topright">x</span>
+        <h2>Modal Header</h2>
+      </header>
+      <div class="w3-container">
+<embed src="PDF/#{x[26]}" allowfullscreen="false" height='800px' width='880px' />
+      </div>
+  
+    </div>
+  </div>       
                               
             
             
          
            <h4> Achievement:</h4>
-           <embed src="PDF/#{x[26]}" allowfullscreen="false" height='100px' width='100px' />
+           
 <!--           <h:panelGrid>
                <p:media value="" width="100%" height="300px" player="pdf"/> 
            </h:panelGrid>-->

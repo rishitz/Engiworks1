@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-     <head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+     <h:head>
       <meta charset="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -23,7 +24,9 @@
       <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
       <!--bootstrap select-->
       <link href="js/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
-   </head>
+                             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+   </h:head>
     <h:body class="homepage2">
         
         
@@ -113,7 +116,9 @@
                               </div>
                            </li>
                             <li>
-                                <a href="notification.xhtml">Notification</a>                              
+<!--                                <a href="notification.xhtml">Notification</a>        -->
+                                <button onclick="document.getElementById('id01').style.display='block'" >NOTIFICATION</button>
+
                             </li>
                            
                         </ul>
@@ -123,6 +128,53 @@
             </div>
          </div>
       </header>
+        <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:1100px">
+
+      <div class="w3-center"><br/>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">x</span>
+        <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"/>
+      </div>
+
+      <form class="w3-container" action="/action_page.php">
+        <div class="w3-section">
+         
+ <div class="testimonial" style="background-color:linen">  
+         <div class="container">
+            <!-- testimonial-jobs start here -->
+            <div class="latest-jobs pull-left">
+                <h1><center>NOTIFICATIONS</center></h1>
+               <div class="border"></div>
+               <div class="border1"></div>
+            </div>
+            <!-- testimonial-jobs end here -->
+            <div class="row">
+               <div class="col-xs-6 col-sm-6 col-md-9">
+                   <div class="comment-detail"><b>
+                    <c:forEach var="x" items="${achivementManagedBean.notification()}">
+           ${x[7]}  "${x[1]}"<br/>
+        </c:forEach>
+        
+        <c:forEach var="u" items="${achivementManagedBean.showBiddetails()}">
+           You get job " ${u[6]} ".
+        </c:forEach>
+                       </b></div>
+        
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+          
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+      </div>
+
+    </div>
+  </div>
     </h:body>
 </html>
 
