@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tbljobsubcategory")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tbljobsubcategory.findAll", query = "SELECT t FROM Tbljobsubcategory t"),
     @NamedQuery(name = "Tbljobsubcategory.findByJobSubCategoryId", query = "SELECT t FROM Tbljobsubcategory t WHERE t.jobSubCategoryId = :jobSubCategoryId"),

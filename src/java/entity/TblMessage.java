@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tblMessage")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TblMessage.findAll", query = "SELECT t FROM TblMessage t"),
     @NamedQuery(name = "TblMessage.findByMessageId", query = "SELECT t FROM TblMessage t WHERE t.messageId = :messageId"),

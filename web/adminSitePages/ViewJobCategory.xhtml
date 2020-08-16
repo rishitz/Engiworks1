@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Engiworks</title>
+    </h:head>
+    <h:body>
+       <ui:include src="Header.xhtml" />
+      <div class="wrapper">
+
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-4">
+                        <h1>Job Categories</h1>
+                        </div>
+                      <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ Add Job Category</button>
+                      </div>
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="Dashboard.xhtml">Home</a></li>
+                           <li class="breadcrumb-item active">Job Categories</li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">   
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Job Category</h4>
+                            <button type="button" class="close" data-dismiss="modal">x</button>        
+                        </div>
+                        <div class="modal-body">
+                            <h:form role="form">
+                              <div class="card-body">
+                                 <div class="form-group">
+                                    <h:outputLabel value="Job Category Name"></h:outputLabel>
+                                    <h:inputText class="form-control" id="jname"  value="#{jobCategoryManagedBean.jobcatname}"  required="" ></h:inputText>
+                                 </div>
+                                 <div class="form-group">
+                                    <h:inputHidden class="form-control" id="jid"  value="#{jobCategoryManagedBean.jobcatid}"  required=""></h:inputHidden>
+                                 </div>                                
+                                 
+                              </div>
+                              <!-- /.card-body -->
+                              <div class="modal-footer">
+                                  <h:commandButton class="btn btn-primary pull-right" action="#{jobCategoryManagedBean.insertJobCategory()}" type="submit" value="ADD" />
+                              </div>
+                           </h:form>    
+                        </div>
+                    </div>      
+                </div>
+               </div>                   
+               <!-- /.container-fluid -->
+            </section> 
+            
+            
+            <!-- Main content -->
+            <section class="content">
+               <div class="container-fluid">                
+                  <!-- /.row -->
+                  <div class="row">
+                      <c:forEach var="x" items="#{jobCategoryManagedBean.allJobCategory}">
+                     <div class="col-md-3">
+                        <div class="card">
+
+                           <div class="card-body">
+                               <center><h4>#{x.jobCategoryName}</h4></center>
+                           </div>
+                           <!-- /.card-body -->
+                            <div class="card-footer">
+<!--                           <button type="button"  class="btn btn-primary " action="#{jobCategoryManagedBean.getJobCategory(x.jobCategoryId)}" data-toggle="modal" data-target="#modal-default">UPDATE</button>                                                                                       -->
+                              <h:form>
+                               <h:commandButton action="#{jobCategoryManagedBean.getJobCategory(x.jobCategoryId)}"  class="btn btn-primary"  value="UPDATE"  />                                                   
+                               <h:commandButton action="#{jobCategoryManagedBean.removeCategory(x.jobCategoryId)}" class="btn btn-danger pull-right" value="DELETE" />
+                              </h:form>
+                            </div>
+                        </div>
+                     </div>  
+                    </c:forEach>    
+                  </div>               
+               </div>             
+            </section>
+         </div>
+
+         <!-- /.content-wrapper -->
+         <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+           <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+   </h:body>
+</html>
+

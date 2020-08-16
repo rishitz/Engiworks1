@@ -132,8 +132,8 @@ public class loginManagedBean {
          if(roles.contains("Admin"))
            {
                System.out.println("In admin");
-               request.getSession().setAttribute("admin", "Admin");
-              return "/AdminSite/DashBoard.xhtml?faces-redirect=true";
+               request.getSession().setAttribute("adminName",getUserName());
+              return "/adminSitePages/Dashboard.xhtml?faces-redirect=true";
            }
         //   else if(securityContext.isCallerInRole("Supervisor"))
        else if(roles.contains("User"))

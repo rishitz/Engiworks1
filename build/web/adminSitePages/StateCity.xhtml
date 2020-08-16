@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Engiworks</title>
+    </h:head>
+    <h:body>
+          <ui:include src="Header.xhtml" />
+        <div class="wrapper">
+          <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-5">
+                        <h1>States And Cities</h1>
+                        </div>
+                      
+                      <div class="col-sm-4">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myCityModal">+ Add City</button>
+                      </div>
+                     <div class="col-sm-3">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="Dashboard.xhtml">Home</a></li>
+                           <li class="breadcrumb-item active">States And Cities</li>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="modal fade" id="myCityModal" role="dialog">
+                <div class="modal-dialog">   
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add City</h4>
+                            <button type="button" class="close" data-dismiss="modal">x</button>        
+                        </div>
+                        <div class="modal-body">
+                            <h:form role="form">
+
+                              <div class="card-body">
+                                <div class="form-group">
+                                      <h:outputLabel value="State Name"></h:outputLabel>
+                                      <h:selectOneMenu value="#{adminOperationsBean.stateId}" class="form-control">
+                                          <f:selectItems var="item" value="#{adminOperationsBean.statelist}" itemValue="#{item.stateId}" itemLabel="#{item.stateName}"></f:selectItems>
+                                  </h:selectOneMenu>
+                                  </div>
+                                 <div class="form-group">
+                                    <h:outputLabel value="City Name"></h:outputLabel>
+                                    <h:inputText class="form-control" value="#{adminOperationsBean.cityName}"  required="" ></h:inputText>
+                                 </div>
+                                 <div class="form-group">
+                                     <h:inputHidden class="form-control" value="#{adminOperationsBean.cityId}"  required=""></h:inputHidden>
+                                 </div>                                
+                                 
+                              </div>
+                              <!-- /.card-body -->
+                              <div class="modal-footer">
+                                  <h:commandButton class="btn btn-primary pull-right" action="#{adminOperationsBean.addCity()}" type="submit" value="ADD" />
+                              </div>
+                           </h:form>    
+                        </div>
+                    </div>      
+                </div>
+               </div>
+
+
+                 
+               <!-- /.container-fluid -->
+            </section> 
+            <!-- Main content -->
+            <section class="content">
+               <div class="row">
+                  <div class="col-12">
+
+                     <!-- /.card -->
+                     <div class="card">
+
+                        <div class="card-body">
+                           <table id="example1" class="table table-bordered table-striped">
+                               
+                              <thead>
+                                 <tr>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Action</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                  <c:forEach var="x" items="#{adminOperationsBean.sclist}"> 
+                                 <tr>
+                                     <td>#{x.stateId.stateName}</td>
+                                     <td>#{x.cityName}</td>
+                                     <td>    
+                                    <h:form>
+                                        <h:commandLink class="btn btn-info" action="#{adminOperationsBean.getCity(x.cityId)}"><i class="fas fa-pencil-alt"></i>
+                                    Edit
+                                    </h:commandLink>
+                                        <h:commandLink class="btn btn-danger pull-right" action="#{adminOperationsBean.deleteCity(x.cityId)}"><i class="fas fa-trash"></i>
+                                    Delete
+                                    </h:commandLink>
+                                    </h:form></td>
+                                 </tr>
+                                     </c:forEach> 
+                              </tbody>
+                              <tfoot>
+                                 <tr>
+                                    <th>State</th>
+                                    <th>City</th>
+                                  <th>Action</th>
+                                 </tr>
+                              </tfoot>
+                           </table>
+                        </div>
+                        <!-- /.card-body -->
+                     </div>
+                     <!-- /.card -->
+                  </div>
+                  <!-- /.col -->
+               </div>
+               <!-- /.row -->
+            </section>
+            
+
+            <!-- /.content -->
+         </div>
+        
+                 <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+           <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+    </h:body>
+</html>
+

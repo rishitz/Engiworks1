@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Engiworks</title>        
+
+    </h:head>
+    <h:body>
+        <ui:include src="Header.xhtml" />
+        <div class="wrapper">
+          <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-12">
+                         <center><h1>Comments</h1></center>
+                     </div>
+
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+               <div class="row">
+                  <div class="col-12">
+
+                     <!-- /.card -->
+                     <div class="card">
+
+                        <div class="card-body">
+                           <table id="example1" class="table table-bordered table-striped">
+                               
+                              <thead>
+                                 <tr>
+                                    <th>From User</th>
+                                    <th>To User</th>
+                                    <th>Achievement</th>
+                                    <th>Comment</th>
+<!--                                    <th>Status</th>                                    -->
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                  <c:forEach var="x" items="#{adminOperationsBean.commentlist}"> 
+                                 <tr>
+                                     <td>#{x.fromUserId.userName}</td>
+                                     <td>#{x.toUserId.userName}</td>
+                                     <td>#{x.achievementId.title}</td>
+                                     <td>#{x.description}</td>                                     
+                                                                        
+                                 </tr>
+                                     </c:forEach> 
+                              </tbody>
+                               
+                              <tfoot>
+                                 <tr>
+                                    <th>From User</th>
+                                    <th>To User</th>
+                                    <th>Achievement</th>
+                                    <th>Comment</th>                                
+                                 </tr>
+                              </tfoot>
+                           </table>
+                        </div>
+                        <!-- /.card-body -->
+                     </div>
+                     <!-- /.card -->
+                  </div>
+                  <!-- /.col -->
+               </div>
+               <!-- /.row -->
+            </section>
+            
+
+            <!-- /.content -->
+         </div>
+        
+                 <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+           <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+         <!-- Control Sidebar -->
+         <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+         </aside>
+         <!-- /.control-sidebar -->
+      </div>
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 22px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 20px;
+  left: 8px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+    </h:body>
+</html>
+

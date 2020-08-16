@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tblrequirementbid")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblrequirementbid.findAll", query = "SELECT t FROM Tblrequirementbid t"),
     @NamedQuery(name = "Tblrequirementbid.findByRequirementBidId", query = "SELECT t FROM Tblrequirementbid t WHERE t.requirementBidId = :requirementBidId"),
@@ -168,7 +169,7 @@ public class Tblrequirementbid implements Serializable {
         this.userId = userId;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblbidassigned> getTblbidassignedCollection() {
         return tblbidassignedCollection;
     }

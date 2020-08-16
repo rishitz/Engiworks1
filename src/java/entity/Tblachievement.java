@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tblachievement")
-@XmlRootElement
+//@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tblachievement.findAll", query = "SELECT t FROM Tblachievement t"),
     @NamedQuery(name = "Tblachievement.findByAchievementId", query = "SELECT t FROM Tblachievement t WHERE t.achievementId = :achievementId"),
@@ -114,7 +115,7 @@ public class Tblachievement implements Serializable {
         this.createdDate = createdDate;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tbllikes> getTbllikesCollection() {
         return tbllikesCollection;
     }
@@ -139,7 +140,7 @@ public class Tblachievement implements Serializable {
         this.attechementId = attechementId;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Tblcomment> getTblcommentCollection() {
         return tblcommentCollection;
     }

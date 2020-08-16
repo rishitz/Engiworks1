@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Engiworks</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Header.xhtml" />
+        <div class="wrapper">
+             <div class="content-wrapper">
+            <section class="content">
+            <section class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+                     <div class="col-sm-6">
+                        <h1>Users</h1>
+                     </div>
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right"><!--
+                           <li class="breadcrumb-item"><a href="Dashboard.xhtml">Home</a></li>
+                           <li class="breadcrumb-item active">DataTables</li>-->
+                                       <form class="form-inline ml-3">
+               <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                  <div class="input-group-append">
+                     <button class="btn btn-navbar" type="submit">
+                     <i class="fas fa-search"></i>
+                     </button>
+                  </div>
+               </div>
+            </form>
+                        </ol>
+                     </div>
+
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body pb-0">
+          <div class="row d-flex align-items-stretch">
+                           
+              <!--C:FOREACH START FOR Tbluser-->
+              <c:forEach var="x" items="${adminOperationsBean.userlist}">
+            <div class="col-12 col-sm-6 col-md-4 align-items-stretch">
+              <div class="card bg-purple">
+                <div class="card-header text-muted border-bottom-0 ">
+<!--                  Digital Strategist-->
+                </div>
+                <div class="card-body pt-0 bg-black">
+                  <div class="row">
+                    <div class="col-7">
+                       <h2 class="lead"><b>${x[1]}</b></h2>
+                        <p class="text-sm"><b>About:</b> ${x[6]} </p>
+                      <ul class="ml-4 mb-0 fa-ul">
+                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address : #{x[4]}</li>
+                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-envelope"></i></span> Email : #{x[5]}</li>
+                      </ul>
+                    </div>
+                    <div class="col-5 text-center">
+                        <img src="dist/img/user8.jpg" height="128" width="128" alt="" class="img-circle img-fluid"/>
+                     </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="row">
+                      <div class="col">
+                      <h:form>
+                          <h:commandLink action="${adminOperationsBean.UserInfo(x[0])}" class="btn btn-sm btn-warning">            
+                            <i class="fas fa-user"></i> More Info
+                          </h:commandLink>
+                         </h:form>
+                     
+                      </div>
+                      
+                      <div class="col text-right">   
+                          
+                          <c:if  test="${x[8] == 1}"><h:form><h:commandButton action="#{adminOperationsBean.userSatusOnOf(x[0], 0)}" value="Active" class="btn btn-sm btn-success" /></h:form></c:if>
+                          <c:if  test="${x[8] == 0}"><h:form><h:commandButton action="#{adminOperationsBean.userSatusOnOf(x[0], 1)}" value="Block" class="btn btn-sm btn-danger" /></h:form></c:if>
+                         
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </c:forEach>
+<!--C:FOREACH END-->
+          </div>
+        </div>
+        <!-- /.card-body -->
+
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+                 </div>
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+               <b>Version</b> 3.0.3
+            </div>
+           <strong>Copyright @ 1997-2020 <a href="">Engiworks</a>.</strong> All rights reserved.
+         </footer>
+                 </div>
+        <style>
+            .rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+        </style>
+
+    </h:body>
+</html>
+

@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(Rest.AdminGenericResource.class);
         resources.add(Rest.registartionResource.class);
         resources.add(Rest.userResource.class);
         resources.add(client.RestFilter.class);
