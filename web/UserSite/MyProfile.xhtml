@@ -65,10 +65,10 @@
                         <a href="#profile" data-toggle="tab" aria-expanded="true">PROFILE</a>
                      </li>
                      <li class="">
-                        <a href="#applied" data-toggle="tab" aria-expanded="false">APPLIED JOBS</a>
+                        <a href="#applied" data-toggle="tab" aria-expanded="false">APPLIED PROJECT</a>
                      </li>
                      <li class="">
-                        <a href="#post" data-toggle="tab" aria-expanded="false">POST JOBS</a>
+                        <a href="#post" data-toggle="tab" aria-expanded="false">POST PROJECT</a>
                      </li>
 <!--                     <li class="">
                         <a href="#password" data-toggle="tab" aria-expanded="false">CHANGE PASSWORD</a>
@@ -79,7 +79,7 @@
                   <div class="tab-pane active" id="profile">
                      <div class="col-md-12">
                         <h:form class="form-horizontal candidate-single" enctype="multipart/form-data">
-                           <fieldset>
+                           
 <!--                              <div class="form-group">
                                  <div class="col-sm-4">
                                     <img src="images/my_profile.jpg" alt="my_profile" title="my_profile" class="img-responsive"/>
@@ -115,16 +115,19 @@
                                  </div>
     
                                  <div class="col-sm-8">
-                                     <div class="matter">
+<!--                                     <div class="matter">
                                        <label>USER Id</label>
                                        <span><h:inputText class="form-control" id="name" value="#{jobManagedBean.uid}"  required="" /></span>
-                                    </div>
+                                    </div>-->
                                      
                                      <div class="matter">
                                        <label>USER NAME</label>
                                        <span><h:inputText class="form-control"  value="#{jobManagedBean.username}"  required="" /></span>
                                     </div>
-                                     
+                                     <div class="matter">
+                                       <label>EMAIL</label>
+                                       <span><h:inputText class="form-control" id="email" value="#{jobManagedBean.email}"  required="" /></span>
+                                    </div>
                                  </div>
                               </div>
                                  
@@ -133,15 +136,7 @@
                               
                            </div>
                               
-                              <div class="form-group">
-                                  
-                                 <div class="col-sm-12">
-                                    <div class="matter">
-                                       <label>EMAIL</label>
-                                       <span><h:inputText class="form-control" id="email" value="#{jobManagedBean.email}"  required="" /></span>
-                                    </div>
-                                 </div>
-                              </div>
+                              
                               <div class="form-group">
                                  <div class="col-sm-12">
                                     <div class="matter">
@@ -181,7 +176,7 @@
                                   <h:commandButton type="submit" value="SAVE" action="#{jobManagedBean.updateUser()}" class="btn btn-primary btnus col-md-2"/>
                               </div>
                               
-                           </fieldset>
+                          
                         </h:form>
                      </div>
                   </div>

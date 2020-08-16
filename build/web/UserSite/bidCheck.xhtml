@@ -17,14 +17,14 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <!-- about-content start here -->
                         <div class="jobs-content">
-                            <h1>Job Detail</h1>
+                            <h1>Project Detail</h1>
                             <ul class="list-inline">
                                 <li>
                                     <a href="index-2.html">Home</a>
                                 </li>
                                 <li>></li>
                                 <li>
-                                    <a href="apply-job-form.html">Jobs</a>
+                                    <a href="apply-job-form.html">Projects</a>
                                 </li>
                             </ul>
                         </div>
@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs">
-                        <img src="images/p6.png" alt="p6" title="p6" class="img-responsive" />
+                        <img src="images/new/09.jpg" alt="p6" title="p6" class="img-responsive" />
                         <div class="left-side">
                             <ul class="list-unstyled">
                                 
@@ -71,11 +71,25 @@
                             </li>
                         </ul>
 
-                        <h5>Job Description</h5>
+                        <h5>Project Description</h5>
                         <p><span>#{achivementManagedBean.description}</span>
                         </p>
-                        PDF:
-                        <h4><span>#{achivementManagedBean.pdf}</span></h4>
+                        
+                                               <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-black">Project Details</button>
+    <div id="id02" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container" style="color:white"> 
+        <span onclick="document.getElementById('id02').style.display='none'" 
+        class="w3-button w3-display-topright">x</span>
+        <h2>Job Details</h2>
+      </header>
+      <div class="w3-container">
+<embed src="PDF/#{achivementManagedBean.pdf}" allowfullscreen="false" height='800px' width='880px' />
+      </div>
+  
+    </div>
+  </div>  
+                                               <h2><center><u>Project Bidders</u></center></h2><br/><br/>
                         <!--                        <button type="submit" class="btn btn-info">APPLY THIS JOB</button>-->
                         <div class="clearfix"></div>
 

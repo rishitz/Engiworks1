@@ -7,7 +7,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-16T13:10:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-08-16T22:51:47")
 @StaticMetamodel(Tblbidassigned.class)
 public class Tblbidassigned_ { 
 

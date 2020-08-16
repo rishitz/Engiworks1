@@ -17,14 +17,14 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <!-- about-content start here -->
                         <div class="jobs-content">
-                            <h1>Job Detail</h1>
+                            <h1>Project Detail</h1>
                             <ul class="list-inline">
                                 <li>
                                     <a href="index-2.html">Home</a>
                                 </li>
                                 <li>></li>
                                 <li>
-                                    <a href="apply-job-form.html">Jobs</a>
+                                    <a href="apply-job-form.html">Projects</a>
                                 </li>
                             </ul>
                         </div>
@@ -69,11 +69,11 @@
                             
                         </ul>
 
-                        <h5><b>Job Description :</b> #{achivementManagedBean.description}</h5>
+                        <h5><b>Project Description :</b> #{achivementManagedBean.description}</h5>
                         
                         
                         
-                        <button type="submit" class="btn btn-info">APPLY THIS JOB</button>
+                        <button type="submit" class="btn btn-info col-sm-12">APPLY FOR THIS PROJECT</button>
                         <div class="clearfix"></div>
                         <div class="job-form col-md-12 col-sm-12 col-xs-12">
                             <div class="border"></div>
@@ -84,10 +84,10 @@
                                 <c:choose>
                                     <c:when test="${achivementManagedBean.getAlistSize() == 0}">
                                         <h:form>
-                                            <fieldset>
+                                           
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
-                                                        <label>You Budget:</label>
+                                                        <label>Your Budget:</label>
                                                         
                                                         <h:inputText class="form-control" value="#{achivementManagedBean.bbud}"></h:inputText>
                                                         <!--                                 <input class="form-control" placeholder="Type your first name" id="input-name" value="" name="jobname" required="" type="text">-->
@@ -130,7 +130,7 @@
                                                     
                                                     <h:commandButton action="#{achivementManagedBean.addBid()}" value="Submit" class="btn btn-primary btnus"></h:commandButton> 
                                                 </div>
-                                            </fieldset>
+                                            
                                         </h:form>                                        
                                     </c:when>
                                     <c:when test="${achivementManagedBean.getAlistSize() > 0}">

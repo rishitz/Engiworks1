@@ -17,14 +17,14 @@
                <div class="col-md-12 col-sm-12 col-xs-12">
                   <!-- submit-job-content start here -->
                   <div class="submit-job-content">
-                     <h1>Submit a job</h1>
+                     <h1>Post Project</h1>
                      <ul class="list-inline">
                         <li>
                            <a href="Home.xhtml">Home</a>
                         </li>
                         <li>></li>
                         <li>
-                           <a href="submit-job.html">Submit a job</a>
+                           <a href="submit-job.html">Post Project</a>
                         </li>
                      </ul>
                   </div>
@@ -49,7 +49,7 @@
                            <div class="form-group">
                               
                               <div class="col-sm-12">
-                                 <label>Job Title</label>
+                                 <label>Project Title</label>
                                  <h:inputText class="form-control"  id="title" value="#{postJobManagedBean.title}"  required="" />
                               </div>
                            </div>
@@ -66,22 +66,21 @@
                               </div>
                            </div>
                            <div class="form-group">
-                              <div class="col-sm-6">
+                              <div class="col-sm-12">
                                  <label>Description</label>
                                  <h:inputTextarea class="form-control" id="desc" rows="10" value="#{postJobManagedBean.description}"  required=""></h:inputTextarea>
                               </div>
-                              <div class="col-sm-6">
-                                 <label>PDF</label>
+                              <div class="col-sm-12 fileUpload">
+                                  <center><label>PDF</label></center>
                                  
-                                 <h:inputFile id="file" value="#{postJobManagedBean.filename}"/>
+                                 <h:inputFile class="upload" id="file" value="#{postJobManagedBean.filename}"/>
                                    
                                 
-                                 <span>Max file size 2MB. Allowed file format jpg, gif, png.</span>	
                               </div>
                            </div>
 
                            <div class="button">
-                               <h:commandButton action="#{postJobManagedBean.addJob()}" type="submit" value="SUBMIT A JOB" class="btn btn-primary btnus"/>
+                               <h:commandButton action="#{postJobManagedBean.addJob()}" type="submit" value="POST" class="btn btn-primary btnus"/>
                            </div>
                         
                      </h:form>
@@ -96,6 +95,27 @@
       <!-- Footer start here -->
      
       <ui:include src="Footer.xhtml"></ui:include>
+      <style>
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    background-color: lightsteelblue;
+    
+    
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+</style>
    </h:body>
    <!-- Mirrored from ocsolutions.co.in/html/jobportal/submit-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 11:26:32 GMT -->
 

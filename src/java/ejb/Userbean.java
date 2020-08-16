@@ -170,7 +170,7 @@ public class Userbean implements UserbeanLocal {
     
     @Override
     public List<Object[]> HomeJob(int uid) {
-         return em.createNativeQuery("select * from tblrequirement r,tbluser u,tbljobcategory j where r.userId=u.userId AND u.jobCategoryId=j.jobCategoryId AND r.userId!='"+uid+"' LIMIT 3").getResultList();
+         return em.createNativeQuery("select * from tblrequirement r,tbluser u,tbljobcategory j where r.userId=u.userId AND u.jobCategoryId=j.jobCategoryId AND r.userId!='"+uid+"'").getResultList();
     }
 
     @Override

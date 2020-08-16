@@ -4,13 +4,38 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/Userbean.java</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/Rest/AdminGenericResource.java</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBeanLocal.java</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/loginManagedBean.java</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblattachement.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcity.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/client/AdminJerseyClient.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/Dashboard.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblgroup.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblreview.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/ViewComplaint.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/config/projectConfig.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblbidassigned.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblstate.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/adminProfile.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobcategory.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/Rest/AdminGenericResource.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobsubcategory.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/MoreInfoUser.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbllikes.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/achivementManagedBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/TblMessage.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblrequirementbid.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblnotification.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblusergroup.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/loginManagedBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBeanLocal.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbluser.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/Header.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblachievement.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/UserbeanLocal.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcomment.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblrequirement.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/adminOperationsBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcomplaint.java</file>
         </group>
     </open-files>
 </project-private>
