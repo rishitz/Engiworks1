@@ -29,7 +29,7 @@ public class jobClient {
 
     public jobClient(String token) {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        client.register(new RestFilter(token));
+        client.register(new  RestFilter(token));
         webTarget = client.target(BASE_URI).path("generic");
     }
     static {
@@ -46,7 +46,6 @@ public class jobClient {
             }
         });
     }
-
 
     public <T> T Viemore(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
@@ -142,6 +141,12 @@ public class jobClient {
 
     public void Like(Object requestEntity) throws ClientErrorException {
         webTarget.path("like").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T showHJob(Class<T> responseType, String uid, String jid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("showHJob/{0}/{1}", new Object[]{uid, jid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T alljob(Class<T> responseType) throws ClientErrorException {

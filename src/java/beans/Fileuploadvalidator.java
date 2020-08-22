@@ -29,7 +29,7 @@ public class Fileuploadvalidator implements Validator{
         
         if(!file.getContentType().endsWith("jpeg"))
         {
-            message1=new FacesMessage("select jpg");
+            message1=new FacesMessage("select only jpg format");
         }
  
 //        try {

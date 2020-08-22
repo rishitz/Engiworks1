@@ -15,6 +15,7 @@ import entity.Tblrequirement;
 import entity.Tblrequirementbid;
 import entity.Tblreview;
 import entity.Tblstate;
+import entity.Tbluser;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
@@ -40,7 +41,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("adminmastergeneric")
 @DeclareRoles({"Admin","User"})
-@RequestScoped
+//@RequestScoped
 public class AdminGenericResource {
    @EJB AdminBeanLocal adminBean;
     @Context
@@ -421,5 +422,57 @@ public class AdminGenericResource {
     {
 //        adminBean.postUpdateCategory(j.getJobCategoryId(),j.getJobCategoryName());
         adminBean.postUpdateCity(j.getCityId(), j.getCityName(), j.getStateId().getStateId());
+    }
+    
+        @RolesAllowed({"Admin","User"})
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getTotalReq")
+    public Object getTotalReq()
+    {
+        return adminBean.getTotalReq();
+    }
+    
+    @RolesAllowed({"Admin","User"})
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getTotalReqBid")
+    public Object getTotalReqBid()
+    {
+        return adminBean.getTotalBids();
+    }
+    @RolesAllowed({"Admin","User"})
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getTotalUsers")
+    public Object getTotalUsers()
+    {
+        return adminBean.getTotalUsers();
+    }
+    @RolesAllowed({"Admin","User"})
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getTotalTypes")
+    public Object getTotalTypes()
+    {
+        return adminBean.getTotalTypes();
+    }
+    
+    @RolesAllowed({"Admin","User"})
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("adminId/{uid}")
+    public Tbluser adminId(@PathParam("uid") int uid)
+    {
+          return adminBean.adminDetail(uid);
+    }
+    
+    @RolesAllowed({"Admin","User"})
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("updateAdmin")
+    public void updateAdmin(Tbluser u)
+    {
+        adminBean.updateAdmin(u.getUserId(), u.getUserName(),u.getCityId().getCityId(), u.getAddress(),u.getEmail(),u.getJobCategoryId().getJobCategoryId(),u.getProfileImage());
     }
 }

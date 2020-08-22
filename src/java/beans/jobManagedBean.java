@@ -14,6 +14,7 @@ import entity.Tblrequirement;
 import entity.Tbluser;
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +23,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +37,8 @@ import javax.ws.rs.core.Response;
  * @author sebatsian
  */
 @Named(value = "jobManagedBean")
-@RequestScoped
-public class jobManagedBean {
+@SessionScoped
+public class jobManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
@@ -244,6 +246,7 @@ public class jobManagedBean {
         }
         //userbean.updateUser(userName, cid, address, email, jid);
         System.out.println("update Id"+uid);
+        System.out.println("name"+username);
         Tbluser u=new Tbluser();
         u.setUserId(uid);
         u.setUserName(username);
@@ -252,7 +255,7 @@ public class jobManagedBean {
         u.setJobCategoryId(new Tbljobcategory(jid));
        u.setAddress(address);
        u.setProfileImage(f1);
-        jc.updateUser(u);
+       jc.updateUser(u);
     }
     
     public List<Object[]> userPostJob()

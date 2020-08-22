@@ -12,6 +12,7 @@ import entity.Tblachievement;
 import entity.Tblbidassigned;
 import entity.Tblcomment;
 import entity.Tblcomplaint;
+import entity.Tbljobcategory;
 import entity.Tbllikes;
 import entity.Tblrequirement;
 import entity.Tblrequirementbid;
@@ -44,8 +45,8 @@ public class achivementManagedBean implements Serializable {
 
     @EJB
     private UserbeanLocal userbean;
-    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid,jobid;
-    private String title, description,comment,complaint,review,username,email,pdf,rlist,message;
+    private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid,jobid,jobcid;
+    private String title, description,comment,complaint,review,username,email,pdf,rlist,message,achmsg;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -59,11 +60,45 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> bidderlist;
     List<Object[]> userlist;
     List<Object[]> mlist;
+    List<Object[]> serachjob;
+    Collection<Tbljobcategory> jclist;
     
     Object reviewlist;
     Object likelist;
     private String acdescription;
     private int avg=0;
+
+    public List<Object[]> getSerachjob() {
+        return serachjob;
+    }
+
+    public void setSerachjob(List<Object[]> serachjob) {
+        this.serachjob = serachjob;
+    }
+
+    public int getJobcid() {
+        return jobcid;
+    }
+
+    public void setJobcid(int jobcid) {
+        this.jobcid = jobcid;
+    }
+
+    public Collection<Tbljobcategory> getJclist() {
+        return jclist;
+    }
+
+    public void setJclist(Collection<Tbljobcategory> jclist) {
+        this.jclist = jclist;
+    }
+
+    public String getAchmsg() {
+        return achmsg;
+    }
+
+    public void setAchmsg(String achmsg) {
+        this.achmsg = achmsg;
+    }
 
     public int getJobid() {
         return jobid;
@@ -449,12 +484,15 @@ public class achivementManagedBean implements Serializable {
      */
     @PostConstruct
     public void init() {
+        jclist=userbean.getalljob();
         lobj = new ArrayList<Object[]>();
         jlist=new ArrayList<Object[]>();
         blist=new ArrayList<Object[]>();
         bidderlist=new ArrayList<Object[]>();
         reviewlist=new Object();
         likelist=new Object();
+        serachjob=new ArrayList<Object[]>();
+       
 //        this.getJobData();
     }
 
@@ -489,7 +527,13 @@ public class achivementManagedBean implements Serializable {
         //for get Info
         int ud = u1.getUserId();
         System.out.println("title" + title);
-        userbean.addAchivement(ud, title, description, f1);
+        System.out.println("filename"+f1);
+       
+        
+        userbean.addAchivement(ud,title, description, f1);
+         title=" ";
+        description=" ";
+        achmsg="you add achivement";
 
     }
 
@@ -591,6 +635,8 @@ public class achivementManagedBean implements Serializable {
         rb.setUserId(new Tbluser(ud));
         rb.setRequirementId(new Tblrequirement(jobId));
         jc.addBid(rb);
+        bdesc=" ";
+        
         return "/UserSite/MyProfile.xhtml?faces-redirect=true";
 
     }
@@ -1070,10 +1116,36 @@ System.out.println("Bider===="+bidderId);
         };
         Reviewlist = res.readEntity(rb);
         
-        return Reviewlist;  
+        return Reviewlist;      
+    }
+    
+    
+    
+    public String homeJob()
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        System.out.println("jobid"+jobcid);
         
+        Response res = jc.showHJob(Response.class,uid+"",jobcid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+       
+        serachjob= (List<Object[]>)res.readEntity(rb);
+        
+        return "/UserSite/SearchProject.xhtml?faces-redirect=true";   
         
     }
+    
+    
 //     
     
     

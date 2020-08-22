@@ -83,7 +83,7 @@ public class userResource {
         return ul.alljob();
     }
     
-    @RolesAllowed("User")
+    @RolesAllowed({"Admin","User"})
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("getUser/{userName}")
@@ -388,6 +388,15 @@ public class userResource {
     public List<Object[]> showMessages(@PathParam("jid") int jid)
     {
         return ul.message(jid);
+    }
+    
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("showHJob/{uid}/{jid}")
+    public List<Object[]> showHJob(@PathParam("uid") int uid,@PathParam("jid") int jid)
+    {
+        return ul.homeSerch(uid, jid);
     }
     
     

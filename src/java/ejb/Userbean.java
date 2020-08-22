@@ -94,6 +94,7 @@ public class Userbean implements UserbeanLocal {
 //         FacesContext context=FacesContext.getCurrentInstance();
 //        String username=(String)context.getExternalContext().getSessionMap().get("userName");
 //        System.out.println("uname"+username);
+System.out.println("In ejb "+uname);
         Tbluser u=(Tbluser)em.createNamedQuery("Tbluser.findByUserName").setParameter("userName",uname).getSingleResult();
         return u;
     }
@@ -157,9 +158,10 @@ public class Userbean implements UserbeanLocal {
         at.setAttachmenet(attachment);
         at.setUserId(new Tbluser(u2.getUserId()));
         em.persist(at);
+        System.out.println("attachment"+attachment);
         em.flush();
         int atid=at.getAttachementId();
-        System.out.println("attachment"+atid);
+        
         ac.setAttechementId(new Tblattachement(atid));
         ac.setDescription(description);
         ac.setTitle(title);
@@ -412,6 +414,11 @@ public class Userbean implements UserbeanLocal {
     public List<Object[]> message(int jid) {
                  System.out.println("in jid"+jid);      
         return em.createNativeQuery("SELECT * FROM tblMessage m,tbluser u,tblrequirement r WHERE m.fromUserId=u.userId AND m.requirementId=r.requirementId AND m.requirementId="+jid+" ORDER BY m.messageId ASC").getResultList();
+    }
+
+    @Override
+    public List<Object[]> homeSerch(int uid, int jid) {
+        return em.createNativeQuery("select * from tblrequirement r,tbluser u WHERE u.userId=r.userId and u.userId!="+uid+" AND r.status=1 and u.jobcategoryId="+jid+"").getResultList();
     }
     
     

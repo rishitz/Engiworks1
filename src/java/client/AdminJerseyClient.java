@@ -32,23 +32,16 @@ public class AdminJerseyClient {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         client.register(new RestFilter(token));
         webTarget = client.target(BASE_URI).path("adminmastergeneric");
-    }static {
-        //for localhost testing only
-        javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
-                new javax.net.ssl.HostnameVerifier() {
-
-            public boolean verify(String hostname,
-                    javax.net.ssl.SSLSession sslSession) {
-                if (hostname.equals("localhost")) {
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     public void updateCity(Object requestEntity) throws ClientErrorException {
         webTarget.path("updateCity").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T getTotalReq(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("getTotalReq");
+        return resource.request().get(responseType);
     }
 
     public <T> T UserGotjob(Class<T> responseType, String uid) throws ClientErrorException {
@@ -70,7 +63,7 @@ public class AdminJerseyClient {
     public <T> T getAllreview(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("getAllreview");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request().get(responseType);
     }
 
     public void deleteJob(String jid) throws ClientErrorException {
@@ -97,6 +90,24 @@ public class AdminJerseyClient {
         WebTarget resource = webTarget;
         resource = resource.path("getAlljobSubCategory");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getTotalTypes(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("getTotalTypes");
+        return resource.request().get(responseType);
+    }
+
+    public <T> T getTotalReqBid(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("getTotalReqBid");
+        return resource.request().get(responseType);
+    }
+
+    public <T> T adminId(Class<T> responseType, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("adminId/{0}", new Object[]{uid}));
+        return resource.request().get(responseType);
     }
 
     public <T> T getUserReview(Class<T> responseType, String uid) throws ClientErrorException {
@@ -164,6 +175,10 @@ public class AdminJerseyClient {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("getUserAppliedJob/{0}", new Object[]{uid}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void updateAdmin(Object requestEntity) throws ClientErrorException {
+        webTarget.path("updateAdmin").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void addJobSub(Object requestEntity) throws ClientErrorException {
@@ -240,6 +255,12 @@ public class AdminJerseyClient {
 
     public void updateCStatus(String r, String s) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("updateCStatus/{0}{1}", new Object[]{r, s})).request().post(null);
+    }
+
+    public <T> T getTotalUsers(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("getTotalUsers");
+        return resource.request().get(responseType);
     }
 
     public void updateUStatus(String r, String s) throws ClientErrorException {

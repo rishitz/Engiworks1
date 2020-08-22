@@ -62,7 +62,7 @@ public interface AdminBeanLocal {
         Collection<Tblrequirement> getAllRequirement();
         List<Object[]> getUserPostedJob(int uid);
         public void updateReqStatus(int rid,int s);
-        Object getTotalReq();
+        
         
     //--------------------------------------------------------------------------RequirementBid
             Collection<Tblrequirementbid> getAllBid();
@@ -89,6 +89,13 @@ public interface AdminBeanLocal {
         public void postUpdateState(int stid,String stn);
         public Tblstate getUpdateState(int stid);
         
+        Object getTotalReq();
+        Object getTotalUsers();
+        Object getTotalBids();
+        Object getTotalTypes();
+        
+        public Tbluser adminDetail(int aid);
+    public void updateAdmin(int aid,String userName, int cityId, String address, String email, int jobCategoryId,String picture);
     //UserSearch
         Collection<Tbluser> searchUser(String uname, String city, String type);
 }

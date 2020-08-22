@@ -235,9 +235,6 @@ return em.createNativeQuery("SELECT u.userName,c.complaint,c.createdDate FROM tb
         return em.createNativeQuery("SELECT u.userName,r.title,r.description,r.budget,r.duration FROM tbluser u,tblrequirement r WHERE u.userId = r.userId  AND r.userId ='"+uid+"'").getResultList();
     }
     
-    @Override
-    public Object getTotalReq() {
-    return em.createNativeQuery("select Count(requirementId) from tblrequirement").getSingleResult();    }
     
 //----------------------------------------------------------------------------------- RequirementBid
     @Override
@@ -403,4 +400,46 @@ return em.createNativeQuery("SELECT u.userName,c.complaint,c.createdDate FROM tb
         em.merge(c);    
     }
 
+        @Override
+    public Object getTotalTypes() {
+        return em.createNativeQuery("select Count(jobCategoryId) from tbljobcategory").getSingleResult();
     }
+
+    @Override
+    public Object getTotalBids() {
+return em.createNativeQuery("select Count(requirementBidId) from tblrequirementbid").getSingleResult();    }
+
+    @Override
+    public Object getTotalUsers() {
+return em.createNativeQuery("select Count(userId) from tblusergroup where groupId=2").getSingleResult();    }
+
+      @Override
+    public Object getTotalReq() {
+    return em.createNativeQuery("select Count(requirementId) from tblrequirement").getSingleResult();   
+    }
+    
+        @Override
+    public Tbluser adminDetail(int aid) {
+        
+         return em.find(Tbluser.class,aid);
+    }
+        @Override
+    public void updateAdmin(int aid, String userName, int cityId, String address, String email, int jobCategoryId,String picture) {
+        Tbluser u=em.find(Tbluser.class, aid);
+        Tblcity c=em.find(Tblcity.class, cityId);
+        Collection<Tbluser> ulist=c.getTbluserCollection();
+        Tbljobcategory j=em.find(Tbljobcategory.class, jobCategoryId);
+        Collection<Tbluser> jlist=j.getTbluserCollection();
+        u.setUserName(userName);
+        u.setCityId(c);
+        u.setAddress(address);
+        u.setEmail(email);
+        u.setJobCategoryId(j);
+        u.setProfileImage(picture);
+        em.merge(u);
+        ulist.add(u);
+        jlist.add(u);
+        em.merge(c);
+        em.merge(j);
+    }
+}

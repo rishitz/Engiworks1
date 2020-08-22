@@ -34,11 +34,27 @@ public class postJobManagedBean {
     @EJB
     private UserbeanLocal userbean;
     
-    private int uid,duration;
-    private String title,description,pdf;
+    private int uid,duration,jobcid;
+    private String title,description,pdf,message;
      private float budget;
    private Part filename;
    jobClient jc;
+
+    public int getJobcid() {
+        return jobcid;
+    }
+
+    public void setJobcid(int jobcid) {
+        this.jobcid = jobcid;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public UserbeanLocal getUserbean() {
         return userbean;
@@ -151,8 +167,17 @@ public class postJobManagedBean {
         
         r.setPdf(f1);
         jc.addJob(r);
+        title=" ";
+        description=" ";
+        message="Successfully add this job";
         
         
+        
+    }
+    public void homejob()
+    {
+        System.out.println("jobid"+jobcid);
+
     }
     
     

@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Header.xhtml"></ui:include>
+       <div id="featured">
+         <div class="container">
+            <div class="row">
+               <!-- featured-jobs start here -->
+               <div class="featured-jobs">
+                  <h1>FEATURED PROJECTS</h1>
+                  <div class="border"></div>
+                  <div class="border1"></div>
+               </div>
+               <!-- featured-jobs end here -->
+               <c:forEach var="x" items="${achivementManagedBean.serachjob}">
+                   
+               <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="product-box profile">
+                     <div class="image">
+                        <a href="jobs.html">
+                        <img class="img-responsive" src="images/new/09.jpg" alt="p1" title="p1"/>
+                        </a>	
+                        <div class="buttons">
+                           <div class="open-down">
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-link" aria-hidden="true"></i>
+                              </button>
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="matter">
+                        <h1>${x[2]}</h1>
+                        <ul class="list-inline">
+                           <li>
+                               <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> ${x[6]}</a>
+                           </li>
+                           
+                        </ul>
+                        <p>${x[3]}</p>
+                        
+                     </div>
+                      <h:form>
+                      <h:commandLink action="${achivementManagedBean.sample(x[0])}" value="ViewMore" class="btn btn-info"/>
+                     </h:form>
+                     </div>
+               </div>
+                   
+                   
+                   
+               </c:forEach>
+<!--               <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="product-box">
+                     <div class="image">
+                        <a href="jobs.html">
+                        <img class="img-responsive" src="images/new/02.jpg" alt="p2" title="p2"/>
+                        </a>	
+                        <div class="buttons">
+                           <div class="open-down">
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-link" aria-hidden="true"></i>
+                              </button>
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="matter">
+                        <h1>IT Department Manager</h1>
+                        <ul class="list-inline">
+                           <li>
+                              <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                           </li>
+                           <li>
+                              <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                           </li>
+                        </ul>
+                        <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                     </div>
+                     <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html'">VIEW MORE</button>
+                     <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
+                  </div>
+               </div>
+               <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="product-box">
+                     <div class="image">
+                        <a href="jobs.html">
+                        <img class="img-responsive" src="images/new/03.jpg" alt="p3" title="p3"/>
+                        </a>	
+                        <div class="buttons">
+                           <div class="open-down">
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-link" aria-hidden="true"></i>
+                              </button>
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="matter">
+                        <h1>IT Department Manager</h1>
+                        <ul class="list-inline">
+                           <li>
+                              <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                           </li>
+                           <li>
+                              <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                           </li>
+                        </ul>
+                        <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                     </div>
+                     <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html'">VIEW MORE</button>
+                     <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
+                  </div>
+               </div>
+               <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="product-box">
+                     <div class="image">
+                        <a href="jobs.html">
+                        <img class="img-responsive" src="images/new/04.jpg" alt="p4" title="p4"/>
+                        </a>	
+                        <div class="buttons">
+                           <div class="open-down">
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-link" aria-hidden="true"></i>
+                              </button>
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="matter">
+                        <h1>IT Department Manager</h1>
+                        <ul class="list-inline">
+                           <li>
+                              <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> Full Time</a>
+                           </li>
+                           <li>
+                              <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Chandigarh</a>
+                           </li>
+                        </ul>
+                        <p>There are many variations of passages of lorem Ipsum available [...]</p>
+                     </div>
+                     <button type="button" class="btn btn-info" onclick="location.href='list-detail-page.html'">VIEW MORE</button>
+                     <button type="button" class="btn btn-info" onclick="location.href='apply-job-form.html'">APPLY NOW</button>
+                  </div>
+               </div>-->
+            </div>
+         </div>
+      </div>
+        <ui:include src="Footer.xhtml"></ui:include>
+    </h:body>
+</html>
+

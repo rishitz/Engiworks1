@@ -50,11 +50,19 @@ public class registrationManagedBean implements Serializable{
      */
     
     private int jid,cid,status,uid;
-    private String userName,gender,address,email,password,chngpwd,message;
+    private String userName,gender,address,email,password,chngpwd,message,successmsg;
     private Collection<Tbljobcategory> jlist;
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
     private Part filename;
+
+    public String getSuccessmsg() {
+        return successmsg;
+    }
+
+    public void setSuccessmsg(String successmsg) {
+        this.successmsg = successmsg;
+    }
 
     public String getMessage() {
         return message;
@@ -178,7 +186,7 @@ public class registrationManagedBean implements Serializable{
         clist=userbean.getallcity();
         
     }
-    public String adduser()
+    public void adduser()
     {
          String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
        String f1=null;
@@ -202,7 +210,13 @@ public class registrationManagedBean implements Serializable{
         u.setStatus(status);
         u.setProfileImage(f1);
         rc.addUser(u);
-        return "/UserSite/Login.xhtml?faces-redirect=true";
+        successmsg="you are successfully Register with us";
+        System.out.println("register"+successmsg);
+        userName=" ";
+        gender=" ";
+        email=" ";
+        address=" ";
+        //return "/UserSite/Login.xhtml?faces-redirect=true";
         
     }
      public List<Object[]> checkDetails()

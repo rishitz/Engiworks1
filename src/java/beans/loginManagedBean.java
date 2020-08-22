@@ -7,9 +7,11 @@ package beans;
 
 //import client.userRestClient;
 import entity.Tbluser;
+import java.io.Serializable;
 import java.util.Set;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 import javax.faces.context.FacesContext;
@@ -32,8 +34,8 @@ import javax.ws.rs.core.Response;
  * @author sebatsian
  */
 @Named(value = "loginManagedBean")
-@RequestScoped
-public class loginManagedBean {
+@SessionScoped
+public class loginManagedBean implements Serializable{
 
     /**
      * Creates a new instance of loginManagedBean
@@ -113,7 +115,7 @@ public class loginManagedBean {
         request.getSession().setAttribute("logged-group", ""); 
         
         Credential credential = new UsernamePasswordCredential(userName, new Password(password));
-        AuthenticationStatus status= sc.authenticate(request, response, withParams().credential(credential));
+        AuthenticationStatus status= sc.authenticate(request,response, withParams().credential(credential));
             
         System.out.println("status"+status);                  
        if (status.equals(SEND_CONTINUE)) {
@@ -153,7 +155,8 @@ public class loginManagedBean {
         catch (Exception e)
         {
              message = " Either user or password is wrong !!!";
-              e.printStackTrace();
+             //System.out.println("error"+message);
+              //e.printStackTrace();
         }
 //        
       return "/UserSite/Login.xhtml?faces-redirect=true";

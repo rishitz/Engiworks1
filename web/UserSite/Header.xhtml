@@ -54,17 +54,15 @@
                               <a href="Home.xhtml">HOME</a>
                            </li>
                            <li class="dropdown">
-                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">JOBS</a>
+                              <a data-toggle="dropdown" class="dropdown-toggle" href="JobRequirementForm.xhtml">PROJECT</a>
                               <div class="dropdown-menu animated fadeInDown">
                                  <div class="dropdown-inner">
                                     <ul class="list-unstyled">
                                         <li>
-                                          <a href="PostJob.xhtml">Post Job</a>
+                                          <a href="PostJob.xhtml">Post PROJECT</a>
                                        </li>
                                          
-                                         <li>
-                                          <a href="#">Manage Job</a>
-                                       </li>
+                                         
                                     </ul>
                                  </div>
                               </div>
@@ -78,12 +76,7 @@
                                           <a href="mannageJob.xhtml"> Manage Task</a>
                                        </li>
                                          
-                                         <li>
-                                          <a href="#">Manage Bidders</a>
-                                       </li>
-                                         <li>
-                                          <a href="#">My Active Bid</a>
-                                       </li>
+                                         
                                     </ul>
                                  </div>
                               </div>
@@ -132,8 +125,9 @@
     <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:1100px">
 
       <div class="w3-center"><br/>
+          
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">x</span>
-        <img src="images/cand-1.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"/>
+       
       </div>
 
       <form class="w3-container" action="/action_page.php">
@@ -153,10 +147,12 @@
                    <div class="comment-detail"><b>
                     <c:forEach var="x" items="${achivementManagedBean.notification()}">
            ${x[7]}  "${x[1]}"<br/>
+           ${x[15]}
+          
         </c:forEach>
         
         <c:forEach var="u" items="${achivementManagedBean.showBiddetails()}">
-           You get job " ${u[6]} ".
+           You got this job: " ${u[6]} ".<br/>
         </c:forEach>
                        </b></div>
         

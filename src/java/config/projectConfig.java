@@ -18,7 +18,7 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 @DatabaseIdentityStoreDefinition(
         dataSourceLookup = "engi1_jndi",
         callerQuery = "select password from tbluser where userName = ?",
-        groupsQuery = "select groupName from tbluser u,tblgroup g,tblusergroup ug where ug.userId = u.userId and ug.groupId = g.groupId and u.userName = ?",
+        groupsQuery = "select groupName from tbluser u,tblgroup g,tblusergroup ug where ug.userId = u.userId and ug.groupId = g.groupId and u.userName =? AND u.status=1",
         hashAlgorithm = Pbkdf2PasswordHash.class,
         priority = 30
 )

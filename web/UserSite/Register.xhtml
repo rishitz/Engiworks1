@@ -196,7 +196,8 @@
             </div>
          </div>
       </div>
-      <!-- login end here -->
+      <br/>
+      <center>#{registrationManagedBean.successmsg}<a href="Login.xhtml">Click here to Login</a></center>      <!-- login end here -->
       <!-- login-form start here -->
       <div id="login-form">
          <div class="container">
@@ -212,7 +213,19 @@
                            <div class="form-group">
                               <div class="col-sm-12">
                                  <label>Username</label>
-                                 <h:inputText class="form-control"  value="#{registrationManagedBean.userName}"  required="true"/>
+                                  <p:inputText id="uname" required="true" label="uname" class="form-control"
+		requiredMessage="Please enter alphabets upto 10 characters."
+		validatorMessage="Please enter alphabets upto 10 characters."
+                value="#{registrationManagedBean.userName}">
+
+	  <f:validateRegex
+		pattern="^[_A-Za-z]{10}$" />
+
+	</p:inputText>
+	<p:watermark for="uname" value="" />
+	<p:message for="uname"/>
+                                 
+                                 
                                  
                               </div>
                            </div>
@@ -221,8 +234,8 @@
                                  <label>Email</label>
 <!--                                 <h:inputText class="form-control" id="input-email"  value=""  required=""/>-->
                                  <p:inputText id="email" required="true" label="email" class="form-control"
-		requiredMessage="Please enter your email address."
-		validatorMessage="Invalid email format"
+		requiredMessage="Please enter valid Email address."
+		validatorMessage="Please enter valid Email address."
                 value="#{registrationManagedBean.email}">
 
 	  <f:validateRegex
@@ -289,7 +302,8 @@
                               </div>
                                       
                            </div>
-                            <p> <h:messages id="messages1"/></p>
+                            
+                            <p> <h:messages style="color: red" id="messages1"/></p>
                            <div class="form-group">
                               <div class="col-sm-12 confirmation">
                                  <label>
