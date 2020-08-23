@@ -67,6 +67,8 @@ public interface UserbeanLocal {
      List<Object[]> message(int jid);
      List<Object[]> homeSerch(int uid,int jid);
      
+     //SELECT * FROM `tblrequirement` WHERE title LIKE '%con%'
+     
      //select * from tblrequirement r,tbluser u,tbljobcategory j WHERE u.jobcategoryId=u.jobcategoryId AND r.userId=u.userId AND j.jobcategoryId=5 and r.status=1 AND u.userId!=18
      
      //SELECT *from tbluser u,tblrequirement r,tblbidassigned b WHERE u.userid=b.userId AND r.requirementId=b.requirementId AND b.requirementId=3 AND b.userId=21

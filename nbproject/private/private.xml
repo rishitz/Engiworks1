@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblcity.java</file>
-            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/client/AdminJerseyClient.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/Dashboard.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/client/AdminJerseyClient.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblreview.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/ViewComplaint.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Login.xhtml</file>
@@ -25,17 +25,20 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblnotification.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/loginManagedBean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBean.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/details.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/Userbean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblgroup.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/registrationManagedBean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/config/projectConfig.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/PostJob.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Home1.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/postJobManagedBean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Register.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobcategory.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/Rest/AdminGenericResource.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobsubcategory.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbllikes.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/notification.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/SearchProject.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/bidCheck.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblrequirementbid.java</file>

@@ -216,6 +216,7 @@ public class registrationManagedBean implements Serializable{
         gender=" ";
         email=" ";
         address=" ";
+        //successmsg=" ";
         //return "/UserSite/Login.xhtml?faces-redirect=true";
         
     }
@@ -238,7 +239,7 @@ public class registrationManagedBean implements Serializable{
      {        
          return this.checkDetails().size();
      }
-   public void changePass()
+   public String changePass()
    {
        System.out.println("bbye");
        System.out.println("uid===="+uid);
@@ -251,6 +252,7 @@ public class registrationManagedBean implements Serializable{
        message="SuccessFully changed ps.";
        this.userName=" ";
        this.email=" ";
+       return "/UserSite/Login.xhtml?faces-redirect=true";
        
    }
 }

@@ -506,7 +506,7 @@ public class achivementManagedBean implements Serializable {
     }
 
     public void addAchivemnet() {
-        String folder = "/home/sebatsian/NetBeansProjects/Engiworks1/Achivement";
+        String folder = "/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/PDF";
         String f1 = null;
         try (InputStream input = filename.getInputStream()) {
             f1 = filename.getSubmittedFileName();
@@ -783,7 +783,8 @@ public class achivementManagedBean implements Serializable {
         //System.out.println("rlist====="+ri);
         likelist=re.readEntity(ltype);
         System.out.println("Likes==="+likelist.toString());
-        System.out.println("RList : "+reviewlist.toString());
+        //System.out.println("RList : "+reviewlist.toString());
+        //System.out.println("Manage Bidder in function"+rid+","+uid);
         return "/UserSite/manageBidder.xhtml?faces-redirect=true";
     }
     public void Comment(int uid,int aid)

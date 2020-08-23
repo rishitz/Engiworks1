@@ -137,7 +137,7 @@ public class postJobManagedBean {
     
     public void addJob()
     {
-        String folder="/home/sebatsian/NetBeansProjects/Engiworks1/PDF";
+        String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/projectPDF";
        String f1=null;
         try(InputStream input=filename.getInputStream()){
             f1=filename.getSubmittedFileName();
@@ -169,6 +169,7 @@ public class postJobManagedBean {
         jc.addJob(r);
         title=" ";
         description=" ";
+        System.out.println("Title"+title);
         message="Successfully add this job";
         
         

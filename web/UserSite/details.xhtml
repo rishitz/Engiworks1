@@ -50,14 +50,10 @@
                               <a href="Home.xhtml">HOME</a>
                            </li>
                           
-                            <li>                             
-                               <a href="About.xhtml">About Us  </a>                                
+                            
+                           <li >
+                              <a href="Login.xhtml">LOGIN</a>
                            </li>
-
-                           <li>
-                             <a href="Contact.xhtml">Contact us </a>
-                           </li>
-                           
                            
                         </ul>
                      </div>
@@ -87,6 +83,8 @@
                      </li>-->
                   </ul>
                </div>
+                
+                <h3>${registrationManagedBean.message}</h3>
                <div class="tab-content">
                   <div class="tab-pane active" id="profile">
 
@@ -111,7 +109,7 @@
                                </div>
                                <c:choose>
                                       <c:when test="${registrationManagedBean.checkDet()==0}">
-                                                Wrng uname and email..
+                                                Wrong username or email..
                
                
                                        </c:when>
@@ -121,13 +119,13 @@
                                  <div class="col-sm-12">
                                     <label>CONFIRM PASSWORD
                                     </label>
-                                    <h:inputText class="form-control" value="${registrationManagedBean.chngpwd}" />
+                                     <h:inputSecret class="form-control" value="${registrationManagedBean.chngpwd}" />
                                  </div>
                               </div>
                               <div class="button">
                                   <h:commandButton action="${registrationManagedBean.changePass()}"  value="SAVE" class="btn btn-primary btnus"/>
                               </div>
-                                             ${registrationManagedBean.message}
+                                             
                                </c:when>
                                </c:choose>
                            </fieldset>

@@ -225,8 +225,7 @@ System.out.println("In ejb "+uname);
         ba.setUserId(new Tbluser(u1.getUserId()));
         ba.setRequirementId(new Tblrequirement(re.getRequirementId()));
         //Tblrequirement r=new  Tblrequirement();
-        re.setStatus(1);
-        
+        re.setStatus(0);       
         em.persist(ba);
     }
 
@@ -243,7 +242,7 @@ System.out.println("In ejb "+uname);
     }
 
     @Override
-    public List<Object[]> ManageBidders(int uid, int rid) {
+    public List<Object[]> ManageBidders(int uid,int rid) {
        // SELECT * FROM tbluser u,tblbidassigned b WHERE u.userId=b.userId AND b.requirementId=1
         return em.createNativeQuery("select * from tbluser u,tblrequirementbid r,tblachievement a,tblattachement t where u.userId=r.userId AND a.userId=u.userId and a.attechementId=t.attachementId and r.requirementId='"+rid +"' AND a.userId='"+uid +"' ").getResultList();
     }
