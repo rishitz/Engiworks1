@@ -82,7 +82,15 @@ public class adminOperationsBean implements Serializable {
     List<Object[]> userlist;
     Object Totalreqlist;
     private Part filename;
-    private String profile, Address;
+    private String profile, Address,dp;
+
+    public String getDp() {
+        return dp;
+    }
+
+    public void setDp(String dp) {
+        this.dp = dp;
+    }
 
     public Part getFilename() {
         return filename;
@@ -769,6 +777,7 @@ public class adminOperationsBean implements Serializable {
 
     public void getadminDetails() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest req1 = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 //        HttpSession session=req.getSession(false);
         String aname = (String) req.getSession().getAttribute("adminName");
         System.out.println("session name" + aname);
@@ -792,6 +801,7 @@ public class adminOperationsBean implements Serializable {
         jobCatName = u2.getJobCategoryId().getJobCategoryName();
         CityName = u2.getCityId().getCityName();
         Gender = u2.getGender();
+        req1.getSession().setAttribute("dp",profile);
         System.out.println("Uid & Name" + UserId + UserName);
 
     }
@@ -799,6 +809,7 @@ public class adminOperationsBean implements Serializable {
     public void updateAdmin() {
 //        String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String folder = "/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
         String f1 = null;
         try (InputStream input = filename.getInputStream()) {
@@ -819,7 +830,7 @@ public class adminOperationsBean implements Serializable {
         u.setAddress(Address);
         u.setProfileImage(f1);
         a.updateAdmin(u);
-        
+        req.getSession().setAttribute("dp",f1);
         //getadminDetails();
 
     }
@@ -838,6 +849,8 @@ public class adminOperationsBean implements Serializable {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = req.getSession(false);
         adminname = (String) session.getAttribute("adminName");
+        dp=(String)session.getAttribute("dp");
+        System.out.println("dp"+dp);
         a = new AdminJerseyClient(token);
         jc = new jobClient(token);
         clist = new ArrayList<>();

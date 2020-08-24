@@ -142,7 +142,7 @@ public class loginManagedBean implements Serializable{
            {
                System.out.println("In user");
                //   System.out.println(getUserName());
-               request.getSession().setAttribute("userName", getUserName());
+               request.getSession().setAttribute("userName",getUserName());
                 //storesession();
                    //System.out.println("beans.loginManagedBean.login()"+getUserName());
                    return "/UserSite/Home.xhtml?faces-redirect=true";

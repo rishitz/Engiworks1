@@ -94,6 +94,7 @@
             <div class="row">
                      <div class="blog-detail">       
                          <c:forEach var="x" items="${achivementManagedBean.allBidderList()}">
+                             <c:if test="${x[15]==1}">
                         <div class="commentbox col-md-12 col-sm-12 col-xs-12 ">
                             
 <!--                            C:FOREACH STARTS HERE-->
@@ -115,6 +116,7 @@
 
 <!--                            C:FOREACH ENDS HERE-->                      
                         </div>
+                             </c:if>
                               </c:forEach>
                          
                      </div>

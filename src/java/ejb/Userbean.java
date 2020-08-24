@@ -144,7 +144,7 @@ System.out.println("In ejb "+uname);
         r.setBudget(budget);
         r.setDuration(duration);
         r.setPdf(pdf);
-        r.setStatus(1);
+        r.setStatus(0);
         em.persist(r);
         em.merge(u2);
     }
@@ -295,7 +295,7 @@ System.out.println("In ejb "+uname);
         n.setUserId(new Tbluser(u1.getUserId()));
         n.setFromUserId(new Tbluser(u2.getUserId()));
         n.setNotification("review "+review);
-        n.setStatus(0);
+        n.setStatus(1);
         em.persist(n);
         c.setReview(review);
         c.setRatings(rat);
@@ -418,6 +418,17 @@ System.out.println("In ejb "+uname);
     @Override
     public List<Object[]> homeSerch(int uid, int jid) {
         return em.createNativeQuery("select * from tblrequirement r,tbluser u WHERE u.userId=r.userId and u.userId!="+uid+" AND r.status=1 and u.jobcategoryId="+jid+"").getResultList();
+    }
+
+    @Override
+    public List<Object[]> projectSearch(String pname,int uid) {
+        
+       return em.createNativeQuery("SELECT * FROM tblrequirement WHERE title LIKE '%"+pname+"%' AND status=1 AND userId!="+uid+"").getResultList();
+    }
+
+    @Override
+    public List<Object[]> Guestjob() {
+        return em.createNativeQuery("SELECT *FROM tblrequirement r,tbluser u,tbljobcategory j WHERE r.userId=u.userId AND u.jobCategoryId=j.jobcategoryId and r.status=1").getResultList();
     }
     
     

@@ -42,6 +42,12 @@ public class registerClient {
         return resource.request().get(responseType);
     }
 
+    public <T> T guestJob(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("guestJob");
+        return resource.request().get(responseType);
+    }
+
     public void addUser(Object requestEntity) throws ClientErrorException {
         webTarget.path("addUser").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }

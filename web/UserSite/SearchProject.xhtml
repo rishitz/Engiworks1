@@ -58,6 +58,46 @@
                    
                    
                </c:forEach>
+               
+               <c:forEach var="x" items="${achivementManagedBean.homesearch}">
+                   
+               <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="product-box profile">
+                     <div class="image">
+                        <a href="jobs.html">
+                        <img class="img-responsive" src="images/new/09.jpg" alt="p1" title="p1"/>
+                        </a>	
+                        <div class="buttons">
+                           <div class="open-down">
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-link" aria-hidden="true"></i>
+                              </button>
+                              <button type="button" class="rotate1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="matter">
+                        <h1>${x[2]}</h1>
+                        <ul class="list-inline">
+                           <li>
+                               <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> ${x[6]}</a>
+                           </li>
+                           
+                        </ul>
+                        <p>${x[3]}</p>
+                        
+                     </div>
+                      <h:form>
+                      <h:commandLink action="${achivementManagedBean.sample(x[0])}" value="ViewMore" class="btn btn-info"/>
+                     </h:form>
+                     </div>
+               </div>
+                   
+                   
+                   
+               </c:forEach>
 <!--               <div class="col-md-3 col-sm-3 col-xs-12">
                   <div class="product-box">
                      <div class="image">

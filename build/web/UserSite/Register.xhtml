@@ -92,16 +92,16 @@
                      <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
                         <ul class="nav navbar-nav">
                            <li >
-                              <a href="Home.xhtml">HOME</a>
+                              <h:form>
+                                   <h:commandLink style="color: white" action="${registrationManagedBean.guestJob()}" value="HOME"></h:commandLink>
+                               </h:form>
                            </li>
                           
                             <li>                             
-                               <a href="About.xhtml">About Us  </a>                                
+                               <a href="Login.xhtml">LOGIN  </a>                                
                            </li>
 
-                           <li>
-                             <a href="Contact.xhtml">Contact us </a>
-                           </li>
+                           
                            
                            
                         </ul>
@@ -137,7 +137,7 @@
       </div>
       <br/>
       
-      <h2 style="background-color: greenyellow"> <center>#{registrationManagedBean.successmsg}<a href="Login.xhtml">Click here to Login</a></center> </h2>     <!-- login end here -->
+     
       <!-- login-form start here -->
       <div id="login-form">
          <div class="container">
@@ -153,16 +153,17 @@
                            <div class="form-group">
                               <div class="col-sm-12">
                                  <label>Username</label>
-                                  <h:inputText id="uname" value="#{registrationManagedBean.userName}"   class="form-control"/>
-<!--		requiredMessage="empty."
+                                 <p:inputText id="uname" required="true" label="uname" value="#{registrationManagedBean.userName}"   class="form-control"
+		requiredMessage="empty."
 		validatorMessage="Please enter alphabets upto 10 characters."
-                ">
+                >
+            <f:validateLength minimum="1" maximum="10"></f:validateLength>
 
-	  <f:validateRegex pattern="^[_A-Za-z0-9-\+]$"/>
+	  <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$"/>
 
 	</p:inputText>
-	<p:watermark for="uname" value="" />
-	<p:message for="uname"/>-->
+	<p:watermark for="uname" value="Enter name"/>
+	<p:message for="uname"/>
                                  
                                  
                                  

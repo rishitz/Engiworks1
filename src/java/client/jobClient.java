@@ -29,7 +29,7 @@ public class jobClient {
 
     public jobClient(String token) {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        client.register(new  RestFilter(token));
+        client.register(new RestFilter(token));
         webTarget = client.target(BASE_URI).path("generic");
     }
     static {
@@ -177,6 +177,12 @@ public class jobClient {
     public <T> T manageTask(Class<T> responseType, String rid) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("manageTask/{0}", new Object[]{rid}));
+        return resource.request().get(responseType);
+    }
+
+    public <T> T projectSearch(Class<T> responseType, String pname, String uid) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("projectSearch/{0}/{1}", new Object[]{pname, uid}));
         return resource.request().get(responseType);
     }
 

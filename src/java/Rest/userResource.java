@@ -399,6 +399,15 @@ public class userResource {
         return ul.homeSerch(uid, jid);
     }
     
+    @RolesAllowed("User")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("projectSearch/{pname}/{uid}")
+    public List<Object[]> projectSearch(@PathParam("pname") String pname,@PathParam("uid") int uid)
+    {
+        return ul.projectSearch(pname,uid);
+    }
+    
     
     
 }

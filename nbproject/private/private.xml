@@ -20,6 +20,7 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/MoreInfoUser.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/achivementManagedBean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/manageBidder.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/img3.jpg</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Home.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/TblMessage.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblnotification.java</file>
@@ -32,12 +33,14 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/config/projectConfig.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/PostJob.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Home1.xhtml</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/img7.jpg</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/postJobManagedBean.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Register.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobcategory.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/Rest/AdminGenericResource.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbljobsubcategory.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbllikes.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/ViewUsers.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/notification.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/SearchProject.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/bidCheck.xhtml</file>
@@ -45,6 +48,7 @@
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tblusergroup.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/ejb/AdminBeanLocal.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/beans/Fileuploadvalidator.java</file>
+            <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/Rest/registartionResource.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/src/java/entity/Tbluser.java</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/adminSitePages/Header.xhtml</file>
             <file>file:/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/Header.xhtml</file>

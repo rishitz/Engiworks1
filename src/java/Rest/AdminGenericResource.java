@@ -405,7 +405,7 @@ public class AdminGenericResource {
         System.out.println("CityId"+cid);
         adminBean.deleteCity(cid);
     }
-        @RolesAllowed({"Admin","User"})
+    @RolesAllowed({"Admin","User"})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getCity/{cid}")

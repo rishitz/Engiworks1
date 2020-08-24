@@ -7,6 +7,7 @@ package Rest;
 
 import ejb.UserbeanLocal;
 import entity.Tbluser;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.DeclareRoles;
@@ -96,6 +97,15 @@ public class registartionResource {
     {
         userbean.changePassword(u.getUserId(),u.getPassword());
     }
+    
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("guestJob")
+    public List<Object[]> guestJob()
+    {
+       return userbean.Guestjob();
+    }
+    
     
     private UserbeanLocal lookupUserbeanLocal() {
         try {

@@ -169,8 +169,11 @@ public class postJobManagedBean {
         jc.addJob(r);
         title=" ";
         description=" ";
+        budget=(float) 0;
+        duration=0;
         System.out.println("Title"+title);
-        message="Successfully add this job";
+        message="Successfully posted this Project";
+        
         
         
         

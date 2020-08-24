@@ -46,7 +46,7 @@ public class achivementManagedBean implements Serializable {
     @EJB
     private UserbeanLocal userbean;
     private int uid, duration, jobId, bdur,userId,ratings,aid,bidderId,achid,asuid,asjid,bidrId,albdid,jid,jobid,jobcid;
-    private String title, description,comment,complaint,review,username,email,pdf,rlist,message,achmsg;
+    private String title, description,comment,complaint,review,username,email,pdf,rlist,message,achmsg,homejob;
     private Part filename;
     jobClient jc;
     private String jobname;
@@ -61,12 +61,29 @@ public class achivementManagedBean implements Serializable {
     List<Object[]> userlist;
     List<Object[]> mlist;
     List<Object[]> serachjob;
+    List<Object[]> homesearch;
     Collection<Tbljobcategory> jclist;
     
     Object reviewlist;
     Object likelist;
     private String acdescription;
     private int avg=0;
+
+    public String getHomejob() {
+        return homejob;
+    }
+
+    public void setHomejob(String homejob) {
+        this.homejob = homejob;
+    }
+
+    public List<Object[]> getHomesearch() {
+        return homesearch;
+    }
+
+    public void setHomesearch(List<Object[]> homesearch) {
+        this.homesearch = homesearch;
+    }
 
     public List<Object[]> getSerachjob() {
         return serachjob;
@@ -419,7 +436,7 @@ public class achivementManagedBean implements Serializable {
         };
         Tbluser u1 = response.readEntity(us);
         int ud = u1.getUserId();
-
+        
         Response res = jc.homeJob(Response.class, ud + "");
         GenericType<List<Object[]>> gAdd = new GenericType<List<Object[]>>() {
         };
@@ -492,6 +509,7 @@ public class achivementManagedBean implements Serializable {
         reviewlist=new Object();
         likelist=new Object();
         serachjob=new ArrayList<Object[]>();
+        homesearch=new ArrayList<Object[]>();
        
 //        this.getJobData();
     }
@@ -1134,13 +1152,42 @@ System.out.println("Bider===="+bidderId);
         Tbluser u1 = response.readEntity(us);
         int uid=u1.getUserId();
         System.out.println("jobid"+jobcid);
-        
+        serachjob.clear();
+        homesearch.clear();
         Response res = jc.showHJob(Response.class,uid+"",jobcid+"");
         List<Object[]> Reviewlist = new ArrayList<Object[]>();
         GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
         };
        
         serachjob= (List<Object[]>)res.readEntity(rb);
+        
+        return "/UserSite/SearchProject.xhtml?faces-redirect=true";   
+        
+    }
+    
+    
+    public String projectSearch()
+    {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = req.getSession(false);
+        String uname = (String) session.getAttribute("userName");
+        System.out.println("session name" + uname);
+        Response response = jc.getUser(Response.class, uname);
+        GenericType<Tbluser> us = new GenericType<Tbluser>() {
+        };
+        Tbluser u1 = response.readEntity(us);
+        int uid=u1.getUserId();
+        //System.out.println("jobid"+jobcid);
+        
+        System.out.println("homeJob"+homejob);
+        homesearch.clear();
+        serachjob.clear();
+        Response res = jc.projectSearch(Response.class,homejob,uid+"");
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+       
+       homesearch= (List<Object[]>)res.readEntity(rb);
         
         return "/UserSite/SearchProject.xhtml?faces-redirect=true";   
         

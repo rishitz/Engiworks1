@@ -55,7 +55,16 @@ public class registrationManagedBean implements Serializable{
     private Collection<Tblcity> clist;
     registerClient rc=new registerClient();
     private Part filename;
+    List<Object[]> glist;
 
+    public List<Object[]> getGlist() {
+        return glist;
+    }
+
+    public void setGlist(List<Object[]> glist) {
+        this.glist = glist;
+    }
+    
     public String getSuccessmsg() {
         return successmsg;
     }
@@ -179,14 +188,16 @@ public class registrationManagedBean implements Serializable{
     
     public registrationManagedBean() {
     }
+    
     @PostConstruct
     public void init()
     {
         jlist=userbean.getalljob();
         clist=userbean.getallcity();
+        glist=new ArrayList<Object[]>();
         
     }
-    public void adduser()
+    public String adduser()
     {
          String folder="/home/sebatsian/NetBeansProjects/Engiworks1/web/UserSite/ProfilePictures/";
        String f1=null;
@@ -210,14 +221,14 @@ public class registrationManagedBean implements Serializable{
         u.setStatus(status);
         u.setProfileImage(f1);
         rc.addUser(u);
-        successmsg="you are successfully Register with us";
+        //successmsg="you are successfully Register with us";
         System.out.println("register"+successmsg);
         userName=" ";
         gender=" ";
         email=" ";
         address=" ";
         //successmsg=" ";
-        //return "/UserSite/Login.xhtml?faces-redirect=true";
+        return "/UserSite/Login.xhtml?faces-redirect=true";
         
     }
      public List<Object[]> checkDetails()
@@ -254,5 +265,18 @@ public class registrationManagedBean implements Serializable{
        this.email=" ";
        return "/UserSite/Login.xhtml?faces-redirect=true";
        
+   }
+   public String guestJob()
+   {
+        Response res = rc.guestJob(Response.class);
+        List<Object[]> Reviewlist = new ArrayList<Object[]>();
+        GenericType<List<Object[]>> rb = new GenericType<List<Object[]>>() {
+        };
+       
+       glist= (List<Object[]>)res.readEntity(rb);
+        
+        return "/UserSite/GuestHome.xhtml?faces-redirect=true";   
+       
+       //return "GuestHome.xhtml?faces-redirect=true";
    }
 }
